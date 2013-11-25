@@ -51,11 +51,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hunter.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="hunter.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assistant/hunter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="67" selection-start="1040" selection-end="1040" vertical-scroll-proportion="1.9366391">
+            <state line="6" column="0" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hunter_learn.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assistant/hunter_learn.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="211" column="26" selection-start="9670" selection-end="9670" vertical-scroll-proportion="0.34857142">
+              <folding>
+                <element signature="e#19#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,6 +82,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/Assistant/hunter.py" />
+        <option value="$PROJECT_DIR$/Assistant/hunter_learn.py" />
       </list>
     </option>
   </component>
@@ -386,8 +398,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assistant/hunter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="67" selection-start="1040" selection-end="1040" vertical-scroll-proportion="1.9366391">
+        <state line="6" column="0" selection-start="78" selection-end="78" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assistant/hunter_learn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="211" column="26" selection-start="9670" selection-end="9670" vertical-scroll-proportion="0.34857142">
+          <folding>
+            <element signature="e#19#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
