@@ -15,8 +15,18 @@ class hunter_store(object):
     def learn_store(self):
         learn = hunter_learn(self.username, self.password)
         info = learn.getInfo()
+        course_info_list = []
         course_list = []
         for course in info:
+            course_special = docs.Course(
+                caption=course['caption'],
+                id=course['id'],
+                file_unread=course['file_unread'],
+                homework=course['homework'],
+                notice_unread=course['notice_unread']
+            )
+            course_list.append(course_special)
+
             course_info = learn.getSpecial(course['id'])
 
             notice_info = course_info['notice']
@@ -85,12 +95,13 @@ class hunter_store(object):
                 homework=homework_list,
                 resources=resources_list
             )
-            course_list.append(special_info)
+            course_info_list.append(special_info)
         user = docs.User(
             username=self.username,
             student_number='',
             realname='',
-            learn_info=course_list,
+            course_info=course_list,
+            learn_info=course_info_list,
             homework_info=None,
             personal_info=None
         )

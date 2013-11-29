@@ -2,6 +2,7 @@
 __author__ = 'CaoYe'
 
 from mongoengine import *
+from mongoengine import context_managers
 import pymongo
 
 connect('learnDB')
@@ -75,10 +76,20 @@ class Personal(EmbeddedDocument):
     user_type = StringField()
 
 
+class Course(EmbeddedDocument):
+    caption = StringField()
+    id = StringField()
+    file_unread = StringField()
+    homework = StringField()
+    notice_unread = StringField()
+
+
 class User(Document):
     username = StringField()
     student_number = StringField()
     realname = StringField()
+    course_info = ListField(EmbeddedDocumentField(Course))
     learn_info = ListField(EmbeddedDocumentField(Special))
     homework_info = EmbeddedDocumentField(Homework)
     personal_info = EmbeddedDocumentField(Personal)
+

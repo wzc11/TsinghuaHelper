@@ -2,31 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataServer/Assistant/debuger.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataServer/Assistant/docs.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataServer/Assistant/hunter_store.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataServer/Assistant/mytest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/__init__.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/hunter.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/hunter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/hunter_learn.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/hunter_learn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/models.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/DataServer/urls.py" afterPath="$PROJECT_DIR$/DataServer/DataServer/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/views.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/views.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DataServer/Assistant/hunter_query.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/docs.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/docs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/hunter_store.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/hunter_store.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataServer/Assistant/mytest.py" afterPath="$PROJECT_DIR$/DataServer/Assistant/mytest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="grubber.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/tests.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385467385793" ignored="false" />
-    <file path="/models.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385468849312" ignored="false" />
-    <file path="/Dummy.txt" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385740082136" ignored="false" />
-    <file path="/docs.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385471879614" ignored="false" />
+    <file path="/models.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385745376003" ignored="false" />
+    <file path="/Dummy.txt" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385740719947" ignored="false" />
+    <file path="/docs.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385746905144" ignored="false" />
     <file path="/views.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385470552344" ignored="false" />
     <file path="/hunter_learn.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385470875225" ignored="false" />
-    <file path="/hunter_store.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385540876514" ignored="false" />
+    <file path="/hunter_store.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385743662230" ignored="false" />
     <file path="/urls.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385477685550" ignored="false" />
     <file path="$USER_HOME$/Desktop/五道口小助手/Hunter/AppPlatform/_platform_/__grubber__/debuger.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385478104388" ignored="false" />
     <file path="/debuger.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385478104388" ignored="false" />
-    <file path="/mytest.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385539621282" ignored="false" />
-    <file path="/fragment.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385540204933" ignored="false" />
+    <file path="/mytest.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385747921319" ignored="false" />
+    <file path="/fragment.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385747975508" ignored="false" />
+    <file path="/hunter_query.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385747932957" ignored="false" />
+    <file path="C:/Python27/Lib/site-packages/django_mongoengine-0.1-py2.7.egg/tests/views/views.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385745302042" ignored="false" />
+    <file path="C:/Python27/Lib/site-packages/django_mongoengine-0.1-py2.7.egg/tests/views/models.py" changelist="4bc1c7ab-6caa-4bd6-bcc8-f3834e2877b8" time="1385745383672" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +47,10 @@
       <file leaf-file-name="docs.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataServer/Assistant/docs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="34" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="9" column="0" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#46#71#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -58,8 +58,10 @@
       <file leaf-file-name="mytest.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DataServer/Assistant/mytest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.13644524">
-              <folding />
+            <state line="9" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="0.30810812">
+              <folding>
+                <element signature="e#44#54#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,16 +78,38 @@
       <file leaf-file-name="hunter_store.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter_store.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="44" selection-start="3173" selection-end="3173" vertical-scroll-proportion="0.0">
+            <state line="8" column="6" selection-start="113" selection-end="141" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#46#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hunter_query.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter_query.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="0" selection-start="645" selection-end="645" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#46#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cursor.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Python27/Lib/site-packages/pymongo/cursor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="912" column="24" selection-start="35386" selection-end="35386" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="document.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://C:/Python27/Lib/site-packages/mongoengine-0.8.4-py2.7.egg/mongoengine/base/document.py">
+      <file leaf-file-name="base.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://C:/Python27/Lib/site-packages/mongoengine-0.8.4-py2.7.egg/mongoengine/queryset/base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="321" column="0" selection-start="11595" selection-end="11595" vertical-scroll-proportion="0.0">
+            <state line="151" column="28" selection-start="5697" selection-end="5697" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -116,9 +140,10 @@
         <option value="$PROJECT_DIR$/DataServer/Assistant/hunter.py" />
         <option value="$PROJECT_DIR$/DataServer/Assistant/__init__.py" />
         <option value="$PROJECT_DIR$/DataServer/Assistant/tests.py" />
-        <option value="$PROJECT_DIR$/DataServer/Assistant/mytest.py" />
-        <option value="$PROJECT_DIR$/DataServer/Assistant/docs.py" />
         <option value="$PROJECT_DIR$/DataServer/Assistant/hunter_store.py" />
+        <option value="$PROJECT_DIR$/DataServer/Assistant/docs.py" />
+        <option value="$PROJECT_DIR$/DataServer/Assistant/mytest.py" />
+        <option value="$PROJECT_DIR$/DataServer/Assistant/hunter_query.py" />
       </list>
     </option>
   </component>
@@ -154,7 +179,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -225,17 +249,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/五道口小助手/Hunter/AppPlatform" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="last_opened_file_path" value="C:/Python27/Lib/site-packages/django_mongoengine-0.1-py2.7.egg/tests" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -443,14 +468,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2840909" sideWeight="0.6030928" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29553264" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28863636" sideWeight="0.5704467" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42955327" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3969072" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -526,31 +551,24 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/DataServer/Assistant/hunter_store.py</url>
-          <line>96</line>
+          <line>107</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/DataServer/Assistant/hunter_query.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/DataServer/Assistant/mytest.py</url>
+          <line>12</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="14" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter_learn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataServer/DataServer/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="7" selection-start="180" selection-end="180" vertical-scroll-proportion="0.2054054" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DataServer/Assistant/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="28" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0" />
@@ -574,13 +592,6 @@
     <entry file="file://$PROJECT_DIR$/DataServer/Assistant/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="63" selection-end="63" vertical-scroll-proportion="0.06822262" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter_learn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="24" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DataServer/Assistant/tests.py">
@@ -607,22 +618,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DataServer/Assistant/docs.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="34" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.0">
+        <state line="9" column="0" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#46#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/mongoengine-0.8.4-py2.7.egg/mongoengine/queryset/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="28" selection-start="5697" selection-end="5697" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/pymongo/cursor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="912" column="24" selection-start="35386" selection-end="35386" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter_learn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="24" selection-start="1607" selection-end="1607" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter_store.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="44" selection-start="3173" selection-end="3173" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="8" column="6" selection-start="113" selection-end="141" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#46#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataServer/Assistant/hunter_query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="645" selection-end="645" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#46#57#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DataServer/Assistant/mytest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.13644524">
-          <folding />
+        <state line="9" column="0" selection-start="185" selection-end="185" vertical-scroll-proportion="0.30810812">
+          <folding>
+            <element signature="e#44#54#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
