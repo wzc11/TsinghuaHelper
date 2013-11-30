@@ -2,7 +2,6 @@
 __author__ = 'CaoYe'
 
 import docs
-import debuger
 from hunter_learn import hunter_learn
 
 
