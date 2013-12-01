@@ -4,9 +4,7 @@ TsinghuaHelper
 
 /src
 代码文件
-	/utilties 工具
-		/grubber 数据抓取器
-		/platform 微信平台相关函数
+	
 /doc
 用户故事设计文档
 
