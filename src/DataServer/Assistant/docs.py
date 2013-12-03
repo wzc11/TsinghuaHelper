@@ -4,8 +4,9 @@ __author__ = 'CaoYe'
 from mongoengine import *
 from mongoengine import context_managers
 import pymongo
+from django.conf.settings import DBNAME
 
-connect('learnDB')
+connect(DBNAME)
 
 
 class SpecialNotice(EmbeddedDocument):
