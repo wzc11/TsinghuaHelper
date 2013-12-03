@@ -40,18 +40,16 @@ class hunter_academic(hunter):
     )
  
     basicInfoRe = re.compile(
-        ur'''当前用户：\s*</span></td><td valign="middle" align="center"><span class="uportal-navi-user">(?P<real_name>.*?)</span></td>'''
-        ur'''<td><img[^>]*></td><td valign="middle" align="center"><span class="uportal-navi-user">(?P<user_name>.*?)</span></td>'''
-        ur'''<td><img[^>]*></td><td valign="middle" align="center"><span class="uportal-navi-user">(?P<student_number>\d*)</span></td></tr></table></td><td>'''
-        #ur'''height="24" width="10" src=".*?"></td><td>(?P<student_number>\d+)<.*?>(?P<real_name>.*?)</td>'''
+        ur'''当前用户：\s*</span></td><td valign="middle" align="center"><span class="uportal-navi-user">\s*(?P<real_name>.*?)\s*</span></td>'''
+        ur'''<td><img[^>]*></td><td valign="middle" align="center"><span class="uportal-navi-user">\s*(?P<user_name>.*?)\s*</span></td>'''
+        ur'''<td><img[^>]*></td><td valign="middle" align="center"><span class="uportal-navi-user">\s*(?P<student_number>\d*)\s*</span></td></tr></table></td><td>'''
     )
     personReInfo = re.compile(
-        ur'''<td align="left" bgcolor="#F2F2F2" class="hui"[^>]*>\s*(?P<info>[^<]*)'''
+        ur'''align="left" bgcolor="" >\s*(?P<info>[^<]*)\s*</'''
     )
     personReTitle = re.compile(
-        ur'''bgcolor="#DFDFDF"\s*class="copyright">\s*(?P<title>[^<]*)'''
+        ur'''<div align="right">\s*(?P<title>[^<]*)\s*</div>'''
     )
-    # TODO: check InfoRe for Graduate Student
 
     def login(self, username, password):
         """This is the login function
@@ -90,10 +88,6 @@ class hunter_academic(hunter):
             raise userPassWrongException(username=username)
         self.cache = self.open('http://portal.tsinghua.edu.cn/render.userLayoutRootNode.uP').decode('utf-8', 'ignore')
         self.basicInfo = self.getMessageC(self.cache, self.basicInfoRe)[0]
-        self.scorePreparation = False
-        #file_object = open('test.txt', 'w+')
-        #file_object.write((self.cache).encode('utf-8'))
-        #file_object.close()
 
     def pseudoLogin(self, username, password):
         ftmp = open(os.path.abspath(os.path.dirname(__file__)) + "/academic_sample_basic.html", "r")
@@ -108,20 +102,6 @@ class hunter_academic(hunter):
         return tmpDict
 
     def logout(self):
-        self.header_sets = {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-            'Accept-Charset': 'GBK,utf-8;q=0.7,*;q=0.3',
-            'Accept-Encoding': 'gzip,deflate,sdch',
-            'Accept-Language': 'en-US,zh-CN;q=0.8,zh;q=0.6',
-            'Connection': 'keep-alive',
-            'Host': 'academic.tsinghua.edu.cn',
-            'Referer': 'http://academic.tsinghua.edu.cn/render.userLayoutRootNode.uP',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4',
-        }
-        #self.req = urllib2.Request(
-        #    url='http://portal.tsinghua.edu.cn/Logout',
-        #    headers=self.header_sets
-        #)
         self.open('http://portal.tsinghua.edu.cn/Logout')
 
 
@@ -134,13 +114,96 @@ class hunter_academic(hunter):
                 i['type'] = u'体育'
         return listdata
 
-    # This function will get all courses' id & name
+
     def getCourseInfo(self):
+        """This is the getinfo function,
+        which returns a list of dicts with 7 keys
+        (teacher, caption, day, time, revenue, type, duration)
+        """
+        if self.useBuffer:
+            fAcaBuf = open(os.path.abspath(os.path.dirname(__file__)) + "/academic_sample.html", "r")
+            try:
+                self.content = fAcaBuf.read().decode('utf-8', 'r')
+            finally:
+                fAcaBuf.close()
+
+            result = self.specialfunc(self.getMessageC(self.content, self.infoRe_UnderGrad))
+            if not result:
+                self.tnow = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+            return result
+        else:
+            self.urlre = re.compile(
+                r'''http://zhjw.cic.tsinghua.edu.cn/j_acegi_login.do\?url=/jxmh.do&amp;m=bks_yjkbSearch&amp;ticket=\w*''')
+            self.urlre2 = re.compile(
+                r'''http://zhjw.cic.tsinghua.edu.cn/j_acegi_login.do\?url=/jxmh.do&amp;m=yjs_kbSearch&amp;ticket=\w*''')
+            res = self.urlre.search(self.cache)
+            if res:
+                self.target_url = res.group().replace("amp;", "")
+            else:
+                self.isGraduate = True
+                self.target_url = self.urlre2.search(self.cache).group().replace("amp;", "")
+            self.content = self.opener.open(self.target_url).read().decode('gbk', 'ignore')
+            if self.isGraduate:
+                result = self.getMessageC(self.content, self.infoRe_Graduate)
+            else:
+                result = self.specialfunc(self.getMessageC(self.content, self.infoRe_UnderGrad))
+            if not result:
+                self.tnow = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+            return result
+
+
+    def refreshCache(self):
+        self.cache = self.open('http://portal.tsinghua.edu.cn/render.userLayoutRootNode.uP').decode('utf-8', 'ignore')
+
+   
+    def getPersonInfo(self):
+
+        def dealReplace(content):
+            return content.replace('&nbsp;', ' ')
+
+        def dealClear(content):
+            return content.strip(' \n\t\r')
+
+        self.refreshCache()
+        self.urlre = re.compile(
+                r'''http://zhjw.cic.tsinghua.edu.cn/j_acegi_login.do\?url=/jxmh.do&amp;m=bks_yxkccj&amp;ticket=\w*''')
+        res = self.urlre.search(self.cache)
+        self.target_url = res.group().replace("amp;", "")
+
+        self.opener.open(self.target_url)
+        self.header_sets_img = {
+            'Host': 'zhjw.cic.tsinghua.edu.cn',
+            'Connection': 'keep-alive',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.97 Safari/537.22',
+            'Accept-Encoding': 'gzip,deflate,sdch',
+            'Accept-Language': 'zh-CN,en-US;q=0.8,en;q=0.6',
+            'Accept-Charset': 'GBK,utf-8;q=0.7,*;q=0.3',
+        }
+        dict = {}
+        title = self.getMessage('http://zhjw.cic.tsinghua.edu.cn/jxmh.do?m=bks_ShowBksXx', self.personReTitle, 'gbk', dealReplace)
+        info = self.getMessage('http://zhjw.cic.tsinghua.edu.cn/jxmh.do?m=bks_ShowBksXx', self.personReInfo, 'gbk', dealReplace)
+        if (len(info) == 0):
+            return []
+        for i in range(len(info)):
+            dict[dealClear(title[i]['title'])[:-1]] = dealClear(info[i]['info'])
+        self.req_img = urllib2.Request(
+            url = 'http://zhjw.cic.tsinghua.edu.cn/xsBks.xsBksXjb.do?m=down&p_id='+dealClear(info[0]['info']),
+            headers=self.header_sets_img,
+        )
+        socket = self.opener.open(self.req_img)
+        data = socket.read()
+        socket.close()
+        img = open('test.jpg', 'w')  
+        img.write(data)
+        img.close()
+        return [dict, data]
 
 if __name__ == "__main__":
     import sys
     import debuger
     h = hunter_academic(sys.argv[1], sys.argv[2])
-    #debuger.printer(h.getPersonInfo(),'gbk')
+    debuger.printer(h.getPersonInfo()[0])
+    debuger.printer(h.getBasicInfo())
     debuger.printer(h.getCourseInfo())
 
