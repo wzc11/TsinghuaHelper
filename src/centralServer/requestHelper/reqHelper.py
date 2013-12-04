@@ -1,5 +1,5 @@
 __author__ = 'wangzhuqi.THU'
-import baseReqHelper
+from baseReqHelper import baseReqHelper
 
 
 class reqHelper(baseReqHelper):
@@ -17,3 +17,6 @@ class reqHelper(baseReqHelper):
             'content': content
         })
         return msg == 'ok'
+
+    def Authorize(self, code):
+        self._getFakeId()

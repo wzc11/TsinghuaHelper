@@ -1,6 +1,8 @@
 __author__ = 'wangzhuqi.THU'
 
 
+config_token = 'ziyewuge'
+
 config_xml = {
     'template': """<xml>
              <ToUserName><![CDATA[%s]]></ToUserName>
@@ -16,6 +18,6 @@ config_xml = {
 
 
 config_url = {
-    '': '',
-    '': ''
+    'retrieval': 'http://59.66.138.37/courseList/',
+    'test': 'http://thusecretary.duapp.com/weChat/',
 }

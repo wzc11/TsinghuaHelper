@@ -11,11 +11,11 @@ import time
 import re
 
 
-class baseReqHelper:
+class baseReqHelper(object):
     def __init__(self, email=None, password=None):
         if not email or not password:
             raise ValueError
-        self.addHeaders()
+        self._addHeaders()
 
         url_login = "https://mp.weixin.qq.com/cgi-bin/login?lang=zh_CN"
         m = hashlib.md5(password[0:16])
@@ -24,15 +24,17 @@ class baseReqHelper:
         body = (('username', email), ('pwd', password), ('imgcode', ''), ('f', 'json'))
         try:
             msg = json.loads(self.opener.open(url_login, urllib.urlencode(body), timeout=5).read())
-        except urllib2.URLError:
+        except urllib2.URLError, e:
+            print Exception, e
             raise weChatLoginException
         if msg['ErrCode'] not in (0, 65202):
             print msg
             raise weChatLoginException
+        print "login:\t", msg
         self.token = msg['ErrMsg'].split('=')[-1]
         time.sleep(1)
 
-    def addHeaders(self):
+    def _addHeaders(self):
         self.opener = poster.streaminghttp.register_openers()
         self.opener.add_handler(urllib2.HTTPCookieProcessor(cookielib.CookieJar()))
         self.opener.addheaders = [('Accept', 'application/json, text/javascript, */*; q=0.01'),
@@ -47,7 +49,7 @@ class baseReqHelper:
                                                  '(KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36')]
 
     def _sendMsg(self, sendTo, data):
-        if type(sendTo) == type([]):
+        if isinstance(type(sendTo), type([])):
             for _sendTo in sendTo:
                 self._sendMsg(_sendTo, data)
             return
@@ -60,9 +62,11 @@ class baseReqHelper:
             'tofakeid': sendTo,
             'ajax': 1}
         body.update(data)
+        print "body", body
         try:
-            msg = json.loads(self.opener.open("https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response&"
-                                              "lang=zh_CN", urllib.urlencode(body), timeout=5).read())['msg']
+            ret_json = json.loads(self.opener.open("https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response&"
+                                              "lang=zh_CN", urllib.urlencode(body), timeout=5).read())
+            msg = ret_json['base_resp']['err_msg']
         except urllib2.URLError:
             time.sleep(1)
             return self._sendMsg(sendTo, data)
@@ -81,7 +85,12 @@ class baseReqHelper:
         time.sleep(1)
         return msg['List'][0]['appId']
 
+    def _getFakeId(self):
+        msg_url = 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&count=1000&day=7' \
+                  '&offset=0&token=' +\
+                  self.token + '&lang=zh_CN'
+        print self.opener.open(msg_url).read()
+
 
 class weChatLoginException(Exception):
-    print Exception
     pass
