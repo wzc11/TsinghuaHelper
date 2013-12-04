@@ -9,9 +9,7 @@ import os
 import socket
 import time
 import random
-
 from hunter import *
-
 
 class userPassWrongException(Exception):
     def __init__(self, username):
@@ -209,6 +207,5 @@ if __name__ == "__main__":
     import debuger
     h = hunter_academic(sys.argv[1], sys.argv[2])
     debuger.printer(h.getBasicInfo())
-    #debuger.printer(h.getPersonInfo()[0])
+    debuger.printer(h.getPersonInfo()[0])
     debuger.printer(h.getCourseInfo())
-

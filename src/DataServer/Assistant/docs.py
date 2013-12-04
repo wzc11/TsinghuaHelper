@@ -4,9 +4,8 @@ __author__ = 'CaoYe'
 from mongoengine import *
 from mongoengine import context_managers
 import pymongo
-from django.conf.settings import DBNAME
 
-connect(DBNAME)
+connect('learnDB')
 
 
 class SpecialNotice(EmbeddedDocument):
@@ -48,6 +47,7 @@ class SpecialResources(EmbeddedDocument):
 
 
 class Special(EmbeddedDocument):
+    caption = StringField()
     notice = ListField(EmbeddedDocumentField(SpecialNotice))
     classinfo = ListField(EmbeddedDocumentField(SpecialClassinfo))
     files = ListField(EmbeddedDocumentField(SpecialFiles))
@@ -87,6 +87,7 @@ class Course(EmbeddedDocument):
 
 class User(Document):
     username = StringField()
+    user_id = StringField()
     student_number = StringField()
     realname = StringField()
     course_info = ListField(EmbeddedDocumentField(Course))
