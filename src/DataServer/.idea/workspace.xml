@@ -2,19 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="533884a8-79fa-44c5-be1c-1f5e490f8126" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/store/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/query.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/query_academic.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/query/query_learn.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/store/store.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/store/store_academic.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/store/store_learn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assistant/docs.py" afterPath="$PROJECT_DIR$/Assistant/docs.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../centralServer/app.conf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../centralServer/wechatActiveMsg/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../centralServer/wechatActiveMsg/config.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../centralServer/wechatPlatform/handlerFunc.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../centralServer/index.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../centralServer/wechatActiveMsg/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.gitignore" afterPath="$PROJECT_DIR$/../../.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../centralServer/requestHelper/baseReqHelper.py" afterPath="$PROJECT_DIR$/../centralServer/requestHelper/baseReqHelper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../centralServer/wechatPlatform/config.py" afterPath="$PROJECT_DIR$/../centralServer/wechatPlatform/config.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grubber/hunter_academic.py" afterPath="$PROJECT_DIR$/grubber/hunter_academic.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grubber/hunter_learn.py" afterPath="$PROJECT_DIR$/grubber/hunter_learn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assistant/store.py" afterPath="$PROJECT_DIR$/Assistant/store.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assistant/views.py" afterPath="$PROJECT_DIR$/Assistant/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../centralServer/requestHelper/reqHelper.py" afterPath="$PROJECT_DIR$/../centralServer/requestHelper/reqHelper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grubber/test.py" afterPath="$PROJECT_DIR$/grubber/test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../centralServer/wechatPlatform/views.py" afterPath="$PROJECT_DIR$/../centralServer/wechatPlatform/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DataServer.iws" />
@@ -71,7 +72,7 @@
       <file leaf-file-name="hunter_learn.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grubber/hunter_learn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0">
+            <state line="36" column="87" selection-start="1291" selection-end="1291" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#43#59#0" expanded="true" />
               </folding>
@@ -79,22 +80,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="store_academic.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="store_academic.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/store/store_academic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="38" selection-start="1794" selection-end="1794" vertical-scroll-proportion="0.14766355">
+            <state line="53" column="24" selection-start="2241" selection-end="2241" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hunter_academic.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="hunter_academic.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/grubber/hunter_academic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="195" column="22" selection-start="8324" selection-end="8324" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#43#59#0" expanded="true" />
-              </folding>
+            <state line="8" column="13" selection-start="138" selection-end="138" vertical-scroll-proportion="0.29118773">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,12 +153,12 @@
         <option value="$PROJECT_DIR$/query/query_academic.py" />
         <option value="$PROJECT_DIR$/Assistant/views.py" />
         <option value="$PROJECT_DIR$/Assistant/store.py" />
-        <option value="$PROJECT_DIR$/grubber/hunter_learn.py" />
         <option value="$PROJECT_DIR$/store/store.py" />
         <option value="$PROJECT_DIR$/store/store_learn.py" />
         <option value="$PROJECT_DIR$/Assistant/docs.py" />
-        <option value="$PROJECT_DIR$/grubber/hunter_academic.py" />
         <option value="$PROJECT_DIR$/store/store_academic.py" />
+        <option value="$PROJECT_DIR$/grubber/hunter_learn.py" />
+        <option value="$PROJECT_DIR$/grubber/hunter_academic.py" />
       </list>
     </option>
   </component>
@@ -210,20 +209,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="DataServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DataServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DataServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -573,13 +558,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/grubber/hunter_academic.py</url>
-          <line>208</line>
+          <line>210</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/grubber/hunter_academic.py</url>
-          <line>207</line>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="4" />
@@ -656,15 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grubber/hunter_learn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#43#59#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grubber/hunter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="25" selection-start="476" selection-end="476" vertical-scroll-proportion="0.6448598">
@@ -672,18 +643,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/grubber/hunter_academic.py">
+    <entry file="file://$PROJECT_DIR$/store/store_academic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="195" column="22" selection-start="8324" selection-end="8324" vertical-scroll-proportion="0.0">
+        <state line="53" column="24" selection-start="2241" selection-end="2241" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/grubber/hunter_learn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="87" selection-start="1291" selection-end="1291" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#43#59#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/store_academic.py">
+    <entry file="file://$PROJECT_DIR$/grubber/hunter_academic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="38" selection-start="1794" selection-end="1794" vertical-scroll-proportion="0.14766355">
+        <state line="8" column="13" selection-start="138" selection-end="138" vertical-scroll-proportion="0.29118773">
           <folding />
         </state>
       </provider>

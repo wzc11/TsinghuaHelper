@@ -8,9 +8,8 @@ import datetime
 import os
 import socket
 import time
-
+import random
 from hunter import *
-
 
 class userPassWrongException(Exception):
     def __init__(self, username):
@@ -59,11 +58,13 @@ class hunter_academic(hunter):
         self.isGraduate = False
         self.cj = cookielib.CookieJar()
         self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cj), urllib2.HTTPHandler)
+        x = random.randint(0, 1000)
+        y = random.randint(0, 1000)
         self.postdata = urllib.urlencode({
             'userName': username,
             'password': password,
-            'x': '0',
-            'y': '0'
+            'x': x,
+            'y': y
         })
         self.header_sets = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -136,6 +137,7 @@ class hunter_academic(hunter):
                 r'''http://zhjw.cic.tsinghua.edu.cn/j_acegi_login.do\?url=/jxmh.do&amp;m=bks_yjkbSearch&amp;ticket=\w*''')
             self.urlre2 = re.compile(
                 r'''http://zhjw.cic.tsinghua.edu.cn/j_acegi_login.do\?url=/jxmh.do&amp;m=yjs_kbSearch&amp;ticket=\w*''')
+            self.refreshCache()
             res = self.urlre.search(self.cache)
             if res:
                 self.target_url = res.group().replace("amp;", "")
@@ -143,6 +145,7 @@ class hunter_academic(hunter):
                 self.isGraduate = True
                 self.target_url = self.urlre2.search(self.cache).group().replace("amp;", "")
             self.content = self.opener.open(self.target_url).read().decode('gbk', 'ignore')
+
             if self.isGraduate:
                 result = self.getMessageC(self.content, self.infoRe_Graduate)
             else:
@@ -202,9 +205,7 @@ class hunter_academic(hunter):
 if __name__ == "__main__":
     import sys
     import debuger
-    h = hunter_academic('caoy11', 'memory2011')
-
-    s = h.getPersonInfo()
-    debuger.printer(s[0])
+    h = hunter_academic(sys.argv[1], sys.argv[2])
     debuger.printer(h.getBasicInfo())
-
+    debuger.printer(h.getPersonInfo()[0])
+    debuger.printer(h.getCourseInfo())
