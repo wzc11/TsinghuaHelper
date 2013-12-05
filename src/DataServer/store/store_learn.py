@@ -1,22 +1,14 @@
-# -*- coding: utf-8 -*-
 __author__ = 'CaoYe'
 
-import docs
-from grubber.hunter_learn import hunter_learn
+from store import *
 
 
-class store(object):
-
-    def __init__(self, username, password, user_id):
-        self.username = username
-        self.password = password
-        self.user_id = user_id
-
+class store_learn(store):
     def user_update(self, user):
-        user_list = docs.User.objects(user_id=self.user_id)
+        user_list = User.objects(user_id=self.user_id)
         try:
             user_old = user_list.next()
-            docs.User.objects(user_id=self.user_id).update(
+            User.objects(user_id=self.user_id).update(
                 set__course_info=user.course_info,
                 set__learn_info=user.learn_info
             )
@@ -32,7 +24,7 @@ class store(object):
             for course in info:
                 course_caption_list = course['caption'].split('(')
                 course_caption = course_caption_list[0]
-                course_special = docs.Course(
+                course_special = Course(
                     caption=course_caption,
                     id=course['id'],
                     file_unread=course['file_unread'],
@@ -46,17 +38,18 @@ class store(object):
                 notice_info = course_info['notice']
                 notice_list = []
                 for notice in notice_info:
-                    notice_special = docs.SpecialNotice(
+                    notice_special = SpecialNotice(
                         link=notice['link'],
                         caption=notice['caption'],
                         teacher=notice['teacher'],
                         date=notice['date']
                     )
                     notice_list.append(notice_special)
+
                 classinfo_info = course_info['classinfo']
                 classinfo_list = []
                 for classinfo in classinfo_info:
-                    classinfo_special = docs.SpecialClassinfo(
+                    classinfo_special = SpecialClassinfo(
                         teacher_name=classinfo['teacher_name'],
                         teacher_email=classinfo['teacher_email']
                     )
@@ -66,7 +59,7 @@ class store(object):
                 files_info = course_info['files']
                 files_list = []
                 for files in files_info:
-                    files_special = docs.SpecialFiles(
+                    files_special = SpecialFiles(
                         link=files['link'],
                         caption=files['caption'],
                         note=files['note'],
@@ -78,7 +71,7 @@ class store(object):
                 homework_info = course_info['homework']
                 homework_list = []
                 for homework in homework_info:
-                    homework_special = docs.SpecialHomework(
+                    homework_special = SpecialHomework(
                         cannot_submit=homework['cannot_submit'],
                         cannot_see_review=homework['cannot_see_review'],
                         caption=homework['caption'],
@@ -94,14 +87,14 @@ class store(object):
                 resources_info = course_info['resources']
                 resources_list = []
                 for resources in resources_info:
-                    resources_special = docs.SpecialResources(
+                    resources_special = SpecialResources(
                         link=resources['link'],
                         caption=resources['caption'],
                         note=resources['note']
                     )
                     resources_list.append(resources_special)
 
-                special_info = docs.Special(
+                special_info = Special(
                     caption=course_caption,
                     notice=notice_list,
                     classinfo=classinfo_list,
@@ -111,19 +104,14 @@ class store(object):
                 )
                 course_info_list.append(special_info)
 
-            user = docs.User(
+            user = User(
                 user_name=self.username,
                 user_id=self.user_id,
-                student_number='',
-                real_name='',
+                use_password=self.password,
                 course_info=course_list,
                 learn_info=course_info_list,
-                homework_info=None,
-                personal_info=None
             )
             self.user_update(user)
             return True
         except:
             return False
-
-

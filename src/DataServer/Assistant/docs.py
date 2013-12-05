@@ -69,14 +69,6 @@ class AllHomework(EmbeddedDocument):
 class Homework(EmbeddedDocument):
     homework = ListField(EmbeddedDocumentField(AllHomework))
 
-
-class Personal(EmbeddedDocument):
-    email = StringField()
-    name = StringField()
-    gender = StringField()
-    user_type = StringField()
-
-
 class Course(EmbeddedDocument):
     caption = StringField()
     id = StringField()
@@ -85,13 +77,43 @@ class Course(EmbeddedDocument):
     notice_unread = StringField()
 
 
-class User(Document):
-    username = StringField()
-    user_id = StringField()
+class SingleCourse(EmbeddedDocument):
+    revenue = StringField()
+    teacher = StringField()
+    caption = StringField()
+    time = StringField()
+    duration = StringField()
+    type = StringField()
+    day = StringField()
+
+
+class PersonInfo(EmbeddedDocument):
+    major = StringField()
+    is_at_school = StringField()
+    is_minor = StringField()
+    is_second_degree = StringField()
     student_number = StringField()
-    realname = StringField()
+    phone = StringField()
+    identification = StringField()
+    charge_type = StringField()
+    is_register = StringField()
+    nation = StringField()
+    real_name = StringField()
+    teach_class = StringField()
+    department = StringField()
+    birth_date = StringField()
+    sex = StringField()
+    email = StringField()
+    graduate_date = StringField()
+
+
+class User(Document):
+    user_name = StringField()
+    user_id = StringField()
+    use_password = StringField()
     course_info = ListField(EmbeddedDocumentField(Course))
     learn_info = ListField(EmbeddedDocumentField(Special))
+    timetable = ListField(EmbeddedDocumentField(SingleCourse))
     homework_info = EmbeddedDocumentField(Homework)
-    personal_info = EmbeddedDocumentField(Personal)
+    personal_info = EmbeddedDocumentField(PersonInfo)
 

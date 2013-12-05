@@ -46,6 +46,7 @@ def cmd_handler(request):
             result = files_list_get(object['data'])
         elif cmd == 'files_info':
             result = files_info_get(object['data'])
+        print json.dumps(result)
         return HttpResponse(json.dumps(result))
     except Exception, e:
         print Exception, e

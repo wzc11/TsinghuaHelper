@@ -202,8 +202,9 @@ class hunter_academic(hunter):
 if __name__ == "__main__":
     import sys
     import debuger
-    h = hunter_academic(sys.argv[1], sys.argv[2])
-    debuger.printer(h.getPersonInfo()[0])
+    h = hunter_academic('caoy11', 'memory2011')
+
+    s = h.getPersonInfo()
+    debuger.printer(s[0])
     debuger.printer(h.getBasicInfo())
-    debuger.printer(h.getCourseInfo())
 
