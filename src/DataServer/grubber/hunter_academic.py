@@ -197,7 +197,7 @@ class hunter_academic(hunter):
         socket = self.opener.open(self.req_img)
         data = socket.read()
         socket.close()
-        img = open('test.jpg', 'w')  
+        img = open('test.jpg', 'wb')
         img.write(data)
         img.close()
         return [dict, data]
@@ -205,7 +205,7 @@ class hunter_academic(hunter):
 if __name__ == "__main__":
     import sys
     import debuger
-    h = hunter_academic(sys.argv[1], sys.argv[2])
+    h = hunter_academic('caoy11', 'memory2011')
     debuger.printer(h.getBasicInfo())
-    debuger.printer(h.getPersonInfo()[0])
     debuger.printer(h.getCourseInfo())
+    debuger.printer(h.getPersonInfo()[0])
