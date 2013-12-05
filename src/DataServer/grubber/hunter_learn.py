@@ -31,7 +31,7 @@ class hunter_learn(hunter):
         ur'<td width="15%" ><span class="red_text">\s*(?P<file_unread>\d*)\s*</span>个新文件</td>'
     )
     noticeRe = re.compile(
-        r'''<a href='(?P<link>[^']*)'>\s*(?P<caption>.*?)\s*</a>\s*'''
+        r'''<a\s*href='(?P<link>[^']*)'>\s*(?P<caption>.*?)\s*</a>\s*'''
         r'''</td>\s*'''
         r'''<td width='15%'\s*align='center'\s*height=25>\s*(?P<teacher>.*?)\s*</td>\s*'''
         r'''<td width='20%'\s*align='center'\s*height=25>\s*(?P<date>.*?)\s*</td>\s*'''
@@ -164,6 +164,7 @@ class hunter_learn(hunter):
         self.opener.open(self.req)
 
     def datadeal(self, li, Host=DEFAULT_HOST):
+        print li
         for i in li:
             for j in i:
                 if i[j] is None:
