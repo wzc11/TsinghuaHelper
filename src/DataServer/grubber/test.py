@@ -12,4 +12,4 @@ h = hunter_learn(sys.argv[1], sys.argv[2])
 l = h.getInfo()
 #debuger.printer(l)
 for course in l:
-    debuger.printer(h.getSpecial(course['id'],[0]))
+    debuger.printer(h.getSpecial(course['id']))

@@ -58,9 +58,6 @@ class hunter_learn(hunter):
         r'</td>\s*'
         r'<td width="10%">\s*(?P<size>.*?)\s*'
         r'</td>\s*'
-        r'<td width="25%">\s*'
-        r'''<input id="submit_hw" name="submit_hw" value="[^"]*" (disabled="(?P<cannot_submit>[^"]*)")? type="button" onclick="[^"]*"\s*/>\s*'''
-        r'''<input id="lookinfo" name="lookinfo" value="[^"]*" (disabled="(?P<cannot_see_review>[^"]*)")? type="button"  onclick="javascript:window.location.href='(?P<review_link>[^']*)'";\s*/>'''
     )
     homeworkDetailRe = re.compile(
         r'<td class="info_title"><img src="/img/info_title.gif" />\s*(?P<subject>.*?)\s*</td>\s*'
