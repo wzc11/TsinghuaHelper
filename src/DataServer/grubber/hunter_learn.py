@@ -60,13 +60,7 @@ class hunter_learn(hunter):
         r'</td>\s*'
     )
     homeworkDetailRe = re.compile(
-        r'<td class="info_title"><img src="/img/info_title.gif" />\s*(?P<subject>.*?)\s*</td>\s*'
-        r'</tr>\s*<tr>\s*<td class="info_x">\s*</td>\s*</tr>\s*<tr>\s*'
-        r'<td colspan="3" valign="top">\s*'
-        r'<table id="table_box" cellspacing="1" cellpadding="0">\s*'
-        r'<tr>\s*'
-        r'<td width="15%" height="25" class="title">.*?</td>\s*'
-        r'<td class="tr_2">\s*(?P<caption>.*?)\s*</td>\s*'
+        r'<td class="tr_2">&nbsp;\s*(?P<caption>.*?)\s*</td>\s*'
         r'</tr>\s*<tr>\s*'
         r'<td height="100" class="title">.*?</td>\s*'
         r'<td class="tr_2">\s*<textarea cols=55  rows="7" style="width:650px"\s*'
@@ -206,7 +200,9 @@ class hunter_learn(hunter):
         return self.data
 
     def getHomework(self, link):
-        return self.datadeal(self.getMessage(link, self.homeworkDetailRe, 'gbk'), "http://learn.tsinghua.edu.cn")
+        #print self.open(link)
+        #print self.getMessage(link, self.homeworkDetailRe, 'utf-8')
+        return self.datadeal(self.getMessage(link, self.homeworkDetailRe, 'utf-8'), "http://learn.tsinghua.edu.cn")
 
     def getPersonal(self):
         self.data = dict()
