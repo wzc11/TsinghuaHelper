@@ -136,7 +136,7 @@ class hunter_learn(hunter):
             headers=self.header_sets
         )
         result = self.opener.open(self.req).read().decode('utf-8', 'ignore')
-        print result
+        #print result
         if result.find("alert") > 0:
             raise userPassWrongException
 
@@ -162,7 +162,7 @@ class hunter_learn(hunter):
         self.opener.open(self.req)
 
     def datadeal(self, li, Host=DEFAULT_HOST):
-        print li
+        #print li
         for i in li:
             for j in i:
                 if i[j] is None:

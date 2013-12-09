@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <ul>
+        {% for files in content %}
+            <li>文件标题:{{ files.caption }}</li>
+            <li>文件链接:{{ files.link }}</li>
+            <li>文件说明:{{ files.note }}</li>
+            <li>文件大小:{{ files.size }}</li>
+            <li>文件日期:{{ files.date }}</li>
+            <li>--------------------------</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

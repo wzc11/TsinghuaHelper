@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
-from Assistant.views import cmd_handler
-from Assistant.views import pushtest
+from Assistant.views import *
 from django.contrib import admin
 admin.autodiscover()
 
@@ -9,6 +8,10 @@ urlpatterns = patterns('',
     # url(r'^$', 'DataServer.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^test/', pushtest),
+    (r'^person_img/([^/]+)/$', person_img_get),
+    (r'^courseInfo/([^/]+)/(\d+)/$', course_info_get),
+    (r'^homeworkInfo/([^/]+)/(\d+)/$', homework_info_get),
+    (r'^noticeInfo/([^/]+)/(\d+)/$', notice_info_get),
+    (r'^filesInfo/([^/]+)/(\d+)/$', files_info_get),
     url(r'^courseList/', cmd_handler),
 )

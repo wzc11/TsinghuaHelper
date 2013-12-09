@@ -5,14 +5,12 @@ from store import *
 
 class store_learn(store):
     def user_update(self, user):
-        user_list = User.objects(user_id=self.user_id)
-        try:
-            user_old = user_list.next()
+        if self.user_is_exist():
             User.objects(user_id=self.user_id).update(
                 set__course_info=user.course_info,
                 set__learn_info=user.learn_info
             )
-        except Exception, e:
+        else:
             user.save()
 
     def learn_store(self):
@@ -72,12 +70,9 @@ class store_learn(store):
                 homework_list = []
                 for homework in homework_info:
                     homework_special = SpecialHomework(
-                        cannot_submit=homework['cannot_submit'],
-                        cannot_see_review=homework['cannot_see_review'],
                         caption=homework['caption'],
                         state=homework['state'],
                         link=homework['link'],
-                        review_link=homework['review_link'],
                         date=homework['date'],
                         deadline=homework['deadline'],
                         size=homework['size']
@@ -113,5 +108,7 @@ class store_learn(store):
             )
             self.user_update(user)
             return True
-        except:
+        except Exception, e:
+            print Exception, e
+            self.user_delete()
             return False

@@ -29,12 +29,9 @@ class SpecialFiles(EmbeddedDocument):
 
 
 class SpecialHomework(EmbeddedDocument):
-    cannot_submit = StringField()
-    cannot_see_review = StringField()
     caption = StringField()
     state = StringField()
     link = StringField()
-    review_link = StringField()
     date = StringField()
     deadline = StringField()
     size = StringField()
@@ -68,6 +65,7 @@ class AllHomework(EmbeddedDocument):
 
 class Homework(EmbeddedDocument):
     homework = ListField(EmbeddedDocumentField(AllHomework))
+
 
 class Course(EmbeddedDocument):
     caption = StringField()
@@ -115,5 +113,5 @@ class User(Document):
     learn_info = ListField(EmbeddedDocumentField(Special))
     timetable = ListField(EmbeddedDocumentField(SingleCourse))
     homework_info = EmbeddedDocumentField(Homework)
-    personal_info = EmbeddedDocumentField(PersonInfo)
+    person_info = EmbeddedDocumentField(PersonInfo)
 

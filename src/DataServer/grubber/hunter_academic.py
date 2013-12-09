@@ -159,7 +159,7 @@ class hunter_academic(hunter):
         self.cache = self.open('http://portal.tsinghua.edu.cn/render.userLayoutRootNode.uP').decode('utf-8', 'ignore')
 
    
-    def getPersonInfo(self):
+    def getPersonInfo(self, image_name):
 
         def dealReplace(content):
             return content.replace('&nbsp;', ' ')
@@ -197,7 +197,7 @@ class hunter_academic(hunter):
         socket = self.opener.open(self.req_img)
         data = socket.read()
         socket.close()
-        img = open('test.jpg', 'wb')
+        img = open('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\old\\' + image_name + '.jpg', 'wb')
         img.write(data)
         img.close()
         return [dict, data]
@@ -208,4 +208,3 @@ if __name__ == "__main__":
     h = hunter_academic('caoy11', 'memory2011')
     debuger.printer(h.getBasicInfo())
     debuger.printer(h.getCourseInfo())
-    debuger.printer(h.getPersonInfo()[0])

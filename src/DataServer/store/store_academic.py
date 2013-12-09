@@ -1,25 +1,44 @@
 __author__ = 'CaoYe'
+# -*- coding: utf-8 -*-
 from store import *
+import glob
+from PIL import Image
 
 
 class store_academic(store):
     def user_update(self, user):
-        user_list = User.objects(user_id=self.user_id)
-        try:
-            user_old = user_list.next()
-            User.objects(user_id=self.user_id).update(
-                set__course_info=user.course_info,
-                set__learn_info=user.learn_info
-            )
-        except Exception, e:
-            user.save()
+        user.save()
+
+    def image_handle(self):
+        ima = Image.open('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\old\\' + self.user_id + '.jpg')
+        imb = ima.resize((243, 300))
+        imc = Image.new("RGB", (540, 300), 'white')
+        imc.paste(imb, (149, 0, 392, 300))
+        imc.save('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\new\\' + self.user_id + '.jpg')
 
     def academic_store(self):
+        if self.user_is_exist():
+            return True
         try:
-            academic = hunter_academic('caoy11', 'memory2011')
-            person = academic.getPersonInfo()[0]
+            academic = hunter_academic(self.username, self.password)
             basic = academic.getBasicInfo()
+            #get person_info
+            person_test = academic.getPersonInfo(self.user_id)
+            count = 0
+            while len(person_test) == 0 and count < 20:
+                count += 1
+                person_test = academic.getPersonInfo(self.user_id)
+            person = person_test[0]
+            self.image_handle()
+            #get timetable
             course_list = academic.getCourseInfo()
+            count = 0
+            print course_list
+            while len(course_list) == 0 and count < 50:
+                count += 1
+                course_list = academic.getCourseInfo()
+                print course_list
+            course_test = course_list[0]
             person_info = PersonInfo(
                 major=person['专业'.decode('UTF-8')],
                 is_at_school=person['是否在校'.decode('UTF-8')],
@@ -53,9 +72,10 @@ class store_academic(store):
                 timetable.append(course_single)
             user = User(
                 timetable=timetable,
-                personal_info=person_info
+                person_info=person_info
             )
             self.user_update(user)
             return True
         except Exception, e:
+            self.user_delete()
             return False

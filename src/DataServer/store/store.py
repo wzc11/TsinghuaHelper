@@ -12,3 +12,19 @@ class store(object):
         self.username = username
         self.password = password
         self.user_id = user_id
+
+    def user_is_exist(self):
+        user_list = User.objects(user_id=self.user_id)
+        try:
+            user_old = user_list.next()
+            return True
+        except Exception, e:
+            return False
+
+    def user_delete(self):
+        user_list = User.objects(user_id=self.user_id)
+        try:
+            user_old = user_list.next()
+            User.objects(user_id=self.user_id).delete()
+        except Exception, e:
+            return False

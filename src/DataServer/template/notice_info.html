@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <ul>
+        {% for notice in content %}
+            <li>公告标题:{{ notice.caption }}</li>
+            <li>公告链接:{{ notice.link }}</li>
+            <li>公告教师:{{ notice.teacher }}</li>
+            <li>公告日期:{{ notice.date }}</li>
+            <li>--------------------------</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

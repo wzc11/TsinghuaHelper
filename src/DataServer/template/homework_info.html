@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <ul>
+        {% for homework in content %}
+            <li>作业标题:{{ homework.caption }}</li>
+            <li>作业状态:{{ homework.state }}</li>
+            <li>作业链接:{{ homework.link }}</li>
+            <li>作业日期:{{ homework.date }}</li>
+            <li>截止日期:{{ homework.deadline }}</li>
+            <li>文件大小:{{ homework.size }}</li>
+            <li>--------------------------</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
