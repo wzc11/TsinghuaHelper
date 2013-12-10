@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'wangzhuqi.THU'
 from requestHelper.forwardHelper import *
 from projectManager.CONFIG import *
@@ -10,6 +11,16 @@ def eventHandler(data):
             'user_id': data['content']['FromUserName']
         }
     }
+
+    if fwdData['type'] == 'bind':
+        return {
+            'data': {
+                'content': '请点击如下链接<a href="http://thusecretary.duapp.com/weChat/login/?id='
+                           + data['content']['FromUserName']
+                           + '">绑定账号</a>',
+            },
+            'type': 'TEXT_TEMPLATE',
+        }
 
     retData = forwardRequest(URL['DATA'], fwdData)
 
@@ -30,6 +41,7 @@ def eventHandler(data):
         for item in retData['data']:
                 reply['data']['content'] += item.encode('utf-8')
                 reply['data']['content'] += '\n'
+        reply['data']['content'] += '点击可查看具体信息'
         print 're test:', reply
     else:
         reply['data']['content'] = 'WRONG CODE'

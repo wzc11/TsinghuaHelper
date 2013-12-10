@@ -49,5 +49,6 @@ def autoResponder(request):
             'time': str(int(time.time())),
             'title': 'User Info',
             'description': reply['data']['content'],
-            'picUrl': reply['data']['url']
+            'picUrl': reply['data']['url'],
+            'url': reply['data']['url'],
         }, XML['USER_INFO_TEMPLATE'])['content']
