@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="533884a8-79fa-44c5-be1c-1f5e490f8126" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grubber/hunter_learn.py" afterPath="$PROJECT_DIR$/grubber/hunter_learn.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/grubber/test.py" afterPath="$PROJECT_DIR$/grubber/test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assistant/docs.py" afterPath="$PROJECT_DIR$/Assistant/docs.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template/homework_info.html" afterPath="$PROJECT_DIR$/template/homework_info.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/store_learn.py" afterPath="$PROJECT_DIR$/store/store_learn.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="DataServer.iws" />
@@ -19,19 +20,19 @@
     <file path="/tests.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386486771729" ignored="false" />
     <file path="$USER_HOME$/asdasd/aasdasd/tt.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1385779881796" ignored="false" />
     <file path="$USER_HOME$/untitled/untitled/settings.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1385780327301" ignored="false" />
-    <file path="/Dummy.txt" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386609537954" ignored="false" />
+    <file path="/Dummy.txt" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386671320286" ignored="false" />
     <file path="/query.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386206650746" ignored="false" />
     <file path="/store.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386606716748" ignored="false" />
     <file path="/hunter_academic.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386608098156" ignored="false" />
-    <file path="/docs.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386252293844" ignored="false" />
-    <file path="/store_learn.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386608689481" ignored="false" />
+    <file path="/docs.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386676568710" ignored="false" />
+    <file path="/store_learn.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386676336261" ignored="false" />
     <file path="/store_academic.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386608562010" ignored="false" />
     <file path="/query_academic.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386206415761" ignored="false" />
     <file path="/query_learn.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386604464307" ignored="false" />
     <file path="/hunter_learn.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386608348586" ignored="false" />
     <file path="/a.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386255415246" ignored="false" />
     <file path="/course_info.html" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386487577594" ignored="false" />
-    <file path="/homework_info.html" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386488104527" ignored="false" />
+    <file path="/homework_info.html" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386677525198" ignored="false" />
     <file path="/notice_info.html" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386488639056" ignored="false" />
     <file path="/files_info.html" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386488795207" ignored="false" />
     <file path="/test.py" changelist="533884a8-79fa-44c5-be1c-1f5e490f8126" time="1386609361975" ignored="false" />
@@ -54,29 +55,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="query_learn.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/query/query_learn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="46" selection-start="2113" selection-end="2113" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="store.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/store.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="store_learn.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/store/store_learn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="28" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="61" column="40" selection-start="2001" selection-end="2001" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#111#341#0" expanded="false" />
+                <element signature="e#392#451#0" expanded="false" />
+                <element signature="e#505#847#0" expanded="false" />
+                <element signature="e#907#1267#0" expanded="false" />
+                <element signature="e#1319#1679#0" expanded="false" />
+                <element signature="e#2483#2815#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -84,18 +74,16 @@
       <file leaf-file-name="test.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/grubber/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="17" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#98#108#0" expanded="true" />
-              </folding>
+            <state line="6" column="0" selection-start="143" selection-end="143" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hunter_learn.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/grubber/hunter_learn.py">
+      <file leaf-file-name="docs.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assistant/docs.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="200" column="0" selection-start="8800" selection-end="8800" vertical-scroll-proportion="6.6175942">
+            <state line="8" column="0" selection-start="148" selection-end="148" vertical-scroll-proportion="-0.11875">
               <folding />
             </state>
           </provider>
@@ -131,10 +119,10 @@
         <option value="$PROJECT_DIR$/grubber/hunter_academic.py" />
         <option value="$PROJECT_DIR$/Assistant/views.py" />
         <option value="$PROJECT_DIR$/store/store_academic.py" />
-        <option value="$PROJECT_DIR$/store/store_learn.py" />
-        <option value="$PROJECT_DIR$/Assistant/docs.py" />
-        <option value="$PROJECT_DIR$/template/homework_info.html" />
         <option value="$PROJECT_DIR$/grubber/test.py" />
+        <option value="$PROJECT_DIR$/Assistant/docs.py" />
+        <option value="$PROJECT_DIR$/store/store_learn.py" />
+        <option value="$PROJECT_DIR$/template/homework_info.html" />
       </list>
     </option>
   </component>
@@ -198,6 +186,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="template" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="store" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -230,6 +232,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Assistant" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -238,13 +254,13 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="File.Encoding" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/五道口小助手/Hunter/AppPlatform" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -408,29 +424,6 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="DataServer" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
     <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -452,6 +445,29 @@
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
       <option name="customRunCommand" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="DataServer" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
@@ -503,12 +519,12 @@
       <method />
     </configuration>
     <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Doctests in C:\Users\123\Documents\GitHub\TsinghuaHelper\src\utilities\grubber\DataServer" />
-      <item index="1" class="java.lang.String" itemvalue="Python.hunter_academic" />
-      <item index="2" class="java.lang.String" itemvalue="Python.tests" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test" />
-      <item index="4" class="java.lang.String" itemvalue="Python.hunter_learn" />
-      <item index="5" class="java.lang.String" itemvalue="Django server.DataServer" />
+      <item index="0" class="java.lang.String" itemvalue="Django server.DataServer" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Doctests in C:\Users\123\Documents\GitHub\TsinghuaHelper\src\utilities\grubber\DataServer" />
+      <item index="2" class="java.lang.String" itemvalue="Python.hunter_academic" />
+      <item index="3" class="java.lang.String" itemvalue="Python.tests" />
+      <item index="4" class="java.lang.String" itemvalue="Python.test" />
+      <item index="5" class="java.lang.String" itemvalue="Python.hunter_learn" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -547,18 +563,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2560606" sideWeight="0.5085617" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25984848" sideWeight="0.8681507" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57216495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49143836" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13184932" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -652,33 +668,9 @@
         <state line="27" column="0" selection-start="1104" selection-end="1118" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assistant/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.047029704" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/store.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/query/query_learn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="46" selection-start="2113" selection-end="2113" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DataServer/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="52" selection-start="232" selection-end="232" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/store_academic.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="28" selection-start="3166" selection-end="3166" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assistant/views.py">
@@ -686,40 +678,79 @@
         <state line="52" column="27" selection-start="1661" selection-end="1661" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/template/homework_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="45" selection-start="253" selection-end="253" vertical-scroll-proportion="0.3605313" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assistant/docs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="24" selection-start="695" selection-end="695" vertical-scroll-proportion="-0.35625" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/grubber/hunter_academic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="209" column="38" selection-start="8809" selection-end="8809" vertical-scroll-proportion="0.0" />
+        <state line="209" column="38" selection-start="8809" selection-end="8809" vertical-scroll-proportion="0.77226025">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assistant/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="1" selection-end="1" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/store_academic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="28" selection-start="3166" selection-end="3166" vertical-scroll-proportion="1.7238095">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/store.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="174" selection-end="174" vertical-scroll-proportion="0.14285715">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/query/query_learn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="31" selection-start="1975" selection-end="1975" vertical-scroll-proportion="0.5846154">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/template/homework_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="49" selection-start="349" selection-end="349" vertical-scroll-proportion="-8.142858">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/store_learn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="28" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="61" column="40" selection-start="2001" selection-end="2001" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#111#341#0" expanded="false" />
+            <element signature="e#392#451#0" expanded="false" />
+            <element signature="e#505#847#0" expanded="false" />
+            <element signature="e#907#1267#0" expanded="false" />
+            <element signature="e#1319#1679#0" expanded="false" />
+            <element signature="e#2483#2815#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grubber/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="17" selection-start="459" selection-end="459" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#98#108#0" expanded="true" />
-          </folding>
+        <state line="6" column="0" selection-start="143" selection-end="143" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/grubber/hunter_learn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="200" column="0" selection-start="8800" selection-end="8800" vertical-scroll-proportion="6.6175942">
+        <state line="45" column="53" selection-start="1663" selection-end="1663" vertical-scroll-proportion="-0.7125">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assistant/docs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="148" selection-end="148" vertical-scroll-proportion="-0.11875">
           <folding />
         </state>
       </provider>

@@ -35,6 +35,9 @@ class SpecialHomework(EmbeddedDocument):
     date = StringField()
     deadline = StringField()
     size = StringField()
+    note = StringField()
+    file = StringField()
+    submit_file = StringField()
 
 
 class SpecialResources(EmbeddedDocument):
@@ -50,21 +53,6 @@ class Special(EmbeddedDocument):
     files = ListField(EmbeddedDocumentField(SpecialFiles))
     homework = ListField(EmbeddedDocumentField(SpecialHomework))
     resources = ListField(EmbeddedDocumentField(SpecialResources))
-
-
-class AllHomework(EmbeddedDocument):
-    subject = StringField()
-    submitted_file_link = StringField()
-    note = StringField()
-    submitted_file_name = StringField()
-    file_name = StringField()
-    submitted_note = StringField()
-    caption = StringField()
-    file_link = StringField()
-
-
-class Homework(EmbeddedDocument):
-    homework = ListField(EmbeddedDocumentField(AllHomework))
 
 
 class Course(EmbeddedDocument):
@@ -112,6 +100,5 @@ class User(Document):
     course_info = ListField(EmbeddedDocumentField(Course))
     learn_info = ListField(EmbeddedDocumentField(Special))
     timetable = ListField(EmbeddedDocumentField(SingleCourse))
-    homework_info = EmbeddedDocumentField(Homework)
     person_info = EmbeddedDocumentField(PersonInfo)
 
