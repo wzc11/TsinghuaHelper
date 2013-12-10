@@ -36,6 +36,7 @@ def cmd_handler(request):
             result = files_list_get(object['data'])
         elif cmd == 'user_info':
             result = person_info_get(object['data'])
+        print json.dumps(result)
         return HttpResponse(json.dumps(result))
     except Exception, e:
         print Exception, e
@@ -69,7 +70,7 @@ def course_list_get(object):
     course_lists = query_set.course_list_query()
     count = 0
     for course in course_lists:
-        course_url = '<a href="59.66.138.37/courseInfo/' + object['user_id'] + '/' + count + \
+        course_url = '<a href="59.66.138.37/courseInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -88,7 +89,7 @@ def homework_list_get(object):
     course_lists = query_set.course_list_query()
     count = 0
     for course in course_lists:
-        course_url = '<a href="59.66.138.37/homeworkInfo/' + object['user_id'] + '/' + count + \
+        course_url = '<a href="59.66.138.37/homeworkInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -107,7 +108,7 @@ def notice_list_get(object):
     course_lists = query_set.course_list_query()
     count = 0
     for course in course_lists:
-        course_url = '<a href="59.66.138.37/noticeInfo/' + object['user_id'] + '/' + count + \
+        course_url = '<a href="59.66.138.37/noticeInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -126,7 +127,7 @@ def files_list_get(object):
     course_lists = query_set.course_list_query()
     count = 0
     for course in course_lists:
-        course_url = '<a href="59.66.138.37/filesInfo/' + object['user_id'] + '/' + count + \
+        course_url = '<a href="59.66.138.37/filesInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -136,13 +137,13 @@ def files_list_get(object):
 def person_info_get(object):
     result = {
         'error': 0,
+        'url': '59.66.138.37/person_img/' + object['user_id'] + '/',
         'data': []
     }
     query_set = query_academic(object['user_id'])
     if not query_set.user_id_exist():
         result['error'] = 1
         return result
-    result['data'].append('59.66.138.37/person_img/' + object['user_id'] + '/')
     person_info = query_set.person_info_query()
     result['data'].append('姓名:'.decode('UTF-8') + person_info['real_name'])
     result['data'].append('性别:'.decode('UTF-8') + person_info['sex'])
@@ -212,12 +213,12 @@ def files_info_get(request, user_id, course_sequence):
     return render_to_response('template/files_info.html', {'content': content})
 
 
-@csrf_exempt
-def person_info_get(request, user_id):
-    query_set = query_academic(user_id)
-    person_info = query_set.person_info_query()
-    content = person_info
-    return render_to_response('template/person_info.html', {'content': content})
+# @csrf_exempt
+# def person_info_get(request, user_id):
+#     query_set = query_academic(user_id)
+#     person_info = query_set.person_info_query()
+#     content = person_info
+#     return render_to_response('template/person_info.html', {'content': content})
 
 
 @csrf_exempt

@@ -17,5 +17,5 @@ class query_academic(query):
             information = self.all_information_query().next()
         except Exception, e:
             return []
-        result = information['personal_info']
+        result = information['person_info']
         return result

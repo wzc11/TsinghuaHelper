@@ -208,3 +208,4 @@ if __name__ == "__main__":
     h = hunter_academic('caoy11', 'memory2011')
     debuger.printer(h.getBasicInfo())
     debuger.printer(h.getCourseInfo())
+    debuger.printer(h.getPersonInfo('123123')[0])

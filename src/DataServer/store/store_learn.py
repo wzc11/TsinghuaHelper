@@ -2,7 +2,6 @@ __author__ = 'CaoYe'
 
 from store import *
 
-
 class store_learn(store):
     def user_update(self, user):
         if self.user_is_exist():
@@ -15,7 +14,7 @@ class store_learn(store):
 
     def homework_detail_get(self, link):
         result = self.learn.getHomework(link)
-        return result
+        return result[0]
 
     def notice_list_get(self, notice_info):
         notice_list = []
@@ -136,6 +135,9 @@ class store_learn(store):
             )
             self.user_update(user)
             return True
+        except userPassWrongException, e:
+            self.user_delete()
+            return False
         except Exception, e:
             self.user_delete()
             return False

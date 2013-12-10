@@ -7,7 +7,10 @@ from PIL import Image
 
 class store_academic(store):
     def user_update(self, user):
-        user.save()
+        User.objects(user_id=self.user_id).update(
+            set__timetable=user.timetable,
+            set__person_info=user.person_info
+        )
 
     def image_handle(self):
         ima = Image.open('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\old\\' + self.user_id + '.jpg')
@@ -17,8 +20,6 @@ class store_academic(store):
         imc.save('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\new\\' + self.user_id + '.jpg')
 
     def academic_store(self):
-        if self.user_is_exist():
-            return True
         try:
             academic = hunter_academic(self.username, self.password)
             basic = academic.getBasicInfo()
@@ -33,11 +34,9 @@ class store_academic(store):
             #get timetable
             course_list = academic.getCourseInfo()
             count = 0
-            print course_list
             while len(course_list) == 0 and count < 50:
                 count += 1
                 course_list = academic.getCourseInfo()
-                print course_list
             course_test = course_list[0]
             person_info = PersonInfo(
                 major=person['专业'.decode('UTF-8')],

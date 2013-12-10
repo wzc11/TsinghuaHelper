@@ -2,8 +2,8 @@
 __author__ = 'CaoYe'
 
 from Assistant.docs import *
-from grubber.hunter_learn import hunter_learn
-from grubber.hunter_academic import hunter_academic
+from grubber.hunter_learn import *
+from grubber.hunter_academic import *
 
 
 class store(object):
