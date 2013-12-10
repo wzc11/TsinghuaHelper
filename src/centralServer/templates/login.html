@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<title>登录|五道口小助手</title>
+	<link href="/static/css/login.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="logo">
+		<div class="loginIcon"></div>
+	</div>
+	<div class="dec_line1"></div>
+	<div class="loginWrap">
+		<div class="slogan">用手机随时随地登录网络学堂</div>
+		<div class="loginModule">
+			<form id="form" method="post" action="/weChat/bind/">
+				<div class="inputArea">
+					<div class="inputLine">
+						<div class="il">帐号：</div>
+						<div class="ir">
+							<input id="zh" type="text" name="uname" value=""  placeholder="请输入info帐号"
+                                   autocapitalize="off" autocomplete="off"/>
+						</div>
+					</div>
+					<div class="inputLine">
+						<div class="il">密码：</div>
+						<div class="ir">
+							<input id="mm" type="password" name="pwd" value=""  placeholder="请输入密码"/>
+						</div>
+					</div>
+                    <input type="text" name="openId" value="{{ openId }}" style="display: block"/>
+				</div>
+				<div class="loginOper">
+				</div>
+				<div class="loginBtn">
+					<input type="submit"  name="" value="登录" />
+				</div>
+			</form>
+		</div>
+		<div class="dec_line2" style="margin-top:10px"></div>
+		<div class="regModule">
+		</div>
+		<div class="loginFooter">
+			<div>五道口小助手</div>
+			<div>Copyright&nbsp;&copy;&nbsp;2013&nbsp;ziyewuge</div>
+		</div>
+	</div>
+	<script language="javascript" ></script>
+</body>
+</html>
