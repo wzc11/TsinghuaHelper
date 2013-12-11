@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <ul>
+        {% for course in content %}
+            <li>课程名称:{{ course.caption }}</li>
+            <ul>
+            {% for homework in course.homework %}
+                <li>作业标题:{{ homework.caption }}</li>
+                <li>作业状态:{{ homework.state }}</li>
+                <li>作业链接:{{ homework.link }}</li>
+                <li>作业日期:{{ homework.date }}</li>
+                <li>截止日期:{{ homework.deadline }}</li>
+                <li>作业说明:{{ homework.note }}</li>
+                <li>附加文件:{{ homework.file }}</li>
+                <li>提交文件:{{ homework.submit_file }}</li>
+                <li>文件大小:{{ homework.size }}</li>
+                <li>--------------------------</li>
+            </ul>
+            {% endfor %}
+            <li>********************************</li>
+            <li>********************************</li>
+            <li>********************************</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

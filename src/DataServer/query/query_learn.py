@@ -49,14 +49,25 @@ class query_learn(query):
         result_list = special['files']
         return result_list
 
+    def course_attention_query(self):
+        try:
+            information = self.all_information_query().next()
+        except Exception, e:
+            return []
+        result = information['course_attention']
+        return result
+
     def homework_uncommitted_query(self):
         try:
             information = self.all_information_query().next()
         except Exception, e:
             return []
         course_information = information['learn_info']
+        course_attention = self.course_attention_query()
         result_list = []
         for course in course_information:
+            if not course['caption'] in course_attention:
+                continue
             homework_course = {
                 'caption': course['caption'],
                 'homework': []

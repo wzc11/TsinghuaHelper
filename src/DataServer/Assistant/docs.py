@@ -101,4 +101,5 @@ class User(Document):
     learn_info = ListField(EmbeddedDocumentField(Special))
     timetable = ListField(EmbeddedDocumentField(SingleCourse))
     person_info = EmbeddedDocumentField(PersonInfo)
+    course_attention = ListField(StringField())
 

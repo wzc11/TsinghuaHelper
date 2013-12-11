@@ -2,6 +2,7 @@ __author__ = 'CaoYe'
 
 from store import *
 
+
 class store_learn(store):
     def user_update(self, user):
         if self.user_is_exist():
@@ -87,6 +88,7 @@ class store_learn(store):
             info = self.learn.getInfo()
             course_info_list = []
             course_list = []
+            course_attention_list = []
             for course in info:
                 course_caption_list = course['caption'].split('(')
                 course_caption = course_caption_list[0]
@@ -98,6 +100,7 @@ class store_learn(store):
                     notice_unread=course['notice_unread']
                 )
                 course_list.append(course_special)
+                course_attention_list.append(course_caption)
 
                 course_info = self.learn.getSpecial(course['id'])
 
@@ -132,6 +135,7 @@ class store_learn(store):
                 use_password=self.password,
                 course_info=course_list,
                 learn_info=course_info_list,
+                course_attention=course_attention_list
             )
             self.user_update(user)
             return True
@@ -140,4 +144,13 @@ class store_learn(store):
             return False
         except Exception, e:
             self.user_delete()
+            return False
+
+    def course_attention_set(self, course_list):
+        if self.user_is_exist():
+            User.objects(user_id=self.user_id).update(
+                set__course_attention=course_list
+            )
+            return True
+        else:
             return False

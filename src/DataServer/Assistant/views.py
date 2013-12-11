@@ -137,7 +137,7 @@ def files_list_get(object):
 def person_info_get(object):
     result = {
         'error': 0,
-        'url': '59.66.138.37/person_img/' + object['user_id'] + '/',
+        'url': 'http://59.66.138.37/person_img/' + object['user_id'] + '/',
         'data': []
     }
     query_set = query_academic(object['user_id'])
@@ -184,8 +184,8 @@ def homework_info_get(request, user_id, course_sequence):
     except ValueError:
         return HttpResponse(0)
     query_set = query_learn(user_id)
-    course_info = query_set.homework_info_query(course_sequence)
-    content = course_info
+    homework_info = query_set.homework_info_query(course_sequence)
+    content = homework_info
     return render_to_response('template/homework_info.html', {'content': content})
 
 
@@ -196,8 +196,8 @@ def notice_info_get(request, user_id, course_sequence):
     except ValueError:
         return HttpResponse(0)
     query_set = query_learn(user_id)
-    course_info = query_set.notice_info_query(course_sequence)
-    content = course_info
+    notice_info = query_set.notice_info_query(course_sequence)
+    content = notice_info
     return render_to_response('template/notice_info.html', {'content': content})
 
 
@@ -208,9 +208,21 @@ def files_info_get(request, user_id, course_sequence):
     except ValueError:
         return HttpResponse(0)
     query_set = query_learn(user_id)
-    course_info = query_set.files_info_query(course_sequence)
-    content = course_info
+    files_info = query_set.files_info_query(course_sequence)
+    content = files_info
     return render_to_response('template/files_info.html', {'content': content})
+
+
+@csrf_exempt
+def homework_uncommitted_info_get(request, user_id, course_sequence):
+    try:
+        course_sequence = int(course_sequence)
+    except ValueError:
+        return HttpResponse(0)
+    query_set = query_learn(user_id)
+    homework_uncommitted_info = query_set.homework_uncommitted_query(course_sequence)
+    content = homework_uncommitted_info
+    return render_to_response('template/homework_uncommitted_info.html', {'content': content})
 
 
 # @csrf_exempt
