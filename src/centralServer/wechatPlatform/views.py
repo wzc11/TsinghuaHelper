@@ -1,4 +1,5 @@
 # Create your views here.
+# -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
@@ -28,6 +29,41 @@ def weChatLogin(request):
         print Exception, e
 
     return render_to_response('login.html', {'openId': openId}, context_instance=RequestContext(request))
+
+
+
+@csrf_exempt
+def weChatFocus(request):
+    try:
+        fwdFlag = request.GET['fwd']
+        openId = request.GET['id']
+        print openId
+    except Exception, e:
+        fwdFlag = request.read()
+        openId = request.read()
+        print Exception, e
+        return HttpResponse('找不到用户')
+
+    fwdData = {
+        'type': 'focus',
+        'data': {
+            'user_id': openId,
+            'update_flag': fwdFlag,
+            'update_data': request.POST['focusList'],
+        }
+    }
+
+    retData = forwardRequest(URL['DATA'], fwdData)
+
+    index = 0
+    course_list = {}
+    for item in retData['data']:
+        course_list[str(index)] = {'content': item[0], 'checked': item[1]}
+        index += 1
+
+    return render_to_response('focus.html',
+                              {'openId': openId, 'course_list': course_list},
+                              context_instance=RequestContext(request))
 
 
 @csrf_exempt

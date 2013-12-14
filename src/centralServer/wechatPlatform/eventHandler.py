@@ -22,12 +22,24 @@ def eventHandler(data):
             'type': 'TEXT_TEMPLATE',
         }
 
+    if fwdData['type'] == 'focus':
+        return {
+            'data': {
+                'content': '请点击如下链接<a href="http://thusecretary.duapp.com/weChat/focus/?id='
+                           + data['content']['FromUserName']
+                           + '&fwd=false'
+                           + '">选择关注课程</a>',
+            },
+            'type': 'TEXT_TEMPLATE',
+        }
+
     retData = forwardRequest(URL['DATA'], fwdData)
 
     reply = {
         'data': {},
         'type': 'TEXT_TEMPLATE',
     }
+
     if retData['error'] == 1:
         reply['data']['content'] = 'ERR:\n'
         for item in retData['data']:
