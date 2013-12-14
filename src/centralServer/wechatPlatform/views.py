@@ -30,6 +30,40 @@ def weChatLogin(request):
     return render_to_response('login.html', {'openId': openId}, context_instance=RequestContext(request))
 
 
+
+@csrf_exempt
+def weChatFocus(request):
+    try:
+        fwdFlag = request.GET['fwd']
+        openId = request.GET['id']
+        print openId
+    except Exception, e:
+        fwdFlag = request.read()
+        openId = request.read()
+        print Exception, e
+
+    fwdData = {
+        'type': 'focus',
+        'data': {
+            'user_id': openId,
+            'update_flag': fwdFlag,
+            'update_data': request.POST['focusList'],
+        }
+    }
+
+    retData = forwardRequest(URL['DATA'], fwdData)
+
+    index = 0
+    course_list = {}
+    for item in retData['data']:
+        course_list[str(index)] = {'content': item[0], 'checked': item[1]}
+        index += 1
+
+    return render_to_response('focus.html',
+                              {'openId': openId, 'course_list': course_list},
+                              context_instance=RequestContext(request))
+
+
 @csrf_exempt
 def weChatBind(request):
     usr = request.POST['uname']
