@@ -1,4 +1,5 @@
 # Create your views here.
+# -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
@@ -41,6 +42,7 @@ def weChatFocus(request):
         fwdFlag = request.read()
         openId = request.read()
         print Exception, e
+        return HttpResponse('找不到用户')
 
     fwdData = {
         'type': 'focus',
