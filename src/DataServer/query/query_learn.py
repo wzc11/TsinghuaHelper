@@ -78,6 +78,14 @@ class query_learn(query):
                     homework_course['homework'].append(homework)
             result_list.append(homework_course)
         return result_list
+
+    def course_attention_query(self):
+        try:
+            information = self.all_information_query().next()
+        except Exception, e:
+            return []
+        result_list = information['course_attention']
+        return result_list
     # def course_info_query(self, course_caption):
     #     try:
     #         information = self.all_information_query().next()

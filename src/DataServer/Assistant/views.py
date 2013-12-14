@@ -36,6 +36,8 @@ def cmd_handler(request):
             result = files_list_get(object['data'])
         elif cmd == 'user_info':
             result = person_info_get(object['data'])
+        elif cmd == 'focus':
+            result = course_state_get(object['data'])
         print json.dumps(result)
         return HttpResponse(json.dumps(result))
     except Exception, e:
@@ -67,9 +69,9 @@ def course_list_get(object):
     if not query_set.user_id_exist():
         result['error'] = 1
         return result
-    course_lists = query_set.course_list_query()
+    course_list = query_set.course_list_query()
     count = 0
-    for course in course_lists:
+    for course in course_list:
         course_url = '<a href="59.66.138.37/courseInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
@@ -86,9 +88,9 @@ def homework_list_get(object):
     if not query_set.user_id_exist():
         result['error'] = 1
         return result
-    course_lists = query_set.course_list_query()
+    course_list = query_set.course_list_query()
     count = 0
-    for course in course_lists:
+    for course in course_list:
         course_url = '<a href="59.66.138.37/homeworkInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
@@ -105,9 +107,9 @@ def notice_list_get(object):
     if not query_set.user_id_exist():
         result['error'] = 1
         return result
-    course_lists = query_set.course_list_query()
+    course_list = query_set.course_list_query()
     count = 0
-    for course in course_lists:
+    for course in course_list:
         course_url = '<a href="59.66.138.37/noticeInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
@@ -124,9 +126,9 @@ def files_list_get(object):
     if not query_set.user_id_exist():
         result['error'] = 1
         return result
-    course_lists = query_set.course_list_query()
+    course_list = query_set.course_list_query()
     count = 0
-    for course in course_lists:
+    for course in course_list:
         course_url = '<a href="59.66.138.37/filesInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
@@ -162,6 +164,25 @@ def person_info_get(object):
     result['data'].append('收费类别:'.decode('UTF-8') + person_info['charge_type'])
     result['data'].append('是否有学籍:'.decode('UTF-8') + person_info['is_register'])
     result['data'].append('毕业日期:'.decode('UTF-8') + person_info['graduate_date'])
+    return result
+
+
+def course_state_get(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    query_set = query_learn(object['user_id'])
+    if not query_set.user_id_exist():
+        result['error'] = 1
+        return result
+    course_list = query_set.course_list_query()
+    course_attention_list = query_set.course_attention_query()
+    for course in course_list:
+        if course in course_attention_list:
+            result['data'].append([course, True])
+        else:
+            result['data'].append([course, False])
     return result
 
 
