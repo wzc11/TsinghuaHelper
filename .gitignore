@@ -1,4 +1,4 @@
-src/DataServer/.idea/*
-src/centralServer/.idea/*
+src/DataServer/.idea/
+src/centralServer/.idea/
 .idea/
 *.pyc
