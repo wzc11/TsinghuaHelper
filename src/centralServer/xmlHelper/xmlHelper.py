@@ -5,21 +5,9 @@ import xml.etree.ElementTree as ET
 
 
 class xmlHelper:
-    def __init__(self, template):
-        """
-
-
-        :type self: list
-        :param template: template format for the xml
-        """
-        self.template = template
-
     @staticmethod
     def parse(stringXML):
         """
-
-
-        :type stringXML: str
         :param stringXML: the xml string we get
         :return: 'content': the list with all data or errors; 'err': 1 error, 0 data string
         """
@@ -42,10 +30,10 @@ class xmlHelper:
 
         return ret
 
-    def generate(self, dataXML):
+    @staticmethod
+    def generate(dataXML, templateXML):
         """
-
-        :type dataXML: list
+        :param templateXML: template for generating xml file
         :param dataXML: data for xml template
         :return: 'content': the string converted from xml or error content; 'err': 1 error, 0 xml string
         """
@@ -55,12 +43,14 @@ class xmlHelper:
         }
         try:
             orderTag = []
-            for elem in self.template['data-tag']:
-                orderTag.append(dataXML[elem])
-            ret['content'] = self.template['template'] % tuple(orderTag)
+            for elem in templateXML['data-tag']:
+                appendStr = dataXML[elem]
+                orderTag.append(appendStr)
+            ret['content'] = templateXML['template'] % tuple(orderTag)
         except Exception, e:
             ret['err'] = 1
             ret['content'] = smart_str(Exception) + ':' + smart_str(e)
             print 'xmlHelper.generate(self, dataXML)', Exception, ':', e
 
+        #print ret
         return ret
