@@ -4,9 +4,9 @@
     <title>关注课程</title>
 </head>
 <body>
-    <form id="form" method="post" action="/weChat/focus/?fwd=true+{{ openId }}">
+    <form id="form" method="post" action="/weChat/focus/?fwd=true&id={{ openId }}">
         <ul>
-        {% for item in course %}
+        {% for item in course_list %}
             {% if item.checked %}
                 <li><input type="checkbox" name="focusList" checked="checked" />{{ item.content }}</li>
             {% else %}

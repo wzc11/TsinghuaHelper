@@ -31,7 +31,6 @@ def weChatLogin(request):
     return render_to_response('login.html', {'openId': openId}, context_instance=RequestContext(request))
 
 
-
 @csrf_exempt
 def weChatFocus(request):
     try:
@@ -49,18 +48,23 @@ def weChatFocus(request):
         'data': {
             'user_id': openId,
             'update_flag': fwdFlag,
-            'update_data': request.POST['focusList'],
+            'update_data': {},
         }
     }
+
+    if fwdData['data']['update_flag'] == 'true':
+        print request.POST['focusList']
+        fwdData['data']['update_data'] = request.POST['focusList']
 
     retData = forwardRequest(URL['DATA'], fwdData)
 
     index = 0
-    course_list = {}
+    course_list = []
     for item in retData['data']:
-        course_list[str(index)] = {'content': item[0], 'checked': item[1]}
+        course_list.append({'content': item[0], 'checked': item[1]})
         index += 1
 
+    print course_list
     return render_to_response('focus.html',
                               {'openId': openId, 'course_list': course_list},
                               context_instance=RequestContext(request))
