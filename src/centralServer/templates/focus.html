@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>关注课程</title>
+</head>
+<body>
+    <form id="form" method="post" action="/weChat/focus/?fwd=true&id={{ openId }}">
+        <ul>
+        {% for item in course_list %}
+            {% if item.checked %}
+                <li><input type="checkbox" value="{{ item.value }}" name="focusList" checked="checked" />{{ item.content }}</li>
+            {% else %}
+                <li><input type="checkbox" value="{{ item.value }}" name="focusList" />{{ item.content }}</li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+        <input type="submit" value="确定" />
+    </form>
+</body>
+</html>

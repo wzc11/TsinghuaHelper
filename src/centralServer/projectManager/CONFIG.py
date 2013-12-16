@@ -9,7 +9,7 @@ APP_TOKEN = {
 }
 
 URL = {
-    'DATA': 'http://59.66.138.37/courseList/',
+    'DATA': 'http://166.111.80.7:8081/courseList/',
     'TEST': 'http://thusecretary.duapp.com/weChat/',
     'TOKEN': 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s'
 }
