@@ -9,14 +9,73 @@ body,html{
     background-color:#5E5E5E;
     text-align:center;
 }
-.img{
-	width: 100%;
-	height: 100%;
-	display: block;
+.container{
+	text-align: center;
 }
-.little_text{
+.simg{
+	width: 166px;
+	height: 166px;
+	display: block;
+	position: absolute;
+	top:0px;
+	left: 0px;
+}
+.bimg{
+	width: 350px;
+	height: 166px;
+	display: block;
+	position: absolute;
+	top:0px;
+	left: 0px;
+
+}
+.name_text{
 	color: white;
 	font-size: large;
+	z-index: 2;
+	position: absolute;
+	top:120px;
+	left: 60px;
+}
+.phone_text{
+	color: white;
+	font-size: large;
+	z-index: 2;
+	position: absolute;
+	top:120px;
+	left: 30px;
+}
+.id_text{
+	color: white;
+	font-size: large;
+	z-index: 2;
+	position: absolute;
+	top:120px;
+	left: 30px;
+}
+.birth_text{
+	color: white;
+	font-size: large;
+	z-index: 2;
+	position: absolute;
+	top:120px;
+	left: 30px;
+}
+.major_text{
+	color: white;
+	font-size: large;
+	z-index: 2;
+	position: absolute;
+	top:70px;
+	left: 140px;
+}
+.email_text{
+	color: white;
+	font-size: large;
+	z-index: 2;
+	position: absolute;
+	top:70px;
+	left: 140px;
 }
 .container{
 	align="center"
@@ -24,16 +83,22 @@ body,html{
 	height: 100%;
 }
 .little_img{
-	width: 40%;
-	height: 23%;
+	width: 168px;
+	height: 168px;
 	margin: 3px;
 	display:inline-block;
 	text-align:center;
+	position: relative;
+	top:0px;
+	left:0px;
 }
 .large_img{
-	width: 81%;
-	height: 23%;
-	margin: 3px;
-	display:inline-block;
+	margin: 0 auto; 
+	width: 350px;
+	height: 167px;
+	display:block;
 	text-align:center;
+	position: relative;
+	top:0px;
+	left:0px;
 }
