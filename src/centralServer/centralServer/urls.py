@@ -12,6 +12,7 @@ urlpatterns = patterns(
     url(r'^weChat/login/$', weChatLogin),
     url(r'^weChat/focus/$', weChatFocus),
     url(r'^weChat/bind/$', weChatBind),
+    url(r'^weChat/message/$', weChatMessage),
     #static resource url config
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root':settings.STATICFILES_DIRS[0],

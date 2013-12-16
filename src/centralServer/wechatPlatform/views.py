@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
 from handler import *
+from requestHelper.messageHelper import *
 from django.template import RequestContext
 
 
@@ -85,3 +86,11 @@ def weChatBind(request):
         }
     })
     return HttpResponse(retData)
+
+
+@csrf_exempt
+def weChatMessage(request):
+    #openId = request.POST['openId']
+    #content = request.POST['openId']
+    weChatUtil.sentTextMsg('110708680', '尊敬的用户您好，恭喜您获得菲尔兹一只')
+    return HttpResponse('hahaha~')

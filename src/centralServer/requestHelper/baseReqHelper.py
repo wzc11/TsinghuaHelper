@@ -1,5 +1,5 @@
 __author__ = 'wangzhuqi.THU'
-
+# -*- coding: utf-8 -*-
 
 import cookielib
 import urllib2
@@ -85,11 +85,14 @@ class baseReqHelper(object):
         time.sleep(1)
         return msg['List'][0]['appId']
 
-    def _getFakeId(self):
+    def _getFakeId(self, code):
         msg_url = 'https://mp.weixin.qq.com/cgi-bin/message?t=message/list&count=1000&day=7' \
                   '&offset=0&token=' +\
                   self.token + '&lang=zh_CN'
-        print self.opener.open(msg_url).read()
+
+        html = self.opener.open(msg_url).read()
+        fakeId = re.findall(r'"fakeid":"([^"]+)"[\s\S]*"content":"' + code + '"', html)
+        return fakeId[0]
 
 
 class weChatLoginException(Exception):

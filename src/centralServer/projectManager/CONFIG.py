@@ -8,6 +8,11 @@ APP_TOKEN = {
     'refresh_time': 0,
 }
 
+APP_ACCOUNT = {
+    'email': 'xz01234288@sina.com',
+    'password': 'xz4288',
+}
+
 URL = {
     'DATA': 'http://166.111.80.7:8081/courseList/',
     'TEST': 'http://thusecretary.duapp.com/weChat/',

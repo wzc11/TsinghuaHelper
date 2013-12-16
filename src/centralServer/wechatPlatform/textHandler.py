@@ -1,10 +1,32 @@
 __author__ = 'wangzhuqi.THU'
+# -*- coding: utf-8 -*-
 from requestHelper.forwardHelper import *
 from projectManager.CONFIG import *
+from requestHelper.messageHelper import *
 
 
 def textHandler(data):
-    return data['content']['Content']
+    code = data['content']['Content']
+    fakeId = weChatUtil.Authorize(code)
+    reply = {
+        'data': {
+            'content': '验证成功',
+        },
+        'type': 'TEXT_TEMPLATE',
+    }
+
+
+    fwdData = {
+        'type': data['content']['EventKey'],
+        'data': {
+            'user_id': data['content']['FromUserName'],
+            'fake_id': fakeId,
+        }
+    }
+
+    retData = forwardRequest(URL['DATA'], fwdData)
+
+    return reply
 '''def textHandler(data):
     argMap = textParser(data['content'])
     fwdData = {
