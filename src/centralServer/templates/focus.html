@@ -8,9 +8,9 @@
         <ul>
         {% for item in course_list %}
             {% if item.checked %}
-                <li><input type="checkbox" name="focusList" checked="checked" />{{ item.content }}</li>
+                <li><input type="checkbox" value="{{ item.value }}" name="focusList" checked="checked" />{{ item.content }}</li>
             {% else %}
-                <li><input type="checkbox" name="focusList" />{{ item.content }}</li>
+                <li><input type="checkbox" value="{{ item.value }}" name="focusList" />{{ item.content }}</li>
             {% endif %}
         {% endfor %}
         </ul>

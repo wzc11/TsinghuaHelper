@@ -53,15 +53,16 @@ def weChatFocus(request):
     }
 
     if fwdData['data']['update_flag'] == 'true':
-        print request.POST['focusList']
-        fwdData['data']['update_data'] = request.POST['focusList']
+        newList = request.REQUEST.getlist('focusList')
+        fwdData['data']['update_data'] = newList
+        print fwdData
 
     retData = forwardRequest(URL['DATA'], fwdData)
 
     index = 0
     course_list = []
     for item in retData['data']:
-        course_list.append({'content': item[0], 'checked': item[1]})
+        course_list.append({'content': item[0], 'checked': item[1], 'value': item[0]})
         index += 1
 
     print course_list
