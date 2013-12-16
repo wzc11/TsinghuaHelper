@@ -5,7 +5,7 @@ from mongoengine import *
 from mongoengine import context_managers
 import pymongo
 
-connect('learnDB')
+connect('learnDB', host='127.0.0.1', port=10001)
 
 
 class SpecialNotice(EmbeddedDocument):
@@ -97,6 +97,7 @@ class User(Document):
     user_name = StringField()
     user_id = StringField()
     use_password = StringField()
+    fake_id = StringField()
     course_info = ListField(EmbeddedDocumentField(Course))
     learn_info = ListField(EmbeddedDocumentField(Special))
     timetable = ListField(EmbeddedDocumentField(SingleCourse))

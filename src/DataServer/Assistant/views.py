@@ -5,11 +5,13 @@ from django.views.decorators.csrf import csrf_exempt
 from store.store_learn import *
 from store.store_academic import *
 from query.query_learn import *
+from query.query_wechat import *
 from query.query_academic import *
 from django.utils.encoding import smart_str
 from django.shortcuts import render_to_response
+from mythread.thread_grubber import *
+from config import *
 from urllib import *
-
 import json
 # Create your views here.
 
@@ -24,6 +26,11 @@ def cmd_handler(request):
     try:
         object = json.loads(smart_str(request.body))
         cmd = object['type']
+        if object['data']['user_id'] in user_lock_list:
+            result['error'] = 3
+            return HttpResponse(json.dumps(result))
+        query = query_wechat(object['data']['user_id'])
+        fake_id = query.fake_id_query()
         if cmd == 'bind':
             result = bind(object['data'])
         elif cmd == 'course_list':
@@ -45,44 +52,30 @@ def cmd_handler(request):
         return HttpResponse(json.dumps(result))
 
 
-def bind(object):
+def bind(object, fake_id):
     result = {
         'error': 0,
         'data': []
     }
-    store_learn_set = store_learn(object['username'], object['password'], object['user_id'])
-    store_academic_set = store_academic(object['username'], object['password'], object['user_id'])
-    if not store_learn_set.learn_store():
+    user_lock_list.append(object['user_id'])
+    try:
+        learn = hunter_learn(object['username'], object['password'])
+        grubber = thread_grubber(object)
+        grubber.start()
+    except userPassWrongException, e:
         result['error'] = 1
+        user_lock_list.remove(object['user_id'])
         return result
-    if not store_academic_set.academic_store():
-        result['error'] = 1
+    except Exception, e:
+        result['error'] = 2
     return result
 
 
-def course_list_get(object):
+def course_list_get(object, fake_id):
     result = {
         'error': 0,
-        'data': []
-    }
-    query_set = query_learn(object['user_id'])
-    if not query_set.user_id_exist():
-        result['error'] = 1
-        return result
-    course_list = query_set.course_list_query()
-    count = 0
-    for course in course_list:
-        course_url = '<a href="59.66.138.37/courseInfo/' + object['user_id'] + '/' + str(count) + \
-                     '/">' + course + '</a>'
-        result['data'].append(course_url)
-        count += 1
-    return result
-
-
-def homework_list_get(object):
-    result = {
-        'error': 0,
-        'data': []
+        'data': [],
+        'fake_id': fake_id
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -91,17 +84,18 @@ def homework_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="59.66.138.37/homeworkInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="166.111.80.7:8081/courseInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
 
 
-def notice_list_get(object):
+def homework_list_get(object, fake_id):
     result = {
         'error': 0,
-        'data': []
+        'data': [],
+        'fake_id': fake_id
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -110,17 +104,18 @@ def notice_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="59.66.138.37/noticeInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="166.111.80.7:8081/homeworkInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
 
 
-def files_list_get(object):
+def notice_list_get(object, fake_id):
     result = {
         'error': 0,
-        'data': []
+        'data': [],
+        'fake_id': fake_id
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -129,18 +124,39 @@ def files_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="59.66.138.37/filesInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="166.111.80.7:8081/noticeInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
 
 
-def person_info_get(object):
+def files_list_get(object, fake_id):
     result = {
         'error': 0,
-        'url': 'http://59.66.138.37/person_img/' + object['user_id'] + '/',
-        'data': []
+        'data': [],
+        'fake_id': fake_id
+    }
+    query_set = query_learn(object['user_id'])
+    if not query_set.user_id_exist():
+        result['error'] = 1
+        return result
+    course_list = query_set.course_list_query()
+    count = 0
+    for course in course_list:
+        course_url = '<a href="166.111.80.7:8081/filesInfo/' + object['user_id'] + '/' + str(count) + \
+                     '/">' + course + '</a>'
+        result['data'].append(course_url)
+        count += 1
+    return result
+
+
+def person_info_get(object, fake_id):
+    result = {
+        'error': 0,
+        'url': 'http://166.111.80.7:8081/person_img/' + object['user_id'] + '/',
+        'data': [],
+        'fake_id': fake_id
     }
     query_set = query_academic(object['user_id'])
     if not query_set.user_id_exist():
@@ -167,10 +183,11 @@ def person_info_get(object):
     return result
 
 
-def course_state_get(object):
+def course_state_get(object, fake_id):
     result = {
         'error': 0,
-        'data': []
+        'data': [],
+        'fake_id': fake_id
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -256,7 +273,7 @@ def homework_uncommitted_info_get(request, user_id, course_sequence):
 
 @csrf_exempt
 def person_img_get(request, user_id):
-    image_data = open('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\new\\' + user_id + '.jpg', "rb").read()
+    image_data = open('C:\\Users\\ziyewuge\\Pictures\\TsinghuaHelper\\new\\' + user_id + '.jpg', "rb").read()
     return HttpResponse(image_data, mimetype="image/jpg")
     #return HttpResponse('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\new\\' + user_id + '.jpg')
 

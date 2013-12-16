@@ -197,7 +197,7 @@ class hunter_academic(hunter):
         socket = self.opener.open(self.req_img)
         data = socket.read()
         socket.close()
-        img = open('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\old\\' + image_name + '.jpg', 'wb')
+        img = open('C:\\Users\\ziyewuge\\Pictures\\TsinghuaHelper\\old\\' + image_name + '.jpg', 'wb')
         img.write(data)
         img.close()
         return [dict, data]
