@@ -16,6 +16,7 @@ APP_ACCOUNT = {
 }
 
 URL = {
+    'ROOT': 'http://thusecretary.duapp.com/weChat/'
     'DATA': 'http://166.111.80.7:8081/courseList/',
     'TEST': 'http://thusecretary.duapp.com/weChat/',
     'TOKEN': 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s'

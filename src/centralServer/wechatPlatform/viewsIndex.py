@@ -15,18 +15,20 @@ def weChatFaceIndex(request):
     if FacePoint == 0:
         FacePoint = 1
     return render_to_response('diaosi.html',
-                              {'FacePoint': FacePoint, 'name': name},
+                              {'FacePoint': FacePoint, 'name': name, 'src': src},
                               context_instance=RequestContext(request))
 
 
 def weChatLearnIndex(request):
+    src = request.GET['src']
     num = request.GET['num']
-    credit = request.GET['credit']
     name = request.GET['name']
-    sum = learnExponent(num, credit)
-    sum = int(sum / 2)
-    if sum == 0:
+    sum = learnExponent(int(num), 0)
+    sum = int(sum)
+    if sum <= 0:
         sum = 1
+    if sum >= 5:
+        sum = 5
     return render_to_response('xueba.html',
-                              {'Sum': sum, 'name': name},
+                              {'Sum': sum, 'name': name, 'src': src},
                               context_instance=RequestContext(request))

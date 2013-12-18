@@ -12,6 +12,28 @@ def eventHandler(data):
         }
     }
 
+    if fwdData['type'] == 'index':
+        retData = forwardRequest(URL['DATA'], fwdData)
+
+        print retData
+        return {
+            'data': {
+                'content': '<a href="http://thusecretary.duapp.com/weChat/index/face/?src='
+                           + retData['data'][2].encode('utf-8')
+                           + '&name='
+                           + retData['data'][0].encode('utf-8')
+                           + '">屌丝指数</a>'
+                           + '<a href="http://thusecretary.duapp.com/weChat/index/learn/?num='
+                           + retData['data'][1].encode('utf-8')
+                           + '&name='
+                           + retData['data'][0].encode('utf-8')
+                           + '&src='
+                           + retData['data'][2].encode('utf-8')
+                           + '">学霸指数</a>',
+            },
+            'type': 'TEXT_TEMPLATE',
+        }
+
     if fwdData['type'] == 'bind':
         return {
             'data': {
@@ -51,8 +73,8 @@ def eventHandler(data):
             reply['data']['url'] = retData['url'].encode('utf-8')
         reply['data']['content'] = ''
         for item in retData['data']:
-                reply['data']['content'] += item.encode('utf-8')
-                reply['data']['content'] += '\n'
+            reply['data']['content'] += item.encode('utf-8')
+            reply['data']['content'] += '\n'
         reply['data']['content'] += '点击可查看具体信息'
         print 're test:', reply
     else:
