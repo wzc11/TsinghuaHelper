@@ -22,16 +22,16 @@ def textHandler(data):
         'data': {
             'user_id': openId,
             'fake_id': fakeId,
-            'username': APP_INFO_CACHE[openId]['usr'],
-            'password': APP_INFO_CACHE[openId]['pwd'],
+            #'username': APP_INFO_CACHE[openId]['usr'],
+            #'password': APP_INFO_CACHE[openId]['pwd'],
         }
     }
 
     retData = forwardRequest(URL['DATA'], fwdData)
-    if retData['error'] == 0:
-        del(APP_INFO_CACHE[openId])
-        print APP_INFO_CACHE
-    else:
+    #if retData['error'] == 0:
+        #del(APP_INFO_CACHE[openId])
+        #print APP_INFO_CACHE
+    if retData['error'] != 0:
         reply = 'Error 请重新回复'
     '''except Exception, e:
         reply = {

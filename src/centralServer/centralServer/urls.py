@@ -1,5 +1,6 @@
 from django.conf.urls import patterns, url
 from wechatPlatform.views import *
+from wechatPlatform.viewsIndex import *
 import settings
 
 # Uncomment the next two lines to enable the admin:
@@ -13,6 +14,8 @@ urlpatterns = patterns(
     url(r'^weChat/focus/$', weChatFocus),
     url(r'^weChat/bind/$', weChatBind),
     url(r'^weChat/message/$', weChatMessage),
+    url(r'^weChat/index/face/$', weChatFaceIndex),
+    url(r'^weChat/index/learn/$', weChatLearnIndex),
     #static resource url config
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root':settings.STATICFILES_DIRS[0],
