@@ -28,11 +28,14 @@ def cmd_handler(request):
         cmd = object['type']
         if object['data']['user_id'] in user_lock_list:
             result['error'] = 3
+            print json.dumps(result)
             return HttpResponse(json.dumps(result))
-        query = query_wechat(object['data']['user_id'])
-        fake_id = query.fake_id_query()
+        #query = query_wechat(object['data']['user_id'])
+        #fake_id = query.fake_id_query()
         if cmd == 'bind':
             result = bind(object['data'])
+        elif cmd == 'fakeId':
+            result = fake_id_store(object['data'])
         elif cmd == 'course_list':
             result = course_list_get(object['data'])
         elif cmd == 'homework_list':
@@ -44,7 +47,9 @@ def cmd_handler(request):
         elif cmd == 'user_info':
             result = person_info_get(object['data'])
         elif cmd == 'focus':
-            result = course_state_get(object['data'])
+            result = course_state_get_set(object['data'])
+        elif cmd == 'deadline':
+            result = deadline_list_get(object['data'])
         print json.dumps(result)
         return HttpResponse(json.dumps(result))
     except Exception, e:
@@ -52,30 +57,58 @@ def cmd_handler(request):
         return HttpResponse(json.dumps(result))
 
 
-def bind(object, fake_id):
+def get_test():
+    i = 0
+    result = 0
+    while i < 4:
+        i = i + 1
+        mid = random.randint(0, 9)
+        result = result * 10 + mid
+    return result
+
+
+def bind(object):
+    result = {
+        'error': 0,
+        'data': [],
+        'test': get_test()
+    }
+    try:
+        learn = hunter_learn(object['username'], object['password'])
+        user_pass_list[object['user_id']] = [object['username'], object['password']]
+    except userPassWrongException, e:
+        result['error'] = 1
+        return result
+    except Exception, e:
+        print Exception, e
+        result['error'] = 2
+    return result
+
+
+def fake_id_store(object):
     result = {
         'error': 0,
         'data': []
     }
     user_lock_list.append(object['user_id'])
     try:
-        learn = hunter_learn(object['username'], object['password'])
+        user_info = user_pass_list[object['user_id']]
+        object['username'] = user_info[0]
+        object['password'] = user_info[1]
+        del(user_pass_list[object['user_id']])
         grubber = thread_grubber(object)
         grubber.start()
-    except userPassWrongException, e:
-        result['error'] = 1
-        user_lock_list.remove(object['user_id'])
-        return result
     except Exception, e:
+        print Exception, e
         result['error'] = 2
+        user_lock_list.remove(object['user_id'])
     return result
 
 
-def course_list_get(object, fake_id):
+def course_list_get(object):
     result = {
         'error': 0,
-        'data': [],
-        'fake_id': fake_id
+        'data': []
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -84,18 +117,17 @@ def course_list_get(object, fake_id):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="166.111.80.7:8081/courseInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="http://166.111.80.7:8081/courseInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
 
 
-def homework_list_get(object, fake_id):
+def homework_list_get(object):
     result = {
         'error': 0,
-        'data': [],
-        'fake_id': fake_id
+        'data': []
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -104,18 +136,17 @@ def homework_list_get(object, fake_id):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="166.111.80.7:8081/homeworkInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="http://166.111.80.7:8081/homeworkInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
 
 
-def notice_list_get(object, fake_id):
+def notice_list_get(object):
     result = {
         'error': 0,
-        'data': [],
-        'fake_id': fake_id
+        'data': []
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -124,18 +155,17 @@ def notice_list_get(object, fake_id):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="166.111.80.7:8081/noticeInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="http://166.111.80.7:8081/noticeInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
 
 
-def files_list_get(object, fake_id):
+def files_list_get(object):
     result = {
         'error': 0,
-        'data': [],
-        'fake_id': fake_id
+        'data': []
     }
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
@@ -144,19 +174,18 @@ def files_list_get(object, fake_id):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="166.111.80.7:8081/filesInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="http://166.111.80.7:8081/filesInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
 
 
-def person_info_get(object, fake_id):
+def person_info_get(object):
     result = {
         'error': 0,
         'url': 'http://166.111.80.7:8081/person_img/' + object['user_id'] + '/',
-        'data': [],
-        'fake_id': fake_id
+        'data': []
     }
     query_set = query_academic(object['user_id'])
     if not query_set.user_id_exist():
@@ -183,12 +212,18 @@ def person_info_get(object, fake_id):
     return result
 
 
-def course_state_get(object, fake_id):
+def course_state_get_set(object):
     result = {
         'error': 0,
-        'data': [],
-        'fake_id': fake_id
+        'data': []
     }
+    if object['update_flag'] == 'true':
+        try:
+            store_set = store_learn('', '', object['user_id'])
+            store_set.course_attention_set(object['update_data'])
+        except Exception, e:
+            print Exception, e
+            result['error'] = 2
     query_set = query_learn(object['user_id'])
     if not query_set.user_id_exist():
         result['error'] = 1
@@ -200,6 +235,19 @@ def course_state_get(object, fake_id):
             result['data'].append([course, True])
         else:
             result['data'].append([course, False])
+    return result
+
+
+def deadline_list_get(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    query_set = query_learn(object['user_id'])
+    if not query_set.user_id_exist():
+        result['error'] = 1
+        return result
+    result['data'] = 'http://166.111.80.7:8081/deadline_list/' + object['user_id'] + '/'
     return result
 
 
@@ -252,13 +300,9 @@ def files_info_get(request, user_id, course_sequence):
 
 
 @csrf_exempt
-def homework_uncommitted_info_get(request, user_id, course_sequence):
-    try:
-        course_sequence = int(course_sequence)
-    except ValueError:
-        return HttpResponse(0)
+def homework_uncommitted_info_get(request, user_id):
     query_set = query_learn(user_id)
-    homework_uncommitted_info = query_set.homework_uncommitted_query(course_sequence)
+    homework_uncommitted_info = query_set.homework_uncommitted_query()
     content = homework_uncommitted_info
     return render_to_response('template/homework_uncommitted_info.html', {'content': content})
 

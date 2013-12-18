@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body{
+    height:100%;
+    background-color: #E5E5E5;
+}
+.box{
+    margin:7px 10px;
+    background:#fff;
+    border:1px solid #628aa5;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+.line{
+    padding:7px 10px;
+}
+</style>
 <head>
     <title></title>
 </head>
 <body>
-    <ul>
-        <li>课程名称:{{ content.caption }}</li>
-        <li>课程编号:{{ content.id }}</li>
-        <li>未读文件:{{ content.file_unread }}</li>
-        <li>未交作业:{{ content.homework }}</li>
-        <li>未读通知:{{ content.notice_unread }}</li>
-    </ul>
+    <div class="box">
+        <div class = "line">课程名称:{{ content.caption }}</div>
+        <div class = "line">课程编号:{{ content.id }}</div>
+        <div class = "line">未读文件:{{ content.file_unread }}</div>
+        <div class = "line">未交作业:{{ content.homework }}</div>
+        <div class = "line">未读通知:{{ content.notice_unread }}</div>
+    </div>
 </body>
 </html>

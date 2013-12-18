@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body{
+    height:100%;
+    background-color: #E5E5E5;
+}
+.box{
+    margin:7px 10px;
+    background:#fff;
+    border:1px solid #628aa5;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+.line{
+    padding:7px 10px;
+}
+</style>
 <head>
     <title></title>
 </head>
 <body>
-    <ul>
-        {% for files in content %}
-            <li>文件标题:{{ files.caption }}</li>
-            <li>文件链接:{{ files.link }}</li>
-            <li>文件说明:{{ files.note }}</li>
-            <li>文件大小:{{ files.size }}</li>
-            <li>文件日期:{{ files.date }}</li>
-            <li>--------------------------</li>
-        {% endfor %}
-    </ul>
+    {% for files in content %}
+        <div class="box">
+            <div class = "line">文件标题:{{ files.caption }}</div>
+            <div class = "line">文件链接:{{ files.link }}</div>
+            <div class = "line">文件说明:{{ files.note }}</div>
+            <div class = "line">文件大小:{{ files.size }}</div>
+            <div class = "line">文件日期:{{ files.date }}</div>
+        </div>
+    {% endfor %}
 </body>
 </html>

@@ -74,9 +74,10 @@ class query_learn(query):
             }
             homework_list = course['homework']
             for homework in homework_list:
-                if homework['state'] == '尚未提交':
+                if homework['state'] == '尚未提交'.decode('UTF-8'):
                     homework_course['homework'].append(homework)
-            result_list.append(homework_course)
+            if len(homework_course['homework']) > 0:
+                result_list.append(homework_course)
         return result_list
 
     def course_attention_query(self):

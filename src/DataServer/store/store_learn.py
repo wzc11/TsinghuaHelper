@@ -4,6 +4,7 @@ from store import *
 
 
 class store_learn(store):
+
     def user_update(self, user):
         if self.user_is_exist():
             User.objects(user_id=self.user_id).update(
