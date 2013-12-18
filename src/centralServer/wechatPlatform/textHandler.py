@@ -6,7 +6,9 @@ from requestHelper.messageHelper import *
 
 
 def textHandler(data):
+    openId = data['content']['FromUserName']
     code = data['content']['Content']
+    '''try:'''
     fakeId = weChatUtil.Authorize(code)
     reply = {
         'data': {
@@ -15,58 +17,27 @@ def textHandler(data):
         'type': 'TEXT_TEMPLATE',
     }
 
-
     fwdData = {
-        'type': data['content']['EventKey'],
+        'type': 'fakeId',
         'data': {
-            'user_id': data['content']['FromUserName'],
+            'user_id': openId,
             'fake_id': fakeId,
+            'username': APP_INFO_CACHE[openId]['usr'],
+            'password': APP_INFO_CACHE[openId]['pwd'],
         }
     }
 
     retData = forwardRequest(URL['DATA'], fwdData)
-
-    return reply
-'''def textHandler(data):
-    argMap = textParser(data['content'])
-    fwdData = {
-        'type': '',
-        'data': {
-            'user_id': data['content']['FromUserName'],
-            'username': '',
-            'password': '',
-            'course_caption': '',
-            'homework_caption': '',
-            'notice_caption': '',
-            'files_caption': ''
-        }
-    }
-
-    retData = forwardRequest(URL['DATA'], fwdData)
-    print retData
-
-    if retData['type'] == 'ERR':
-        reply = 'ERR:\n'
-        for item in retData['data']:
-                reply += item.encode('utf-8')
-                reply += '\n'
-    elif retData['type'] == 'TEXT':
-        reply = ''
-        for item in retData['data']:
-                reply += item.encode('utf-8')
-                reply += '\n'
-    elif retData['type'] == 'IMAGE_TEXT':
-        reply = ''
-        for item in retData['data']:
-                reply += item.encode('utf-8')
-                reply += '\n'
+    if retData['error'] == 0:
+        del(APP_INFO_CACHE[openId])
     else:
-        reply = 'WRONG CODE'
+        reply = 'Error 请重新回复'
+    '''except Exception, e:
+        reply = {
+            'data': {
+                'content': Exception + e,
+            },
+            'type': 'TEXT_TEMPLATE',
+        }'''
 
     return reply
-
-
-def textParser(text):
-    argMap = {}
-
-    return argMap'''

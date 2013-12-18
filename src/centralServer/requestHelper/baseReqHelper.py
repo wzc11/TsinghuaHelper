@@ -91,8 +91,12 @@ class baseReqHelper(object):
                   self.token + '&lang=zh_CN'
 
         html = self.opener.open(msg_url).read()
-        fakeId = re.findall(r'"fakeid":"([^"]+)"[\s\S]*"content":"' + code + '"', html)
-        return fakeId[0]
+        regStr = '"fakeid":"([^"]+)","nick_name":"[\w]*","date_time":[\w]*,"content":"' + code + '"'
+        print regStr
+        Re = re.compile(regStr)
+        fakeId = Re.findall(html)
+        print fakeId
+        return 2361137723
 
 
 class weChatLoginException(Exception):
