@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from exponents.faceExponent import *
 from exponents.learnExponent import *
+from exponents.similarityExponent import *
 
 
 def weChatFaceIndex(request):
@@ -31,4 +32,15 @@ def weChatLearnIndex(request):
         sum = 5
     return render_to_response('xueba.html',
                               {'Sum': sum, 'name': name, 'src': src},
+                              context_instance=RequestContext(request))
+
+
+def weChatPKIndex(request):
+    src = request.GET['src']
+    name = request.GET['name']
+
+    result = ListRoot(src, 'static\\img\\picture')
+
+    return render_to_response('facepk.html',
+                              {'url': result[0], 'name': name, 'sim': int(result[1]*100), 'src': src},
                               context_instance=RequestContext(request))

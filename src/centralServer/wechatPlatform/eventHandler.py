@@ -29,7 +29,12 @@ def eventHandler(data):
                            + retData['data'][0].encode('utf-8')
                            + '&src='
                            + retData['data'][2].encode('utf-8')
-                           + '">学霸指数</a>',
+                           + '">学霸指数</a>'
+                           + '<a href="http://thusecretary.duapp.com/weChat/index/facePK/?src='
+                           + retData['data'][2].encode('utf-8')
+                           + '&name='
+                           + retData['data'][0].encode('utf-8')
+                           + '">明星脸</a>',
             },
             'type': 'TEXT_TEMPLATE',
         }

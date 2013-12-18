@@ -40,7 +40,7 @@ def similarityExponent(src1, src2):
 def ListRoot(src1, rootDir):
      max = 0
      dir = ''
-     fatherpath = os.path.abspath('..')
+     fatherpath = os.getcwd()
      rootDir =  os.path.join(fatherpath, rootDir)
      rootDir.decode('UTF-8')
      for item in os.listdir(rootDir):
