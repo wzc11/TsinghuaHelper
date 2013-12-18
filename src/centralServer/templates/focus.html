@@ -11,7 +11,7 @@
 <body>
     <form id="form" method="post" action="/weChat/focus/?fwd=true&id={{ openId }}">
 		<fieldset data-role="controlgroup">
-	        <legend>选择关注的课程</legend>
+	        <legend>课程列表</legend>
 			{% for item in course_list %}
 				{% if item.checked %}
 					<label>
@@ -26,7 +26,7 @@
 				 {% endif %}
 			{% endfor %}
 		</fieldset>
-        <input type="submit" value="确定" />
+        <input type="submit" value="关注已选课程" />
     </form>
 </body>
 </html>
