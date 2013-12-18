@@ -18,19 +18,19 @@ def eventHandler(data):
         print retData
         return {
             'data': {
-                'content': '<a href="http://thusecretary.duapp.com/weChat/index/face/?src='
+                'content': '<a href="'+URL['ROOT']+'index/face/?src='
                            + retData['data'][2].encode('utf-8')
                            + '&name='
                            + retData['data'][0].encode('utf-8')
                            + '">屌丝指数</a>'
-                           + '<a href="http://thusecretary.duapp.com/weChat/index/learn/?num='
+                           + '<a href="'+URL['ROOT']+'index/learn/?num='
                            + retData['data'][1].encode('utf-8')
                            + '&name='
                            + retData['data'][0].encode('utf-8')
                            + '&src='
                            + retData['data'][2].encode('utf-8')
                            + '">学霸指数</a>'
-                           + '<a href="http://thusecretary.duapp.com/weChat/index/facePK/?src='
+                           + '<a href="'+URL['ROOT']+'index/facePK/?src='
                            + retData['data'][2].encode('utf-8')
                            + '&name='
                            + retData['data'][0].encode('utf-8')
@@ -42,7 +42,7 @@ def eventHandler(data):
     if fwdData['type'] == 'bind':
         return {
             'data': {
-                'content': '请点击如下链接<a href="http://thusecretary.duapp.com/weChat/login/?id='
+                'content': '请点击如下链接<a href="'+URL['ROOT']+'login/?id='
                            + data['content']['FromUserName']
                            + '">绑定账号</a>',
             },
@@ -52,7 +52,7 @@ def eventHandler(data):
     if fwdData['type'] == 'focus':
         return {
             'data': {
-                'content': '请点击如下链接<a href="http://thusecretary.duapp.com/weChat/focus/?id='
+                'content': '请点击如下链接<a href="'+URL['ROOT']+'focus/?id='
                            + data['content']['FromUserName']
                            + '&fwd=false'
                            + '">选择关注课程</a>',
