@@ -3,6 +3,7 @@ __author__ = 'YJB'
 
 from PIL import Image
 
+
 def faceExponent(src):
     im = Image.open(src.decode('UTF-8'))
     new_image = im.convert('L')

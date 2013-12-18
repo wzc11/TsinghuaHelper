@@ -8,7 +8,7 @@ APP_TOKEN = {
     'refresh_time': 0,
 }
 
-APP_INFO_CACHE = {'oUfi4uFv6agwCo-JGPBfWvXdgZBg': {'usr': 'wang-zq11', 'pwd': 'ABC19931219wzq'}}
+APP_INFO_CACHE = {'admin': {'usr': 'admin', 'pwd': 'admin'}}
 
 APP_ACCOUNT = {
     'email': 'xz01234288@sina.com',

@@ -30,6 +30,7 @@ def textHandler(data):
     retData = forwardRequest(URL['DATA'], fwdData)
     if retData['error'] == 0:
         del(APP_INFO_CACHE[openId])
+        print APP_INFO_CACHE
     else:
         reply = 'Error 请重新回复'
     '''except Exception, e:
