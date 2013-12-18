@@ -40,6 +40,8 @@ def similarityExponent(src1, src2):
 def ListRoot(src1, rootDir):
      max = 0
      dir = ''
+     fatherpath = os.path.abspath('..')
+     rootDir =  os.path.join(fatherpath, rootDir)
      rootDir.decode('UTF-8')
      for item in os.listdir(rootDir):
         path = os.path.join(rootDir, item)
@@ -47,7 +49,8 @@ def ListRoot(src1, rootDir):
             max = similarityExponent(src1, path)
             dir = path
      max = max / 64.
+     #print max
      return [dir, max]
 
-#ListRoot('C:\\Users\\JB\\Desktop\\软工图片\\12345.jpg', 'C:\\Users\\JB\\Desktop\\picture')
+#ListRoot('C:\\Users\\JB\\Desktop\\软工图片\\12345.jpg', 'static\\img\\picture')
 
