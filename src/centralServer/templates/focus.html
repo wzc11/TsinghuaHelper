@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
     <title>关注课程</title>
+	<link rel="stylesheet" href="../static/css/jquerymobile.css" />
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="../static/js/jquerymobile.js"></script>
 </head>
 <body>
     <form id="form" method="post" action="/weChat/focus/?fwd=true&id={{ openId }}">
-        <ul>
-        {% for item in course_list %}
-            {% if item.checked %}
-                <li><input type="checkbox" value="{{ item.value }}" name="focusList" checked="checked" />{{ item.content }}</li>
-            {% else %}
-                <li><input type="checkbox" value="{{ item.value }}" name="focusList" />{{ item.content }}</li>
-            {% endif %}
-        {% endfor %}
-        </ul>
+		<fieldset data-role="controlgroup">
+	        <legend>选择关注的课程</legend>
+			{% for item in course_list %}
+				{% if item.checked %}
+					<label>
+						<input type="checkbox" name="focusList" value="{{ item.value }}" checked="checked" />
+						{{ item.content }}
+					</label>
+				{% else %}
+					<label>
+						<input type="checkbox" name="focusList"  value="{{ item.value }}" />
+						{{ item.content }}
+					</label>
+				 {% endif %}
+			{% endfor %}
+		</fieldset>
         <input type="submit" value="确定" />
     </form>
 </body>
