@@ -6,7 +6,6 @@ from django.shortcuts import render_to_response
 from handler import *
 from django.template import RequestContext
 
-
 @csrf_exempt
 def weChatHandler(request):
     if request.method == 'GET':
@@ -61,6 +60,7 @@ def weChatFocus(request):
 
     index = 0
     course_list = []
+    print retData['data']
     for item in retData['data']:
         course_list.append({'content': item[0], 'checked': item[1], 'value': item[0]})
         index += 1
@@ -84,4 +84,17 @@ def weChatBind(request):
             'password': pwd,
         }
     })
-    return HttpResponse(retData)
+    if retData['error'] == 0:
+        responseStr = '登陆成功，请回复验证码：' + str(retData['test'])
+        #APP_INFO_CACHE[openId] = {'usr': usr, 'pwd': pwd}
+        print APP_INFO_CACHE
+    else:
+        responseStr = '请重新登录'
+    return HttpResponse(responseStr)
+
+
+@csrf_exempt
+def weChatMessage(request):
+    data = json.loads(smart_str(request.read()))
+    weChatUtil.sentTextMsg(data['fake_id'], data['result'])
+    return HttpResponse('hahaha~')

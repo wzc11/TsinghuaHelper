@@ -19,4 +19,4 @@ class reqHelper(baseReqHelper):
         return msg == 'ok'
 
     def Authorize(self, code):
-        self._getFakeId()
+        return self._getFakeId(code)
