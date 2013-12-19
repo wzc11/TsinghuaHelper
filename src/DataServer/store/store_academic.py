@@ -1,6 +1,7 @@
 __author__ = 'CaoYe'
 # -*- coding: utf-8 -*-
 from store import *
+from Assistant.config import *
 import glob
 from PIL import Image
 
@@ -13,11 +14,11 @@ class store_academic(store):
         )
 
     def image_handle(self):
-        ima = Image.open('C:\\Users\\ziyewuge\\Pictures\\TsinghuaHelper\\old\\' + self.user_id + '.jpg')
+        ima = Image.open(old_img_root + self.user_id + '.jpg')
         imb = ima.resize((243, 300))
         imc = Image.new("RGB", (540, 300), 'white')
         imc.paste(imb, (149, 0, 392, 300))
-        imc.save('C:\\Users\\ziyewuge\\Pictures\\TsinghuaHelper\\new\\' + self.user_id + '.jpg')
+        imc.save(new_img_root + self.user_id + '.jpg')
 
     def academic_store(self):
         try:

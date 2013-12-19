@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body{
+    height:100%;
+    background-color: #E5E5E5;
+}
+.box{
+    margin:7px 10px;
+    background:#fff;
+    border:1px solid #628aa5;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+.line{
+    padding:7px 10px;
+}
+</style>
 <head>
     <title></title>
 </head>
 <body>
-    <ul>
-        {% for notice in content %}
-            <li>公告标题:{{ notice.caption }}</li>
-            <li>公告链接:{{ notice.link }}</li>
-            <li>公告教师:{{ notice.teacher }}</li>
-            <li>公告日期:{{ notice.date }}</li>
-            <li>--------------------------</li>
-        {% endfor %}
-    </ul>
+    {% for notice in content %}
+        <div class="box">
+            <div class = "line">公告标题:{{ notice.caption }}</div>
+            <div class = "line">公告链接:<a href={{ notice.link }}>点击此处</a></div>
+            <div class = "line">公告教师:{{ notice.teacher }}</div>
+            <div class = "line">公告日期:{{ notice.date }}</div>
+        </div>
+    {% endfor %}
 </body>
 </html>

@@ -10,6 +10,7 @@ import socket
 import time
 import random
 from hunter import *
+from Assistant.config import *
 
 class userPassWrongException(Exception):
     def __init__(self, username):
@@ -197,7 +198,7 @@ class hunter_academic(hunter):
         socket = self.opener.open(self.req_img)
         data = socket.read()
         socket.close()
-        img = open('C:\\Users\\ziyewuge\\Pictures\\TsinghuaHelper\\old\\' + image_name + '.jpg', 'wb')
+        img = open(old_img_root + image_name + '.jpg', 'wb')
         img.write(data)
         img.close()
         return [dict, data]

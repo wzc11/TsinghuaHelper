@@ -44,7 +44,7 @@ class thread_grubber(threading.Thread):
             'fake_id': self.object['fake_id']
         }
         print fwdData
-        self.forwardRequest('http://thusecretary.duapp.com/weChat/message/', fwdData)
+        self.forwardRequest(connect_ip + 'message/', fwdData)
         store = store_wechat(self.object['username'], self.object['password'], self.object['user_id'])
         store.fake_id_store(self.object['fake_id'])
         user_lock_list.remove(self.object['user_id'])

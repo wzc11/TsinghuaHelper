@@ -11,7 +11,7 @@
             {% for homework in course.homework %}
                 <li>作业标题:{{ homework.caption }}</li>
                 <li>作业状态:{{ homework.state }}</li>
-                <li>作业链接:{{ homework.link }}</li>
+                <li>作业链接:<a href={{ homework.link }}>点击此处</a></li>
                 <li>作业日期:{{ homework.date }}</li>
                 <li>截止日期:{{ homework.deadline }}</li>
                 <li>作业说明:{{ homework.note }}</li>

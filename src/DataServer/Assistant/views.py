@@ -50,6 +50,8 @@ def cmd_handler(request):
             result = course_state_get_set(object['data'])
         elif cmd == 'deadline':
             result = deadline_list_get(object['data'])
+        elif cmd == 'index':
+            result = index_get(object['data'])
         print json.dumps(result)
         return HttpResponse(json.dumps(result))
     except Exception, e:
@@ -117,7 +119,7 @@ def course_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="http://166.111.80.7:8081/courseInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="' + root_ip + 'courseInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -136,7 +138,7 @@ def homework_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="http://166.111.80.7:8081/homeworkInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="' + root_ip + 'homeworkInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -174,7 +176,7 @@ def files_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="http://166.111.80.7:8081/filesInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="' + root_ip + 'filesInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -184,7 +186,7 @@ def files_list_get(object):
 def person_info_get(object):
     result = {
         'error': 0,
-        'url': 'http://166.111.80.7:8081/person_img/' + object['user_id'] + '/',
+        'url': root_ip + 'person_img/' + object['user_id'] + '/',
         'data': []
     }
     query_set = query_academic(object['user_id'])
@@ -247,7 +249,26 @@ def deadline_list_get(object):
     if not query_set.user_id_exist():
         result['error'] = 1
         return result
-    result['data'] = 'http://166.111.80.7:8081/deadline_list/' + object['user_id'] + '/'
+    result['data'].append('<a href="' + root_ip + 'deadline_list/' + object['user_id'] + \
+                      '/">' + '点击此处查看未交作业'.decode('UTF-8') + '</a>')
+    return result
+
+
+def index_get(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    query_set_course = query_learn(object['user_id'])
+    query_set_name = query_academic(object['user_id'])
+    if not query_set_course.user_id_exist():
+        result['error'] = 1
+        return result
+    course_list = query_set_course.course_list_query()
+    person_info = query_set_name.person_info_query()
+    result['data'].append(person_info['real_name'])
+    result['data'].append(str(len(course_list)))
+    result['data'].append(root_ip + 'person_old_img/' + object['user_id'] + '/',)
     return result
 
 
@@ -317,10 +338,15 @@ def homework_uncommitted_info_get(request, user_id):
 
 @csrf_exempt
 def person_img_get(request, user_id):
-    image_data = open('C:\\Users\\ziyewuge\\Pictures\\TsinghuaHelper\\new\\' + user_id + '.jpg', "rb").read()
+    image_data = open(new_img_root + user_id + '.jpg', "rb").read()
     return HttpResponse(image_data, mimetype="image/jpg")
     #return HttpResponse('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\new\\' + user_id + '.jpg')
 
+
+@csrf_exempt
+def person_old_img_get(request, user_id):
+    image_data = open(old_img_root + user_id + '.jpg', "rb").read()
+    return HttpResponse(image_data, mimetype="image/jpg")
 # def course_info_get(object):
 #     result = {
 #         'error': 0,
