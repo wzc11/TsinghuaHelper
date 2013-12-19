@@ -12,6 +12,16 @@ def eventHandler(data):
         }
     }
 
+    if fwdData['type'] == 'card':
+        return {
+            'data': {
+                'content': '<a href="'+URL['ROOT']+'card/?id='
+                           + data['content']['FromUserName']
+                           + '">个人名片</a>',
+            },
+            'type': 'TEXT_TEMPLATE',
+        }
+
     if fwdData['type'] == 'index':
         return {
             'data': {

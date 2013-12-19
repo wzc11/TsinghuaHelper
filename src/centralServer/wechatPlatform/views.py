@@ -95,6 +95,9 @@ def weChatBind(request):
 
 @csrf_exempt
 def weChatMessage(request):
-    data = json.loads(smart_str(request.read()))
-    weChatUtil.sentTextMsg(data['fake_id'], data['result'])
+    try:
+        data = json.loads(smart_str(request.read()))
+        weChatUtil.sentTextMsg(data['fake_id'], data['result'])
+    except Exception, e:
+        print Exception, e
     return HttpResponse('hahaha~')

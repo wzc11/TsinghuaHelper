@@ -95,7 +95,7 @@ class baseReqHelper(object):
         regStr = '"fakeid":"([^"]+)","nick_name":"[\w]*","date_time":[\w]*,"content":"' + code + '"'
         print regStr
         Re = re.compile(regStr)
-        fakeId = Re.findall(html)
+        fakeId = Re.match(html)
         print fakeId
         return 2361137723
 

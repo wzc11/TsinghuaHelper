@@ -75,3 +75,24 @@ def weChatPKIndex(request):
     return render_to_response('facepk.html',
                               {'url': result[0], 'name': name, 'sim': int(result[1]*100), 'src': src},
                               context_instance=RequestContext(request))
+
+
+def weChatCard(request):
+    openId = request.GET['id']
+    fwdData = {
+        'type': 'card',
+        'data': {
+            'user_id': openId
+        }
+    }
+
+    retData = forwardRequest(URL['DATA'], fwdData)
+
+    return render_to_response('person_card.html',
+                              {'name': retData[0],
+                               'phone': retData[1],
+                               'id': retData[2],
+                               'birth': retData[3],
+                               'subject': retData[4],
+                               'email': retData[5]},
+                              context_instance=RequestContext(request))

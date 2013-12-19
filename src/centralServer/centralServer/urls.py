@@ -14,6 +14,7 @@ urlpatterns = patterns(
     url(r'^weChat/focus/$', weChatFocus),
     url(r'^weChat/bind/$', weChatBind),
     url(r'^weChat/message/$', weChatMessage),
+    url(r'^weChat/card/$', weChatCard),
     url(r'^weChat/index/face/$', weChatFaceIndex),
     url(r'^weChat/index/learn/$', weChatLearnIndex),
     url(r'^weChat/index/facePK/$', weChatPKIndex),
