@@ -35,20 +35,24 @@ def autoResponder(request):
     elif data['content']['MsgType'] == 'event':
         reply = eventHandler(data)
 
-    if reply['type'] == 'TEXT_TEMPLATE':
-        return xmlHelper.generate({
-            'to': data['content']['FromUserName'],
-            'from': data['content']['ToUserName'],
-            'time': str(int(time.time())),
-            'content': reply['data']['content']
-        }, XML['TEXT_TEMPLATE'])['content']
-    else:
-        return xmlHelper.generate({
-            'to': data['content']['FromUserName'],
-            'from': data['content']['ToUserName'],
-            'time': str(int(time.time())),
-            'title': 'User Info',
-            'description': reply['data']['content'],
-            'picUrl': reply['data']['url'],
-            'url': reply['data']['url'],
-        }, XML['USER_INFO_TEMPLATE'])['content']
+    print 'REPLY:', reply
+    try:
+        if reply['type'] == 'TEXT_TEMPLATE':
+            return xmlHelper.generate({
+                'to': data['content']['FromUserName'],
+                'from': data['content']['ToUserName'],
+                'time': str(int(time.time())),
+                'content': reply['data']['content']
+            }, XML['TEXT_TEMPLATE'])['content']
+        else:
+            return xmlHelper.generate({
+                'to': data['content']['FromUserName'],
+                'from': data['content']['ToUserName'],
+                'time': str(int(time.time())),
+                'title': 'User Info',
+                'description': reply['data']['content'],
+                'picUrl': reply['data']['url'],
+                'url': reply['data']['url'],
+            }, XML['USER_INFO_TEMPLATE'])['content']
+    except Exception, e:
+        print Exception, e

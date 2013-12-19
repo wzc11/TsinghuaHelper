@@ -66,6 +66,7 @@ class baseReqHelper(object):
         try:
             ret_json = json.loads(self.opener.open("https://mp.weixin.qq.com/cgi-bin/singlesend?t=ajax-response&"
                                               "lang=zh_CN", urllib.urlencode(body), timeout=5).read())
+            print 'RET_JSON', ret_json
             msg = ret_json['base_resp']['err_msg']
         except urllib2.URLError:
             time.sleep(1)

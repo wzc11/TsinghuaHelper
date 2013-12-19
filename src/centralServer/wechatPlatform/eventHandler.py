@@ -13,27 +13,16 @@ def eventHandler(data):
     }
 
     if fwdData['type'] == 'index':
-        retData = forwardRequest(URL['DATA'], fwdData)
-
-        print retData
         return {
             'data': {
-                'content': '<a href="'+URL['ROOT']+'index/face/?src='
-                           + retData['data'][2].encode('utf-8')
-                           + '&name='
-                           + retData['data'][0].encode('utf-8')
-                           + '">屌丝指数</a>'
-                           + '<a href="'+URL['ROOT']+'index/learn/?num='
-                           + retData['data'][1].encode('utf-8')
-                           + '&name='
-                           + retData['data'][0].encode('utf-8')
-                           + '&src='
-                           + retData['data'][2].encode('utf-8')
-                           + '">学霸指数</a>'
-                           + '<a href="'+URL['ROOT']+'index/facePK/?src='
-                           + retData['data'][2].encode('utf-8')
-                           + '&name='
-                           + retData['data'][0].encode('utf-8')
+                'content': '<a href="'+URL['ROOT']+'index/face/?id='
+                           + data['content']['FromUserName']
+                           + '">屌丝指数</a>' + '\n'
+                           + '<a href="'+URL['ROOT']+'index/learn/?id='
+                           + data['content']['FromUserName']
+                           + '">学霸指数</a>' + '\n'
+                           + '<a href="'+URL['ROOT']+'index/facePK/?id='
+                           + data['content']['FromUserName']
                            + '">明星脸</a>',
             },
             'type': 'TEXT_TEMPLATE',

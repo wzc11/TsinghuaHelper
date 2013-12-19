@@ -1,16 +1,27 @@
 __author__ = 'wangzhuqi.THU'
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from exponents.faceExponent import *
 from exponents.learnExponent import *
 from exponents.similarityExponent import *
+from requestHelper.forwardHelper import *
+from projectManager.CONFIG import *
 
 
 def weChatFaceIndex(request):
-    src = request.GET['src']
-    name = request.GET['name']
+    openId = request.GET['id']
+    fwdData = {
+        'type': 'index',
+        'data': {
+            'user_id': openId
+        }
+    }
+
+    retData = forwardRequest(URL['DATA'], fwdData)
+
+    src = retData['data'][2]
+    name = retData['data'][0]
+
     FacePoint = faceExponent(src)
     FacePoint = int(FacePoint / 2)
     if FacePoint == 0:
@@ -21,9 +32,20 @@ def weChatFaceIndex(request):
 
 
 def weChatLearnIndex(request):
-    src = request.GET['src']
-    num = request.GET['num']
-    name = request.GET['name']
+    openId = request.GET['id']
+    fwdData = {
+        'type': 'index',
+        'data': {
+            'user_id': openId
+        }
+    }
+
+    retData = forwardRequest(URL['DATA'], fwdData)
+
+    src = retData['data'][2]
+    name = retData['data'][0]
+    num = retData['data'][1]
+
     sum = learnExponent(int(num), 0)
     sum = int(sum)
     if sum <= 0:
@@ -36,8 +58,17 @@ def weChatLearnIndex(request):
 
 
 def weChatPKIndex(request):
-    src = request.GET['src']
-    name = request.GET['name']
+    openId = request.GET['id']
+    fwdData = {
+        'type': 'index',
+        'data': {
+            'user_id': openId
+        }
+    }
+
+    retData = forwardRequest(URL['DATA'], fwdData)
+    src = retData['data'][2]
+    name = retData['data'][0]
 
     result = ListRoot(src, 'static\\img\\picture')
 
