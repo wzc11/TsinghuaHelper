@@ -22,14 +22,14 @@ def eventHandler(data):
                            + retData['data'][2].encode('utf-8')
                            + '&name='
                            + retData['data'][0].encode('utf-8')
-                           + '">屌丝指数</a>'
+                           + '">屌丝指数</a>' + '\n'
                            + '<a href="'+URL['ROOT']+'index/learn/?num='
                            + retData['data'][1].encode('utf-8')
                            + '&name='
                            + retData['data'][0].encode('utf-8')
                            + '&src='
                            + retData['data'][2].encode('utf-8')
-                           + '">学霸指数</a>'
+                           + '">学霸指数</a>' + '\n'
                            + '<a href="'+URL['ROOT']+'index/facePK/?src='
                            + retData['data'][2].encode('utf-8')
                            + '&name='

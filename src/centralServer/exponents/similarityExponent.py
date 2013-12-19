@@ -47,10 +47,9 @@ def ListRoot(src1, rootDir):
         path = os.path.join(rootDir, item)
         if (similarityExponent(src1, path) > max):
             max = similarityExponent(src1, path)
-            dir = path
+            dir = item
      max = max / 64.
      #print max
-     return [dir, max]
+     return ['/static/img/picture/'+dir, max]
 
 #ListRoot('C:\\Users\\JB\\Desktop\\软工图片\\12345.jpg', 'static\\img\\picture')
-

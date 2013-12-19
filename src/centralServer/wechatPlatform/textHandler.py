@@ -12,7 +12,7 @@ def textHandler(data):
     fakeId = weChatUtil.Authorize(code)
     reply = {
         'data': {
-            'content': '验证成功',
+            'content': '验证成功，正在获取数据，请稍候...',
         },
         'type': 'TEXT_TEMPLATE',
     }
@@ -32,7 +32,8 @@ def textHandler(data):
         #del(APP_INFO_CACHE[openId])
         #print APP_INFO_CACHE
     if retData['error'] != 0:
-        reply = 'Error 请重新回复'
+        print 'RETDATA', retData
+        reply['data']['content'] = 'Error 验证码失效，请重新绑定'
     '''except Exception, e:
         reply = {
             'data': {
