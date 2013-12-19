@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style>
+body{
+    height:100%;
+    background-color: #E5E5E5;
+}
+.box{
+    margin:7px 10px;
+    background:#fff;
+    border:1px solid #628aa5;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+.line{
+    padding:7px 10px;
+}
+</style>
 <head>
     <title></title>
 </head>
 <body>
-    <ul>
-        {% for homework in content %}
-            <li>作业标题:{{ homework.caption }}</li>
-            <li>作业状态:{{ homework.state }}</li>
-            <li>作业链接:{{ homework.link }}</li>
-            <li>作业日期:{{ homework.date }}</li>
-            <li>截止日期:{{ homework.deadline }}</li>
-            <li>作业说明:{{ homework.note }}</li>
-            <li>附加文件:{{ homework.file }}</li>
-            <li>提交文件:{{ homework.submit_file }}</li>
-            <li>文件大小:{{ homework.size }}</li>
-            <li>--------------------------</li>
-        {% endfor %}
-    </ul>
+    {% for homework in content %}
+        <div class="box">
+            <div class = "line">作业标题:{{ homework.caption }}</div>
+            <div class = "line">作业状态:{{ homework.state }}</div>
+            <div class = "line">作业链接:<a href={{ homework.link }}>点击此处</a></div>
+            <div class = "line">作业日期:{{ homework.date }}</div>
+            <div class = "line">截止日期:{{ homework.deadline }}</div>
+            <div class = "line">作业说明:{{ homework.note }}</div>
+            <div class = "line">附加文件:{{ homework.file }}</div>
+            <div class = "line">提交文件:{{ homework.submit_file }}</div>
+            <div class = "line">文件大小:{{ homework.size }}</div>
+        </div>
+    {% endfor %}
 </body>
 </html>
