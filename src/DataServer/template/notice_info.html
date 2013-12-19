@@ -4,17 +4,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-	<link rel="stylesheet" href="../static/css/jquerymobile.css" />
-	<script src="../static/js/jquery.js"></script>
-	<script src="../static/js/jquerymobile.js"></script>
+	<link rel="stylesheet" href="/static/css/jquerymobile.css" />
+	<script src="/static/js/jquery.js"></script>
+	<script src="/static/js/jquerymobile.js"></script>
     <title>课程公告</title>
 </head>
 <body>
-    <div data-role="collapsible-set" data-inset="false">
+    <div data-role="collapsible-set">
     	{% for notice in content %}
 	    	<div data-role="collapsible">
 		    	<h3>{{ notice.caption }}</h3>
-		    	<ul data-role="listview" data-inset="false">
+		    	<ul data-role="listview">
 			    	<li>公告链接:{{ notice.link }}</li>
 			    	<li>公告教师:{{ notice.teacher }}</li>
 			    	<li>公告日期:{{ notice.date }}</li>

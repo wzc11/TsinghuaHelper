@@ -52,6 +52,8 @@ def cmd_handler(request):
             result = deadline_list_get(object['data'])
         elif cmd == 'index':
             result = index_get(object['data'])
+        elif cmd == 'card':
+            result = card_get(object['data'])
         print json.dumps(result)
         return HttpResponse(json.dumps(result))
     except Exception, e:
@@ -79,11 +81,11 @@ def bind(object):
         learn = hunter_learn(object['username'], object['password'])
         user_pass_list[object['user_id']] = [object['username'], object['password']]
     except userPassWrongException, e:
-        result['error'] = 1
+        result['error'] = 4
         return result
     except Exception, e:
         print Exception, e
-        result['error'] = 2
+        result['error'] = 4
     return result
 
 
@@ -269,6 +271,25 @@ def index_get(object):
     result['data'].append(person_info['real_name'])
     result['data'].append(str(len(course_list)))
     result['data'].append(root_ip + 'person_old_img/' + object['user_id'] + '/',)
+    return result
+
+
+def card_get(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    query_set = query_academic(object['user_id'])
+    if not query_set.user_id_exist():
+        result['error'] = 1
+        return result
+    person_info = query_set.person_info_query()
+    result['data'].append(person_info['real_name'])
+    result['data'].append(person_info['phone'])
+    result['data'].append(person_info['student_number'])
+    result['data'].append(person_info['birth_date'])
+    result['data'].append(person_info['department'])
+    result['data'].append(person_info['email'])
     return result
 
 
