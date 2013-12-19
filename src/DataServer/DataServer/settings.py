@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+HERE = os.path.dirname(__file__).replace('\\', '/')
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,6 +31,14 @@ ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_DIRS = (
     ROOT_PATH,
+)
+
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    HERE + '/../static',
 )
 
 # Application definition
