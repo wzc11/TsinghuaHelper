@@ -161,7 +161,7 @@ def notice_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="http://166.111.80.7:8081/noticeInfo/' + object['user_id'] + '/' + str(count) + \
+        course_url = '<a href="' + root_ip + 'noticeInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
@@ -378,7 +378,7 @@ def score_info_get(request, user_id, course_sequence):
         return HttpResponse(0)
     query_set = query_academic(user_id)
     score_info = query_set.score_info_query(course_sequence)
-    content = score_info
+    content = score_info['course_info']
     return render_to_response('template/score_info.html', {'content': content})
 
 

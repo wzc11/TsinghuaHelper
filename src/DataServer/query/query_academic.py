@@ -39,3 +39,10 @@ class query_academic(query):
         course_score_list = information['course_score']
         result = course_score_list[course_sequence]
         return result
+
+
+if __name__ == "__main__":
+    import sys
+    query_set = query_academic('oUfi4uCxAoWKGW52MoCW-b2THjCI')
+    score_info = query_set.score_info_query(0)
+    a = 1

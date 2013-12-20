@@ -6,6 +6,7 @@ import glob
 from PIL import Image
 
 
+
 class store_academic(store):
     term_dict = {
         '1': '秋季学期'.decode('UTF-8'),
@@ -122,9 +123,3 @@ class store_academic(store):
             print Exception, e
             self.user_delete()
             return False
-
-if __name__ == "__main__":
-    import sys
-    tt = store_academic('caoy11', 'memory2011', '11')
-    print 1
-    tt.academic_store()

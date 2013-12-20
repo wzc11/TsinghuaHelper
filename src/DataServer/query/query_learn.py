@@ -177,3 +177,8 @@ class query_learn(query):
     #                 print files
     #                 result_list.append(files)
     #     return result_list
+
+if __name__ == "__main__":
+    query_set = query_learn('oUfi4uNcdV3lvs_t7z1s7tiIsmvE')
+    notice_info = query_set.notice_info_query(1)
+    content = notice_info

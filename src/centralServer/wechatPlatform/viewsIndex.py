@@ -89,10 +89,10 @@ def weChatCard(request):
     retData = forwardRequest(URL['DATA'], fwdData)
 
     return render_to_response('person_card.html',
-                              {'name': retData[0],
-                               'phone': retData[1],
-                               'id': retData[2],
-                               'birth': retData[3],
-                               'subject': retData[4],
-                               'email': retData[5]},
+                              {'name': retData['data'][0],
+                               'phone': retData['data'][1],
+                               'id': retData['data'][2],
+                               'birth': retData['data'][3],
+                               'subject': retData['data'][4],
+                               'email': retData['data'][5]},
                               context_instance=RequestContext(request))

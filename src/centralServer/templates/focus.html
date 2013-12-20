@@ -10,7 +10,7 @@
 	<script src="{% static "static/js/jquerymobile.js" %}"></script>
 </head>
 <body>
-    <form id="form" method="post" action="{% static "weChat/focus/?fwd=true&id={{ openId }}"%}">
+    <form id="form" method="post" action="/zywg_central/weChat/focus/?fwd=true&id={{ openId }}">
 		<fieldset data-role="controlgroup">
 	        <legend>课程列表</legend>
 			{% for item in course_list %}

@@ -212,3 +212,12 @@ class hunter_learn(hunter):
             if self.listtmp:
                 self.data = dict(self.data.items() + self.listtmp[0].items())
         return self.data
+
+if __name__ == "__main__":
+    import sys
+    learn = hunter_learn('caoy11', 'memory2011')
+    info = learn.getInfo()
+    for course in info:
+        course_info = learn.getSpecial(course['id'])
+        notice_info = course_info['notice']
+        a = 1
