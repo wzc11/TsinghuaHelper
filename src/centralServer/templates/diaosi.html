@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -42,7 +43,7 @@
 <body>
 	<div class="logo">
 		<div class="loginIcon">
-			<img src="/static/img/diaosipic/logo.jpg" style="height:100px">
+			<img src="{% static "static/img/diaosipic/logo.jpg" %}" style="height:100px">
 		</div>
 	</div>
 	<div class="dec_line1"></div>
@@ -58,7 +59,7 @@
 			</div>
 			<div class="rightmodule">
 				<div class="index">
-					<img src="/static/img/diaosipic/star{{ FacePoint }}.jpg" style="width:100%">
+					<img src="{% static "static/img/diaosipic/star{{ FacePoint }}.jpg" %}"  style="width:100%">
 				</div>
 			</div>
 		</div>

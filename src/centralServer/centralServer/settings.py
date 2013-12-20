@@ -69,9 +69,9 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+STATIC_URL = '/zywg_central/'
 
-print HERE
+print 'HERE', HERE
 print STATIC_ROOT
 
 # Additional locations of static files
@@ -81,7 +81,6 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     HERE + '/../static',
 )
-
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (

@@ -1,3 +1,4 @@
+{% load staticfiles %}
 body{
     height:100%;
 }

@@ -3,26 +3,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-    <link rel="stylesheet" href="../static/css/jquerymobile.css" />
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/jquerymobile.js"></script>
+    <link rel="stylesheet" href="/zywg_data/static/css/jquerymobile.css" />
+    <script src="/zywg_data/static/js/jquery.js"></script>
+    <script src="/zywg_data/static/js/jquerymobile.js"></script>
     <title>文件信息</title>
 </head>
 <body>
-    <div data-role="collapsible-set" data-inset="false">
+    <div data-role="collapsible-set">
         {% for files in content %}
             <div data-role="collapsible">
                 <h3>{{ file.caption }}</h3>
-                <ul data-role="listview" data-inset="false">
-                    <li>文件标题:{{ files.caption }}</li>
-                    <li><a href={{ files.link }}>文件链接:点击此处</a></li>
-                    <li>文件说明:{{ files.note }}</li>
-                    <li>文件大小:{{ files.size }}</li>
-                    <li>文件日期:{{ files.date }}</li>
-                </ul>
-            </div><div data-role="collapsible">
-                <h3>{{ file.caption }}</h3>
-                <ul data-role="listview" data-inset="false">
+                <ul data-role="listview">
                     <li>文件标题:{{ files.caption }}</li>
                     <li><a href={{ files.link }}>文件链接:点击此处</a></li>
                     <li>文件说明:{{ files.note }}</li>
@@ -30,7 +21,7 @@
                     <li>文件日期:{{ files.date }}</li>
                 </ul>
             </div>
-    {% endfor %}
+        {% endfor %}
     </div> 
 </body>
 </html>

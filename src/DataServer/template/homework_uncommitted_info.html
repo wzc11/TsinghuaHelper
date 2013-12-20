@@ -3,42 +3,33 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-    <link rel="stylesheet" href="../static/css/jquerymobile.css" />
-    <script src="../static/js/jquery.js"></script>
-    <script src="../static/js/jquerymobile.js"></script>
+    <link rel="stylesheet" href="/zywg_data/static/css/jquerymobile.css" />
+    <script src="/zywg_data/static/js/jquery.js"></script>
+    <script src="/zywg_data/static/js/jquerymobile.js"></script>
     <title>未交作业</title>
 </head>
 <body>
-        <div data-role="collapsible-set" data-inset="false" data-theme="a">
+        <div data-role="collapsible-set" data-theme="a">
+        {% for course in content %}
             <div data-role="collapsible">
-                <h3>课程名称:{{ course.caption }}</h3>    
+                <h3>课程名称:{{ course.caption }}</h3>
+                {% for info in course.homework %}
                     <div data-role="collapsible" data-theme="e">
-                        <h3>作业标题:{{ homework.caption }}</h3>
-                        <ul data-role="listview" data-inset="false">
-                            <li>作业状态:{{ homework.state }}</li>
-                            <li><a href={{ homework.link }}>作业链接:点击此处</a></li>
-                            <li>作业日期:{{ homework.date }}</li>
-                            <li>截止日期:{{ homework.deadline }}</li>
-                            <li>作业说明:{{ homework.note }}</li>
-                            <li>附加文件:{{ homework.file }}</li>
-                            <li>提交文件:{{ homework.submit_file }}</li>
-                            <li>文件大小:{{ homework.size }}</li>
+                        <h3>作业标题:{{ info.caption }}</h3>
+                        <ul data-role="listview">
+                            <li>作业状态:{{ info.state }}</li>
+                            <li><a href={{ info.link }}>作业链接:点击此处</a></li>
+                            <li>作业日期:{{ info.date }}</li>
+                            <li>截止日期:{{ info.deadline }}</li>
+                            <li>作业说明:{{ info.note }}</li>
+                            <li>附加文件:{{ info.file }}</li>
+                            <li>提交文件:{{ info.submit_file }}</li>
+                            <li>文件大小:{{ info.size }}</li>
                         </ul>
                     </div>
-                    <div data-role="collapsible" data-theme="e">
-                        <h3>作业标题:{{ homework.caption }}</h3>
-                        <ul data-role="listview" data-inset="false">
-                            <li>作业状态:{{ homework.state }}</li>
-                            <li><a href={{ homework.link }}>作业链接:点击此处</a></li>
-                            <li>作业日期:{{ homework.date }}</li>
-                            <li>截止日期:{{ homework.deadline }}</li>
-                            <li>作业说明:{{ homework.note }}</li>
-                            <li>附加文件:{{ homework.file }}</li>
-                            <li>提交文件:{{ homework.submit_file }}</li>
-                            <li>文件大小:{{ homework.size }}</li>
-                        </ul>
-                    </div>
+                {% endfor %}
             </div>
+        {% endfor %}
         </div>
 </body>
 </html>

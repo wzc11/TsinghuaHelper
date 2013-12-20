@@ -18,6 +18,6 @@ urlpatterns = patterns('',
     url(r'^filesInfo/([^/]+)/(\d+)/$', files_info_get),
     url(r'^courseList/', cmd_handler),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root':settings.STATICFILES_DIRS[0],
+        {'document_root': settings.STATICFILES_DIRS[0],
          'show_indexes': True}),
 )

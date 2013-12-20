@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+from django.conf.urls.static import static
 from wechatPlatform.views import *
 from wechatPlatform.viewsIndex import *
 import settings
@@ -31,4 +32,4 @@ urlpatterns = patterns(
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-)
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
