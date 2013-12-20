@@ -10,9 +10,8 @@
 </head>
 <body>
     <div data-role="collapsible-set">
-        {% for course in content %}
             <div data-role="collapsible">
-                <h3>{{ notice.caption }}</h3>
+                <h3>{{ content.caption }}</h3>
                 <ul data-role="listview">
                     <li>课程编号:{{ content.id }}</li>
                     <li>未读文件:{{ content.file_unread }}</li>
@@ -20,7 +19,6 @@
                     <li>未读通知:{{ content.notice_unread }}</li>
                 </ul>
             </div>
-        {% endfor %}
     </div>
 </body>
 </html>
