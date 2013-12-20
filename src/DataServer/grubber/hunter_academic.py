@@ -10,7 +10,7 @@ import socket
 import time
 import random
 from hunter import *
-from Assistant.config import *
+#from Assistant.config import *
 
 class userPassWrongException(Exception):
     def __init__(self, username):
@@ -49,6 +49,25 @@ class hunter_academic(hunter):
     )
     personReTitle = re.compile(
         ur'''<div align="right">\s*(?P<title>[^<]*)\s*</div>'''
+    )
+
+
+    scoreRe = re.compile(
+        ur'''<tr>\s*<td>\s*<center>\s*.*?\s*(<input.*?>\s*)?'''
+        ur'''</center>\s*</td>\s*<td>\s*<[^<]*<table border=0 borderwidth=1 width=100%><tr><td width=35% align=right>[^<]*</td><td>(?P<course_id>\d*)'''
+        ur'''</td></tr><tr><td align=right>[^<]*</td><td>(?P<course_caption>[^<]*)</td></tr><tr><td align=right>[^<]*</td><td>(?P<schoolyear_term>[^<]*)</td>'''
+        ur'''</tr></table>[^>]*> <script>[^<]*</script>\s*</a>\s*</td>\s*<td>\s*(?P<course_type>[^<]*)</td>\s*<td>\s*(?P<course_point>\d*)\s*</td>\s*<td>\s*(?P<score>\d+)\s*</td>\s*</tr>'''
+    )
+
+    scoreReFullBKS = re.compile(
+        ur'''<td>\s*<div align="center">(?P<course_id>\d+)</div></td>\s*<td><div align="center">(?P<course_number>\d+)</div></td>\s*'''
+        ur'''<td style="text-align:left;">(?P<course_caption>[^<]*)</div></td>\s*'''
+        ur'''<td><div align="center">(?P<course_point>\d+)</div></td>\s*'''
+        ur'''<td><div align="center">(?P<course_time>\d+)</div></td>\s*'''
+        ur'''<td><div align="center">\s*(?P<score>\d*)\s*</div>\s*</td>\s*'''
+        ur'''<td style="text-align:left;">(?P<substituted_course>[^<]*)</td>\s*'''
+        ur'''<td><div align="center">\s*(?P<course_type>[^<\s]*)\s*<script>.*?</script>\s*'''
+        ur'''</div>\s*</td>\s*<td>\s*(?P<special_mark>[^<]*)</td>\s*<td><div align="center">(?P<schoolyear_term>[^<]*)</div></td>\s*<td><div align="center">(?P<exam_date>\d*)</div></td>'''
     )
 
     def login(self, username, password):
@@ -90,6 +109,7 @@ class hunter_academic(hunter):
             raise userPassWrongException(username=username)
         self.cache = self.open('http://portal.tsinghua.edu.cn/render.userLayoutRootNode.uP').decode('utf-8', 'ignore')
         self.basicInfo = self.getMessageC(self.cache, self.basicInfoRe)[0]
+        self.scorePreparation = False
 
     def pseudoLogin(self, username, password):
         ftmp = open(os.path.abspath(os.path.dirname(__file__)) + "/academic_sample_basic.html", "r")
@@ -203,10 +223,41 @@ class hunter_academic(hunter):
         img.close()
         return [dict, data]
 
+    def specialfuncScore(self, listdata):
+        for i in listdata:
+            for (key, value) in i.items():
+                i[key] = value.strip(' \n\r')
+        return listdata
+
+    def getScore(self):
+
+        def dealReplace(content):
+            return content.replace('&nbsp;', ' ')
+        self.refreshCache()
+        self.urlre = re.compile(
+            r'''http://zhjw.cic.tsinghua.edu.cn/j_acegi_login.do\?url=/jxmh.do&amp;m=bks_yxkccj&amp;ticket=\w*''')
+        res = self.urlre.search(self.cache)
+        self.target_url = res.group().replace("amp;", "")   
+        return self.specialfuncScore(self.getMessage(self.target_url, self.scoreRe, 'gbk', dealReplace))
+    
+    def getScoreFull(self):
+        def dealReplace(content):
+            return content.replace('&nbsp;', ' ')
+        self.refreshCache()
+        self.urlre = re.compile(
+                r'''http://zhjw.cic.tsinghua.edu.cn/j_acegi_login.do\?url=/jxmh.do&amp;m=bks_yxkccj&amp;ticket=\w*''')
+        res = self.urlre.search(self.cache)
+        self.target_url = res.group().replace("amp;", "")
+        self.opener.open(self.target_url)
+        return self.specialfuncScore(self.getMessage('http://zhjw.cic.tsinghua.edu.cn/cj.cjCjbAll.do?m=bks_yxkccj', self.scoreReFullBKS, 'gbk', dealReplace))
+
+
 if __name__ == "__main__":
     import sys
     import debuger
     h = hunter_academic('caoy11', 'memory2011')
-    debuger.printer(h.getBasicInfo())
-    debuger.printer(h.getCourseInfo())
-    debuger.printer(h.getPersonInfo('123123')[0])
+    #debuger.printer(h.getBasicInfo())
+    #debuger.printer(h.getCourseInfo())
+    #debuger.printer(h.getPersonInfo('123123')[0])
+    #debuger.printer(h.getScore())
+    debuger.printer(h.getScoreFull())
