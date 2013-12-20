@@ -93,6 +93,19 @@ class PersonInfo(EmbeddedDocument):
     graduate_date = StringField()
 
 
+class CourseScoreInfo(EmbeddedDocument):
+    course_caption = StringField()
+    course_point = StringField()
+    score = StringField()
+    course_type = StringField()
+    course_time = StringField()
+
+
+class CourseScore(EmbeddedDocument):
+    school_term = StringField()
+    course_info = ListField(EmbeddedDocumentField(CourseScoreInfo))
+
+
 class User(Document):
     user_name = StringField()
     user_id = StringField()
@@ -103,4 +116,5 @@ class User(Document):
     timetable = ListField(EmbeddedDocumentField(SingleCourse))
     person_info = EmbeddedDocumentField(PersonInfo)
     course_attention = ListField(StringField())
+    course_score = ListField(EmbeddedDocumentField(CourseScore))
 

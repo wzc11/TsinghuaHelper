@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <link rel="stylesheet" href="/zywg_data/static/css/jquerymobile.css" />
+    <script src="/zywg_data/static/js/jquery.js"></script>
+    <script src="/zywg_data/static/js/jquerymobile.js"></script>
+    <title>成绩信息</title>
+</head>
+<body>
+    <div data-role="collapsible-set">
+        {% for course in content %}
+            <div data-role="collapsible">
+                <h3>{{ course.course_caption }}</h3>
+                <ul data-role="listview">
+                    <li>课程名称:{{ course.course_caption }}</li>
+                    <li>课程学分:{{ course.course_point }}</li>
+                    <li>课程成绩:{{ course.score }}</li>
+                    <li>课程类型:{{ course.course_type }}</li>
+                    <li>课程课时:{{ course.course_time }}</li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div> 
+</body>
+</html>

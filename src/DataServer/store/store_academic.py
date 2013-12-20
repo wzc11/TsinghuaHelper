@@ -7,10 +7,17 @@ from PIL import Image
 
 
 class store_academic(store):
+    term_dict = {
+        '1': '秋季学期'.decode('UTF-8'),
+        '2': '春季学期'.decode('UTF-8'),
+        '3': '夏季学期'.decode('UTF-8')
+    }
+
     def user_update(self, user):
         User.objects(user_id=self.user_id).update(
             set__timetable=user.timetable,
-            set__person_info=user.person_info
+            set__person_info=user.person_info,
+            set__course_score=user.course_score
         )
 
     def image_handle(self):
@@ -19,6 +26,31 @@ class store_academic(store):
         imc = Image.new("RGB", (540, 300), 'white')
         imc.paste(imb, (149, 0, 392, 300))
         imc.save(new_img_root + self.user_id + '.jpg')
+
+    def course_score_handle(self, course_score_list):
+        result = []
+        course_dict = {}
+        for course in course_score_list:
+            if not course['schoolyear_term'] in course_dict.keys():
+                course_dict[course['schoolyear_term']] = []
+            course_score_info = CourseScoreInfo(
+                course_caption=course['course_caption'],
+                course_point=course['course_point'],
+                score=course['score'],
+                course_type=course['course_type'],
+                course_time=course['course_time']
+            )
+            course_dict[course['schoolyear_term']].append(course_score_info)
+        for key,value in course_dict.items():
+            years_list = key.split('-')
+            term = years_list[0] + '-' + years_list[1] + self.term_dict[years_list[2]]
+            print term
+            term_info = CourseScore(
+                school_term=term,
+                course_info=value
+            )
+            result.append(term_info)
+        return result
 
     def academic_store(self):
         try:
@@ -35,10 +67,18 @@ class store_academic(store):
             #get timetable
             course_list = academic.getCourseInfo()
             count = 0
-            while len(course_list) == 0 and count < 50:
+            while len(course_list) == 0 and count < 20:
                 count += 1
                 course_list = academic.getCourseInfo()
             course_test = course_list[0]
+            #get course_score
+            course_score_list = academic.getScoreFull()
+            count = 0
+            while len(course_score_list) == 0 and count < 20:
+                count += 1
+                course_list = academic.getScoreFull()
+            course_test = course_list[0]
+            #handle
             person_info = PersonInfo(
                 major=person['专业'.decode('UTF-8')],
                 is_at_school=person['是否在校'.decode('UTF-8')],
@@ -70,12 +110,21 @@ class store_academic(store):
                     day=course['day']
                 )
                 timetable.append(course_single)
+            course_score_final = self.course_score_handle(course_score_list)
             user = User(
                 timetable=timetable,
-                person_info=person_info
+                person_info=person_info,
+                course_score=course_score_final
             )
             self.user_update(user)
             return True
         except Exception, e:
+            print Exception, e
             self.user_delete()
             return False
+
+if __name__ == "__main__":
+    import sys
+    tt = store_academic('caoy11', 'memory2011', '11')
+    print 1
+    tt.academic_store()

@@ -54,6 +54,8 @@ def cmd_handler(request):
             result = index_get(object['data'])
         elif cmd == 'card':
             result = card_get(object['data'])
+        elif cmd == 'score':
+            result = item_list_get(object['data'])
         print json.dumps(result)
         return HttpResponse(json.dumps(result))
     except Exception, e:
@@ -180,6 +182,25 @@ def files_list_get(object):
     for course in course_list:
         course_url = '<a href="' + root_ip + 'filesInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
+        result['data'].append(course_url)
+        count += 1
+    return result
+
+
+def item_list_get(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    query_set = query_academic(object['user_id'])
+    if not query_set.user_id_exist():
+        result['error'] = 1
+        return result
+    term_list = query_set.term_list_query()
+    count = 0
+    for term in term_list:
+        course_url = '<a href="' + root_ip + 'termInfo/' + object['user_id'] + '/' + str(count) + \
+                     '/">' + term + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
@@ -347,6 +368,18 @@ def homework_uncommitted_info_get(request, user_id):
     homework_uncommitted_info = query_set.homework_uncommitted_query()
     content = homework_uncommitted_info
     return render_to_response('template/homework_uncommitted_info.html', {'content': content})
+
+
+@csrf_exempt
+def score_info_get(request, user_id, course_sequence):
+    try:
+        course_sequence = int(course_sequence)
+    except ValueError:
+        return HttpResponse(0)
+    query_set = query_academic(user_id)
+    score_info = query_set.score_info_query(course_sequence)
+    content = score_info
+    return render_to_response('template/score_info.html', {'content': content})
 
 
 # @csrf_exempt

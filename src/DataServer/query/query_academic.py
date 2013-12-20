@@ -19,3 +19,23 @@ class query_academic(query):
             return []
         result = information['person_info']
         return result
+
+    def term_list_query(self):
+        try:
+            information = self.all_information_query().next()
+        except Exception, e:
+            return []
+        result = []
+        course_score_list = information['course_score']
+        for term in course_score_list:
+            result.append(term['school_term'])
+        return result
+
+    def score_info_query(self, course_sequence):
+        try:
+            information = self.all_information_query().next()
+        except Exception, e:
+            return []
+        course_score_list = information['course_score']
+        result = course_score_list[course_sequence]
+        return result

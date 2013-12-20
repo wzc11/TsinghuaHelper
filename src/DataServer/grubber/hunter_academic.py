@@ -10,6 +10,7 @@ import socket
 import time
 import random
 from hunter import *
+from Assistant.config import *
 #from Assistant.config import *
 
 class userPassWrongException(Exception):
