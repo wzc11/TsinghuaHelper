@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -43,7 +44,7 @@
 <body>
 	<div class="logo">
 		<div class="loginIcon">
-			<img src="/static/img/xuebapic/xuebalogo.jpg" style="height:100px">
+			<img src="{% static "static/img/xuebapic/xuebalogo.jpg" %}" style="height:100px">
 		</div>
 	</div>
 	<div class="dec_line1"></div>
@@ -59,7 +60,7 @@
 			</div>
 			<div class="rightmodule">
 				<div class="index">
-					<img src="/static/img/xuebapic/star{{ Sum }}.jpg" style="width:100%">
+					<img src="{% static "static/img/xuebapic/star{{ Sum }}.jpg" %}" style="width:100%">
 				</div>
 			</div>
 		</div>

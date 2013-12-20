@@ -1,15 +1,16 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
     <title>关注课程</title>
-	<link rel="stylesheet" href="/static/css/jquerymobile.css" />
-	<script src="/static/js/jquery.js"></script>
-	<script src="/static/js/jquerymobile.js"></script>
+	<link rel="stylesheet" href="{% static "static/css/jquerymobile.css" %}" />
+	<script src="{% static "static/js/jquery.js" %}"></script>
+	<script src="{% static "static/js/jquerymobile.js" %}"></script>
 </head>
 <body>
-    <form id="form" method="post" action="/weChat/focus/?fwd=true&id={{ openId }}">
+    <form id="form" method="post" action="{% static "weChat/focus/?fwd=true&id={{ openId }}"%}">
 		<fieldset data-role="controlgroup">
 	        <legend>课程列表</legend>
 			{% for item in course_list %}
