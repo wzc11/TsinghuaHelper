@@ -12,6 +12,14 @@ def eventHandler(data):
         }
     }
 
+    if fwdData['type'] == 'unbind':
+        return {
+            'data': {
+                'content': "已经解除绑定"
+            },
+            'type': 'TEXT_TEMPLATE'
+        }
+
     if fwdData['type'] == 'card':
         return {
             'data': {
@@ -82,6 +90,6 @@ def eventHandler(data):
         reply['data']['content'] += '点击可查看具体信息'
         print 're test:', reply
     else:
-        reply['data']['content'] = 'WRONG CODE'
+        reply['data']['content'] = '数据正在获取中，请稍候...'
 
     return reply
