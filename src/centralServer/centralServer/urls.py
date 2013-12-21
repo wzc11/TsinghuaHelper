@@ -19,6 +19,7 @@ urlpatterns = patterns(
     url(r'^weChat/index/face/$', weChatFaceIndex),
     url(r'^weChat/index/learn/$', weChatLearnIndex),
     url(r'^weChat/index/facePK/$', weChatPKIndex),
+    url(r'^weChat/test/', weChatTest),
     #static resource url config
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root':settings.STATICFILES_DIRS[0],

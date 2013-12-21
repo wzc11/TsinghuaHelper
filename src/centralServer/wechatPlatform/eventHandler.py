@@ -70,12 +70,14 @@ def eventHandler(data):
     retData = forwardRequest(URL['DATA'], fwdData)
 
     reply = {
-        'data': {},
+        'data': {
+            'content': APP_EVENT[data['content']['EventKey']] + '\n',
+        },
         'type': 'TEXT_TEMPLATE',
     }
 
     if retData['error'] == 1:
-        reply['data']['content'] = 'ERR:\n'
+        reply['data']['content'] += 'ERR:\n'
         for item in retData['data']:
                 reply['data']['content'] += item.encode('utf-8')
                 reply['data']['content'] += '\n'
@@ -83,13 +85,16 @@ def eventHandler(data):
         if data['content']['EventKey'] == 'user_info':
             reply['type'] = 'USER_INFO_TEMPLATE'
             reply['data']['url'] = retData['url'].encode('utf-8')
-        reply['data']['content'] = ''
+            reply['data']['link'] = retData['link'].encode('utf-8')
+            reply['data']['title'] = APP_EVENT[data['content']['EventKey']]
         for item in retData['data']:
             reply['data']['content'] += item.encode('utf-8')
-            reply['data']['content'] += '\n'
+            reply['data']['content'] += '\n\n'
         reply['data']['content'] += '点击可查看具体信息'
         print 're test:', reply
-    else:
+    elif retData['error'] == 3:
         reply['data']['content'] = '数据正在获取中，请稍候...'
+    else:
+        reply['data']['content'] = '服务器维护中...'
 
     return reply
