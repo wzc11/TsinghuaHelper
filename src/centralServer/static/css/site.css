@@ -1,0 +1,37 @@
+body{
+  background-color: #ddd;
+}
+
+#header{
+  position: fixed;
+  top: 0;
+  z-index: 5;
+}
+
+#header a{
+  color: #fff;
+  text-decoration: none;
+}
+
+#header a:visited{
+  color: #fff;
+  text-decoration: none;
+}
+
+img{
+  display: inline-block;
+  margin: 10px 10px 10px 10px;
+  height: 70px;
+}
+
+.meizhi{
+  display: block;
+  margin: 10px 10px 10px 10px;
+  width: 95%;
+  height: 100px;
+  overflow: hidden;
+}
+
+.floatright{
+  text-align: right;
+}

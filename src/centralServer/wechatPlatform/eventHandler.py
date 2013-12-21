@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 __author__ = 'wangzhuqi.THU'
+from errorHandler import *
 from requestHelper.forwardHelper import *
-from projectManager.CONFIG import *
+from validationHelper import *
 
 
 def eventHandler(data):
@@ -12,18 +13,19 @@ def eventHandler(data):
         }
     }
 
-    if fwdData['type'] == 'unbind':
+    validation = validationHelper(data['content']['EventKey'])
+    if validation != 'ok':
         return {
             'data': {
-                'content': "已经解除绑定"
+                'content': validation
             },
             'type': 'TEXT_TEMPLATE'
         }
 
-    if fwdData['type'] == 'hemp':
+    if fwdData['type'] == 'unbind':
         return {
             'data': {
-                'content': APP_HELP
+                'content': "已经解除绑定"
             },
             'type': 'TEXT_TEMPLATE'
         }
@@ -84,12 +86,7 @@ def eventHandler(data):
         'type': 'TEXT_TEMPLATE',
     }
 
-    if retData['error'] == 1:
-        reply['data']['content'] += 'ERR:\n'
-        for item in retData['data']:
-                reply['data']['content'] += item.encode('utf-8')
-                reply['data']['content'] += '\n'
-    elif retData['error'] == 0:
+    if retData['error'] == 0:
         if data['content']['EventKey'] == 'user_info':
             reply['type'] = 'USER_INFO_TEMPLATE'
             reply['data']['url'] = retData['url'].encode('utf-8')
@@ -100,9 +97,7 @@ def eventHandler(data):
             reply['data']['content'] += '\n\n'
         reply['data']['content'] += '点击可查看具体信息'
         print 're test:', reply
-    elif retData['error'] == 3:
-        reply['data']['content'] = '数据正在获取中，请稍候...'
     else:
-        reply['data']['content'] = '服务器维护中...'
+        reply['data']['content'] = errorHandler(retData['error'], data['content']['FromUserName'])
 
     return reply
