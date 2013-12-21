@@ -1,6 +1,7 @@
 __author__ = 'CaoYe'
 
 from store import *
+import time
 
 
 class store_learn(store):
@@ -9,7 +10,8 @@ class store_learn(store):
         if self.user_is_exist():
             User.objects(user_id=self.user_id).update(
                 set__course_info=user.course_info,
-                set__learn_info=user.learn_info
+                set__learn_info=user.learn_info,
+                set__last_time=time.time()
             )
         else:
             user.save()

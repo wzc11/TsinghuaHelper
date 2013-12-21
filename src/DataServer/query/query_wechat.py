@@ -11,3 +11,19 @@ class query_wechat(query):
             return None
         result = information['fake_id']
         return result
+
+    def last_time_query(self):
+        try:
+            information = User.objects(user_id=self.user_id).next()
+            result = information['last_time']
+            return result
+        except Exception, e:
+            return 0
+
+    def update_info_query(self):
+        try:
+            information = User.objects(user_id=self.user_id).next()
+            result = [information['user_name'], information['use_password'], information['use_password']]
+            return result
+        except Exception, e:
+            return 0

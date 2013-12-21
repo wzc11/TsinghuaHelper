@@ -6,7 +6,6 @@ import glob
 from PIL import Image
 
 
-
 class store_academic(store):
     term_dict = {
         '1': '秋季学期'.decode('UTF-8'),

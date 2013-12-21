@@ -10,9 +10,11 @@ from query.query_academic import *
 from django.utils.encoding import smart_str
 from django.shortcuts import render_to_response
 from mythread.thread_grubber import *
+from mythread.thread_update import *
 from config import *
 from urllib import *
 import json
+import time
 # Create your views here.
 
 
@@ -26,16 +28,18 @@ def cmd_handler(request):
     try:
         object = json.loads(smart_str(request.body))
         cmd = object['type']
-        if object['data']['user_id'] in user_lock_list:
+        if update_just(object['data']):
             result['error'] = 3
             print json.dumps(result)
             return HttpResponse(json.dumps(result))
-        #query = query_wechat(object['data']['user_id'])
-        #fake_id = query.fake_id_query()
         if cmd == 'bind':
             result = bind(object['data'])
+        elif cmd == 'unbind':
+            result = unbind(object['data'])
         elif cmd == 'fakeId':
             result = fake_id_store(object['data'])
+        elif cmd == 'validation':
+            result = validation(object['data'])
         elif cmd == 'course_list':
             result = course_list_get(object['data'])
         elif cmd == 'homework_list':
@@ -73,6 +77,23 @@ def get_test():
     return result
 
 
+def update_just(object):
+    if object['user_id'] in user_lock_list:
+        return True
+    query = query_wechat(object['user_id'])
+    last_time = query.last_time_query()
+    user_lock_list.append(object['user_id'])
+    if (time.time() - last_time) > 3600:
+        try:
+            grubber = thread_update(object)
+            grubber.start()
+            return True
+        except Exception, e:
+            user_lock_list.remove(object['user_id'])
+            return False
+    return False
+
+
 def bind(object):
     result = {
         'error': 0,
@@ -88,6 +109,30 @@ def bind(object):
     except Exception, e:
         print Exception, e
         result['error'] = 4
+    return result
+
+
+def unbind(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    try:
+        delete = store('', '', object['user_id'])
+        delete.user_delete()
+    except Exception, e:
+        result['error'] = 2
+    return result
+
+
+def validation(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    query_set = query_learn(object['user_id'])
+    if not query_set.user_id_exist():
+        result['error'] = 1
     return result
 
 
@@ -142,8 +187,12 @@ def homework_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="' + root_ip + 'homeworkInfo/' + object['user_id'] + '/' + str(count) + \
-                     '/">' + course + '</a>'
+        homework_info = query_set.homework_info_query(count)
+        if len(homework_info) == 0:
+            course_url = course
+        else:
+            course_url = '<a href="' + root_ip + 'homeworkInfo/' + object['user_id'] + '/' + str(count) + \
+                         '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
@@ -161,8 +210,12 @@ def notice_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="' + root_ip + 'noticeInfo/' + object['user_id'] + '/' + str(count) + \
-                     '/">' + course + '</a>'
+        notice_info = query_set.notice_info_query(count)
+        if len(notice_info) == 0:
+            course_url = course
+        else:
+            course_url = '<a href="' + root_ip + 'noticeInfo/' + object['user_id'] + '/' + str(count) + \
+                         '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
@@ -180,8 +233,12 @@ def files_list_get(object):
     course_list = query_set.course_list_query()
     count = 0
     for course in course_list:
-        course_url = '<a href="' + root_ip + 'filesInfo/' + object['user_id'] + '/' + str(count) + \
-                     '/">' + course + '</a>'
+        files_info = query_set.files_info_query(count)
+        if len(files_info) == 0:
+            course_url = course
+        else:
+            course_url = '<a href="' + root_ip + 'filesInfo/' + object['user_id'] + '/' + str(count) + \
+                         '/">' + course + '</a>'
         result['data'].append(course_url)
         count += 1
     return result
@@ -354,7 +411,10 @@ def homework_uncommitted_info_get(request, user_id):
     query_set = query_learn(user_id)
     homework_uncommitted_info = query_set.homework_uncommitted_query()
     content = homework_uncommitted_info
-    return render_to_response('template/homework_uncommitted_info.html', {'content': content})
+    if len(content) == 0:
+        return render_to_response('template/nothing_show.html')
+    else:
+        return render_to_response('template/homework_uncommitted_info.html', {'content': content})
 
 
 @csrf_exempt
