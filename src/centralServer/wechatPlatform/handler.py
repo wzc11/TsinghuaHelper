@@ -52,7 +52,7 @@ def autoResponder(request):
                 'title': reply['data']['title'],
                 'description': reply['data']['content'],
                 'picUrl': reply['data']['url'],
-                'url': reply['data']['link'],
+                'link': reply['data']['link'],
             }, XML['USER_INFO_TEMPLATE'])['content']
     except Exception, e:
         print Exception, e

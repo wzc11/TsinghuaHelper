@@ -53,7 +53,7 @@ XML = {
                     </Articles>
                 </xml>""",
 
-        'data-tag': ['to', 'from', 'time', 'title', 'description', 'picUrl', 'Url']
+        'data-tag': ['to', 'from', 'time', 'title', 'description', 'picUrl', 'link']
     },
 }
 
