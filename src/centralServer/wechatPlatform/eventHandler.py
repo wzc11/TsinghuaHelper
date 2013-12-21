@@ -20,6 +20,14 @@ def eventHandler(data):
             'type': 'TEXT_TEMPLATE'
         }
 
+    if fwdData['type'] == 'hemp':
+        return {
+            'data': {
+                'content': APP_HELP
+            },
+            'type': 'TEXT_TEMPLATE'
+        }
+
     if fwdData['type'] == 'card':
         return {
             'data': {
