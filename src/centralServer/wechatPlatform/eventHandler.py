@@ -71,7 +71,7 @@ def eventHandler(data):
 
     reply = {
         'data': {
-            'content': APP_EVENT[data['content']['EventKey']] + '\n',
+            'content': APP_EVENT[data['content']['EventKey']],
         },
         'type': 'TEXT_TEMPLATE',
     }

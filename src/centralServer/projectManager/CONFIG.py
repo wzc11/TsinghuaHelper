@@ -58,11 +58,11 @@ XML = {
 }
 
 APP_EVENT = {
-    'score': '成绩',
-    'course_list': '课程列表',
-    'homework_list': '作业列表',
-    'notice_list': '公告列表',
-    'deadline': '未交作业',
-    'files_list': '课程文件',
-    'user_info': '个人信息',
+    'score': '成绩\n',
+    'course_list': '课程列表\n',
+    'homework_list': '作业列表\n',
+    'notice_list': '公告列表\n',
+    'deadline': '未交作业\n',
+    'files_list': '课程文件\n',
+    'user_info': '个人信息\n',
 }
