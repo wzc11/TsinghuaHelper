@@ -101,3 +101,9 @@ def weChatMessage(request):
     except Exception, e:
         print Exception, e
     return HttpResponse('hahaha~')
+
+
+@csrf_exempt
+def weChatTest(request):
+    fakeId = weChatUtil.Authorize('1111')
+    return

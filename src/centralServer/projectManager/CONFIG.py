@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 __author__ = 'wangzhuqi.THU'
 
 APP_ID = 'wx9ced5d9fffab8fee'
@@ -47,11 +48,21 @@ XML = {
                         <Title><![CDATA[%s]]></Title>
                         <Description><![CDATA[%s]]></Description>
                         <PicUrl><![CDATA[%s]]></PicUrl>
-                        <Url><![CDATA[Null]]></Url>
+                        <Url><![CDATA[%s]]></Url>
                         </item>
                     </Articles>
                 </xml>""",
 
-        'data-tag': ['to', 'from', 'time', 'title', 'description', 'picUrl']
+        'data-tag': ['to', 'from', 'time', 'title', 'description', 'picUrl', 'Url']
     },
+}
+
+APP_EVENT = {
+    'score': '成绩',
+    'course_list': '课程列表',
+    'homework_list': '作业列表',
+    'notice_list': '公告列表',
+    'deadline': '未交作业',
+    'files_list': '课程文件',
+    'user_info': '个人信息',
 }

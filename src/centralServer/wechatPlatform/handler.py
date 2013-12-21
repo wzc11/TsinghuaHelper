@@ -49,10 +49,10 @@ def autoResponder(request):
                 'to': data['content']['FromUserName'],
                 'from': data['content']['ToUserName'],
                 'time': str(int(time.time())),
-                'title': 'User Info',
+                'title': reply['data']['title'],
                 'description': reply['data']['content'],
                 'picUrl': reply['data']['url'],
-                'url': reply['data']['url'],
+                'url': reply['data']['link'],
             }, XML['USER_INFO_TEMPLATE'])['content']
     except Exception, e:
         print Exception, e
