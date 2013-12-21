@@ -210,6 +210,7 @@ def person_info_get(object):
     result = {
         'error': 0,
         'url': root_ip + 'person_img/' + object['user_id'] + '/',
+        'link': root_ip + 'personInfo/' + object['user_id'] + '/',
         'data': []
     }
     query_set = query_academic(object['user_id'])
@@ -218,22 +219,8 @@ def person_info_get(object):
         return result
     person_info = query_set.person_info_query()
     result['data'].append('姓名:'.decode('UTF-8') + person_info['real_name'])
-    result['data'].append('性别:'.decode('UTF-8') + person_info['sex'])
-    result['data'].append('民族:'.decode('UTF-8') + person_info['nation'])
-    result['data'].append('出生日期:'.decode('UTF-8') + person_info['birth_date'])
     result['data'].append('专业:'.decode('UTF-8') + person_info['major'])
     result['data'].append('学号:'.decode('UTF-8') + person_info['student_number'])
-    result['data'].append('身份证号:'.decode('UTF-8') + person_info['identification'])
-    result['data'].append('教学班:'.decode('UTF-8') + person_info['teach_class'])
-    result['data'].append('院（系，所）:'.decode('UTF-8') + person_info['department'])
-    result['data'].append('联系电话手机:'.decode('UTF-8') + person_info['phone'])
-    result['data'].append('常用电子邮箱:'.decode('UTF-8') + person_info['email'])
-    result['data'].append('是否在校:'.decode('UTF-8') + person_info['is_at_school'])
-    result['data'].append('是否辅修:'.decode('UTF-8') + person_info['is_minor'])
-    result['data'].append('第二学位否:'.decode('UTF-8') + person_info['is_second_degree'])
-    result['data'].append('收费类别:'.decode('UTF-8') + person_info['charge_type'])
-    result['data'].append('是否有学籍:'.decode('UTF-8') + person_info['is_register'])
-    result['data'].append('毕业日期:'.decode('UTF-8') + person_info['graduate_date'])
     return result
 
 
@@ -382,12 +369,12 @@ def score_info_get(request, user_id, course_sequence):
     return render_to_response('template/score_info.html', {'content': content})
 
 
-# @csrf_exempt
-# def person_info_get(request, user_id):
-#     query_set = query_academic(user_id)
-#     person_info = query_set.person_info_query()
-#     content = person_info
-#     return render_to_response('template/person_info.html', {'content': content})
+@csrf_exempt
+def person_info_show(request, user_id):
+    query_set = query_academic(user_id)
+    person_info = query_set.person_info_query()
+    content = person_info
+    return render_to_response('template/person_info.html', {'content': content})
 
 
 @csrf_exempt

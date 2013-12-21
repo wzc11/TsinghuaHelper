@@ -42,13 +42,13 @@ class store_academic(store):
                 course_time=course['course_time']
             )
             course_dict[course['schoolyear_term']].append(course_score_info)
-        for key,value in course_dict.items():
+        for key in sorted(course_dict.keys()):
             years_list = key.split('-')
             term = years_list[0] + '-' + years_list[1] + self.term_dict[years_list[2]]
             print term
             term_info = CourseScore(
                 school_term=term,
-                course_info=value
+                course_info=course_dict[key]
             )
             result.append(term_info)
         return result

@@ -11,7 +11,7 @@
 <body>
     <div data-role="collapsible-set">
     {% for homework in content %}
-        <div data-role="collapsible">
+        <div data-role="collapsible" data-theme="a">
             <h3>{{ homework.caption }}</h3>
                 <ul data-role="listview">
                     <li>作业状态:{{ homework.state }}</li>
