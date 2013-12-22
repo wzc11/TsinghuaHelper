@@ -209,7 +209,7 @@ class hunter_learn(hunter):
         return self.datadeal(self.getMessage(link, self.homeworkDetailRe, 'utf-8'), "http://learn.tsinghua.edu.cn")
 
     def getNotice(self, link):
-        print self.getMessage(link, self.noticeDetailRe, 'utf-8')
+        #print self.getMessage(link, self.noticeDetailRe, 'utf-8')
         return self.datadeal(self.getMessage(link, self.noticeDetailRe, 'utf-8'), "http://learn.tsinghua.edu.cn")
     def getPersonal(self):
         self.data = dict()

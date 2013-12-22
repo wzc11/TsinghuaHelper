@@ -20,14 +20,20 @@ class store_learn(store):
         result = self.learn.getHomework(link)
         return result[0]
 
+    def notice_detail_get(self, link):
+        result = self.learn.getNotice(link)
+        return result[0]
+
     def notice_list_get(self, notice_info):
         notice_list = []
         for notice in notice_info:
+            notice_detail = self.notice_detail_get(notice['link'])
             notice_special = SpecialNotice(
                 link=notice['link'],
                 caption=notice['caption'],
                 teacher=notice['teacher'],
-                date=notice['date']
+                date=notice['date'],
+                text=notice_detail['text']
             )
             notice_list.append(notice_special)
         return notice_list

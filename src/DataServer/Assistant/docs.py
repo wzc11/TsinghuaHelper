@@ -13,6 +13,7 @@ class SpecialNotice(EmbeddedDocument):
     caption = StringField()
     teacher = StringField()
     date = StringField()
+    text = StringField()
 
 
 class SpecialClassinfo(EmbeddedDocument):

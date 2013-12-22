@@ -17,6 +17,7 @@
 			    	<li>公告链接:<a href={{ notice.link }}>点击此处</a></li>
 			    	<li>公告教师:{{ notice.teacher }}</li>
 			    	<li>公告日期:{{ notice.date }}</li>
+			    	<li>公告内容:{{ notice.text|safe }}</li>
 			    </ul>
 			</div>
 		{% endfor %}
