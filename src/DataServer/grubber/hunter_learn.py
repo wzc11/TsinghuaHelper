@@ -59,6 +59,10 @@ class hunter_learn(hunter):
         r'<td width="10%">\s*(?P<size>.*?)\s*'
         r'</td>\s*'
     )
+
+    noticeDetailRe = re.compile(
+        r'<td width="87%" class="tr_l2" colspan="3" style="table-layout:fixed; word-break: break-all; overflow:hidden;">\s*(?P<text>[\s\S]*?)\s*</td>'
+    )
     homeworkDetailRe = re.compile(
         r'<td class="tr_2">&nbsp;\s*(?P<caption>.*?)\s*</td>\s*'
         r'</tr>\s*<tr>\s*'
@@ -204,6 +208,9 @@ class hunter_learn(hunter):
         #print self.getMessage(link, self.homeworkDetailRe, 'utf-8')
         return self.datadeal(self.getMessage(link, self.homeworkDetailRe, 'utf-8'), "http://learn.tsinghua.edu.cn")
 
+    def getNotice(self, link):
+        print self.getMessage(link, self.noticeDetailRe, 'utf-8')
+        return self.datadeal(self.getMessage(link, self.noticeDetailRe, 'utf-8'), "http://learn.tsinghua.edu.cn")
     def getPersonal(self):
         self.data = dict()
         self.cache = self.open("http://learn.tsinghua.edu.cn/MultiLanguage/vspace/vspace_userinfo1.jsp").decode('utf-8', 'ignore')
