@@ -1,5 +1,3 @@
-__author__ = 'CaoYe'
-
 # -*- coding: utf-8 -*-
 __author__ = 'CaoYe'
 

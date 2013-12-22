@@ -30,7 +30,6 @@ def cmd_handler(request):
         cmd = object['type']
         if update_just(object['data']):
             result['error'] = 3
-            print json.dumps(result)
             return HttpResponse(json.dumps(result))
         if cmd == 'bind':
             result = bind(object['data'])
@@ -77,20 +76,31 @@ def get_test():
     return result
 
 
+def user_exist_just(object):
+    query_set = query_learn(object['user_id'])
+    if not query_set.user_id_exist():
+        return True
+    return False
+
+
 def update_just(object):
     if object['user_id'] in user_lock_list:
         return True
-    query = query_wechat(object['user_id'])
-    last_time = query.last_time_query()
-    user_lock_list.append(object['user_id'])
-    if (time.time() - last_time) > 3600:
-        try:
-            grubber = thread_update(object)
-            grubber.start()
-            return True
-        except Exception, e:
-            user_lock_list.remove(object['user_id'])
-            return False
+    if not user_exist_just(object):
+        query = query_wechat(object['user_id'])
+        last_time = query.last_time_query()
+        print last_time
+        print time.time()
+        if (time.time() - last_time) > 3600:
+            try:
+                user_lock_list.append(object['user_id'])
+                grubber = thread_update(object['user_id'])
+                grubber.start()
+                return True
+            except Exception, e:
+                print Exception,e
+                user_lock_list.remove(object['user_id'])
+                return False
     return False
 
 

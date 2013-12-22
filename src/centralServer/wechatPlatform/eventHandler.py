@@ -13,19 +13,11 @@ def eventHandler(data):
         }
     }
 
-    validation = validationHelper(data['content']['EventKey'])
+    validation = validationHelper(data['content']['FromUserName'])
     if validation != 'ok':
         return {
             'data': {
                 'content': validation
-            },
-            'type': 'TEXT_TEMPLATE'
-        }
-
-    if fwdData['type'] == 'unbind':
-        return {
-            'data': {
-                'content': "已经解除绑定"
             },
             'type': 'TEXT_TEMPLATE'
         }

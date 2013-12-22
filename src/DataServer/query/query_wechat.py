@@ -23,7 +23,7 @@ class query_wechat(query):
     def update_info_query(self):
         try:
             information = User.objects(user_id=self.user_id).next()
-            result = [information['user_name'], information['use_password'], information['use_password']]
+            result = [information['user_name'], information['use_password'], information['fake_id']]
             return result
         except Exception, e:
-            return 0
+            return []

@@ -138,7 +138,8 @@ class store_learn(store):
                 use_password=self.password,
                 course_info=course_list,
                 learn_info=course_info_list,
-                course_attention=course_attention_list
+                course_attention=course_attention_list,
+                last_time=time.time()
             )
             self.user_update(user)
             return True

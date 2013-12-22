@@ -65,4 +65,5 @@ APP_EVENT = {
     'deadline': '未交作业\n',
     'files_list': '课程文件\n',
     'user_info': '个人信息\n',
+    'unbind': '解除绑定\n'
 }
