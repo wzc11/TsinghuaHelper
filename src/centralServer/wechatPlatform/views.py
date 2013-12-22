@@ -85,12 +85,16 @@ def weChatBind(request):
         }
     })
     if retData['error'] == 0:
-        responseStr = '登陆成功，请回复验证码：' + str(retData['test'])
+        responseStr = '登陆成功，请回复验证码：'
+        code = retData['test']
         #APP_INFO_CACHE[openId] = {'usr': usr, 'pwd': pwd}
         print APP_INFO_CACHE
     else:
         responseStr = '请重新登录'
-    return HttpResponse(responseStr)
+        code = ''
+    return render_to_response('yanzhengma.html',
+                                {'str': responseStr, 'code': code},
+                                context_instance=RequestContext(request))
 
 
 @csrf_exempt
@@ -107,3 +111,9 @@ def weChatMessage(request):
 def weChatTest(request):
     fakeId = weChatUtil.Authorize('1111')
     return
+
+
+@csrf_exempt
+def weChatHelp(request):
+    return render_to_response('help.html',{},
+                        context_instance=RequestContext(request))
