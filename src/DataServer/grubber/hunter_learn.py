@@ -44,7 +44,7 @@ class hunter_learn(hunter):
     )
     fileRe = re.compile(
         r'<a target="_top" href="(?P<link>.*?)" >\s*'
-        r'\s*[<font color=red>]*\s*(?P<caption>.*?)\s*[</font>]\s*</a>\s*</td>'
+        r'\s*[<font color=red>]*\s*(?P<caption>.*?)\s*[</font>]*\s*</a>\s*</td>'
         r'\s*<td width="300" align="center">\s*(?P<note>[\s\S]*?)\s*</td>\s*'
         r'<td width="80" align="center">\s*(?P<size>.*?)\s*</td>\s*'
         r'<td width="100" align="center">\s*(?P<date>.*?)\s*</td>'
