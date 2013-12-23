@@ -9,16 +9,12 @@
     <title>课程信息</title>
 </head>
 <body>
-    <div data-role="collapsible-set">
-            <div data-role="collapsible" data-theme="a">
-                <h3>{{ content.caption }}</h3>
-                <ul data-role="listview">
-                    <li>课程编号:{{ content.id }}</li>
-                    <li>未读文件:{{ content.file_unread }}</li>
-                    <li>未交作业:{{ content.homework }}</li>
-                    <li>未读通知:{{ content.notice_unread }}</li>
-                </ul>
-            </div>
-    </div>
+        <ul data-role="listview">
+            <li>课程名称:{{ content.caption }}</li>
+            <li>课程编号:{{ content.id }}</li>
+            <li>未读文件:{{ content.file_unread }}</li>
+            <li>未交作业:{{ content.homework }}</li>
+            <li>未读通知:{{ content.notice_unread }}</li>
+        </ul>
 </body>
 </html>

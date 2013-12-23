@@ -91,7 +91,7 @@ def update_just(object):
         last_time = query.last_time_query()
         print last_time
         print time.time()
-        if (time.time() - last_time) > 3600:
+        if (time.time() - last_time) > 43200:
             try:
                 user_lock_list.append(object['user_id'])
                 grubber = thread_update(object['user_id'])
@@ -176,12 +176,16 @@ def course_list_get(object):
         result['error'] = 1
         return result
     course_list = query_set.course_list_query()
+    course_attention_list = query_set.course_attention_query()
     count = 0
     for course in course_list:
         course_url = '<a href="' + root_ip + 'courseInfo/' + object['user_id'] + '/' + str(count) + \
                      '/">' + course + '</a>'
-        result['data'].append(course_url)
+        if course in course_attention_list:
+            result['data'].append(course_url)
         count += 1
+    if len(result['data']) == 0:
+         result['data'].append('关注课程无相关信息'.decode('UTF-8'))
     return result
 
 
@@ -195,6 +199,7 @@ def homework_list_get(object):
         result['error'] = 1
         return result
     course_list = query_set.course_list_query()
+    course_attention_list = query_set.course_attention_query()
     count = 0
     for course in course_list:
         homework_info = query_set.homework_info_query(count)
@@ -203,8 +208,11 @@ def homework_list_get(object):
         else:
             course_url = '<a href="' + root_ip + 'homeworkInfo/' + object['user_id'] + '/' + str(count) + \
                          '/">' + course + '</a>'
-        result['data'].append(course_url)
+        if course in course_attention_list:
+            result['data'].append(course_url)
         count += 1
+    if len(result['data']) == 0:
+         result['data'].append('关注课程无相关信息'.decode('UTF-8'))
     return result
 
 
@@ -218,6 +226,7 @@ def notice_list_get(object):
         result['error'] = 1
         return result
     course_list = query_set.course_list_query()
+    course_attention_list = query_set.course_attention_query()
     count = 0
     for course in course_list:
         notice_info = query_set.notice_info_query(count)
@@ -226,8 +235,11 @@ def notice_list_get(object):
         else:
             course_url = '<a href="' + root_ip + 'noticeInfo/' + object['user_id'] + '/' + str(count) + \
                          '/">' + course + '</a>'
-        result['data'].append(course_url)
+        if course in course_attention_list:
+            result['data'].append(course_url)
         count += 1
+    if len(result['data']) == 0:
+         result['data'].append('关注课程无相关信息'.decode('UTF-8'))
     return result
 
 
@@ -241,6 +253,7 @@ def files_list_get(object):
         result['error'] = 1
         return result
     course_list = query_set.course_list_query()
+    course_attention_list = query_set.course_attention_query()
     count = 0
     for course in course_list:
         files_info = query_set.files_info_query(count)
@@ -249,8 +262,11 @@ def files_list_get(object):
         else:
             course_url = '<a href="' + root_ip + 'filesInfo/' + object['user_id'] + '/' + str(count) + \
                          '/">' + course + '</a>'
-        result['data'].append(course_url)
+        if course in course_attention_list:
+            result['data'].append(course_url)
         count += 1
+    if len(result['data']) == 0:
+         result['data'].append('关注课程无相关信息'.decode('UTF-8'))
     return result
 
 
