@@ -29,6 +29,17 @@
                         未读公告: </a><span class="num">{{ j.notice_num }}</span>
 				</li>
                 {% endfor %}
+
+                <li style="width:28%;height:5em;float:left;margin:.2em; padding:.2em;overflow:auto;
+                     background: url({% static "images/day-bg1.png" %}) bottom right no-repeat; ">
+                <span style="font-size: 10px;">{{ j.date }}</span>
+                <br>
+                    <a class="hw"style="color:#575757" href="{{ j.homework_url }}" data-rel="popup" data-transition="slideup" >
+                        未交作业: </a><span class="num">{{ j.homework_num }}</span>
+                    <br>
+                    <a class="ntc"style="color:#575757" href="{{ j.notice_url }}" data-rel="popup" data-transition="slideup" >
+                        未读公告: </a><span class="num">{{ j.notice_num }}</span>
+                </li>
 			</ul>
 		</li>
 	</ol>
