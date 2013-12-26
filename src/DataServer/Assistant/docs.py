@@ -113,10 +113,11 @@ class User(Document):
     use_password = StringField()
     fake_id = StringField()
     last_time = FloatField()
+    score_final = FloatField()
+    person_info = EmbeddedDocumentField(PersonInfo)
+    course_attention = ListField(StringField())
     course_info = ListField(EmbeddedDocumentField(Course))
     learn_info = ListField(EmbeddedDocumentField(Special))
     timetable = ListField(EmbeddedDocumentField(SingleCourse))
-    person_info = EmbeddedDocumentField(PersonInfo)
-    course_attention = ListField(StringField())
     course_score = ListField(EmbeddedDocumentField(CourseScore))
 

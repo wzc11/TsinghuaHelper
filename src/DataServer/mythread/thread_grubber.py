@@ -16,9 +16,12 @@ class thread_grubber(threading.Thread):
         self.object = object
 
     def bind(self):
-        result = '绑定成功，可以开始查询'.decode('UTF-8')
+        result = '绑定成功，可以点击<a href="'.decode('UTF-8')+connect_ip+'focus/?id='\
+                 + self.object['user_id'] + '&fwd=false' + '">关注课程</a>进行设置'.decode('UTF-8')
         store_learn_set = store_learn(self.object['username'], self.object['password'], self.object['user_id'])
         store_academic_set = store_academic(self.object['username'], self.object['password'], self.object['user_id'])
+        if store_learn_set.user_is_exist():
+            store_learn_set.user_delete()
         if not store_learn_set.learn_store():
             result = '绑定失败,请重试'.decode('UTF-8')
             return result

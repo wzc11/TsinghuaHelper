@@ -17,7 +17,8 @@ class store_academic(store):
         User.objects(user_id=self.user_id).update(
             set__timetable=user.timetable,
             set__person_info=user.person_info,
-            set__course_score=user.course_score
+            set__course_score=user.course_score,
+            set__score_final=user.score_final
         )
 
     def image_handle(self):
@@ -30,7 +31,11 @@ class store_academic(store):
     def course_score_handle(self, course_score_list):
         result = []
         course_dict = {}
+        score_num = 0.0
+        study_sum = 0.0
         for course in course_score_list:
+            score_num += int(course['score']) * int(course['course_point'])
+            study_sum += int(course['course_point'])
             if not course['schoolyear_term'] in course_dict.keys():
                 course_dict[course['schoolyear_term']] = []
             course_score_info = CourseScoreInfo(
@@ -41,10 +46,10 @@ class store_academic(store):
                 course_time=course['course_time']
             )
             course_dict[course['schoolyear_term']].append(course_score_info)
+        self.score_final = score_num / study_sum
         for key in sorted(course_dict.keys()):
             years_list = key.split('-')
             term = years_list[0] + '-' + years_list[1] + self.term_dict[years_list[2]]
-            print term
             term_info = CourseScore(
                 school_term=term,
                 course_info=course_dict[key]
@@ -114,11 +119,13 @@ class store_academic(store):
             user = User(
                 timetable=timetable,
                 person_info=person_info,
-                course_score=course_score_final
+                course_score=course_score_final,
+                score_final=self.score_final
             )
             self.user_update(user)
             return True
         except Exception, e:
             print Exception, e
+            print 111
             self.user_delete()
             return False

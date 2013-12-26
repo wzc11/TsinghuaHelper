@@ -9,16 +9,14 @@
     <title>成绩信息</title>
 </head>
 <body>
-    <div data-role="collapsible-set">
+    <div>
         {% for course in content %}
-            <div data-role="collapsible" data-theme="a">
+            <div data-role="collapsible" data-theme="a" data-collapsed="false">
                 <h3>{{ course.course_caption }}</h3>
                 <ul data-role="listview">
-                    <li>课程名称:{{ course.course_caption }}</li>
                     <li>课程学分:{{ course.course_point }}</li>
                     <li>课程成绩:{{ course.score }}</li>
                     <li>课程类型:{{ course.course_type }}</li>
-                    <li>课程课时:{{ course.course_time }}</li>
                 </ul>
             </div>
         {% endfor %}

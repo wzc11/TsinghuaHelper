@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta id="viewport" name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<link rel="stylesheet" href="/zywg_central/static/css/jquerymobile.2.css" />
+	<link rel="stylesheet" type="text/css" href="/zywg_central/static/css/calendar.css"/>
+    <script src="/zywg_central/static/js/jquery.js"></script>
+    <script src="/zywg_central/static/js/jquerymobile.js"></script>
+	<title>我的格子</title>
+
+</head>
+
+<body>
+	<ol class="calendar" start="6">
+
+		<li id="thismonth">
+
+			<ul>
+                {% for j in content  %}
+				<li>
+                <span style="font-size: 10px;">{{ j.date }}</span>
+                <br>
+					<a class="hw"style="color:#575757" href="{{ j.homework_url }}" data-rel="popup" data-transition="slideup" >
+                        未交作业: </a><span class="num">{{ j.homework_num }}</span>
+					<br>
+					<a class="ntc"style="color:#575757" href="{{ j.notice_url }}" data-rel="popup" data-transition="slideup" >
+                        未读公告: </a><span class="num">{{ j.notice_num }}</span>
+				</li>
+                {% endfor %}
+			</ul>
+		</li>
+	</ol>
+
+    {% for j in content  %}
+        <div data-role="popup" id="{{ j.homework_id }}" data-theme="none" style="width:100%">
+            <div data-role="collapsible-set" data-theme="b" data-content-theme="a" style="margin:0; width:280px;">
+                {% for home in j.homework  %}
+                <div data-role="collapsible" data-inset="false">
+                <h2>{{ home.data.caption }}</h2>
+                    <ul data-role="listview" style="font-size:10px">
+                        <li>所属课程:{{ home.caption }}</li>
+                        <li>作业日期:{{ home.data.date }}</li>
+                        <li>截止日期:{{ home.data.deadline }}</li>
+                        <li>作业说明:{{ home.data.note }}</li>
+                        <li>附加文件:{{ home.data.file }}</li>
+                    </ul>
+                </div><!-- /collapsible -->
+                {% endfor %}
+            </div><!-- /collapsible set -->
+        </div><!-- /popup -->
+        <div data-role="popup" id="{{ j.notice_id }}" data-theme="none" style="width:100%">
+            <div data-role="collapsible-set" data-theme="b" data-content-theme="a" style="margin:0; width:280px;">
+                {% for note in j.notice  %}
+                <div data-role="collapsible" data-inset="false">
+                <h2>{{ note.data.caption }}</h2>
+                    <ul data-role="listview" style="font-size:10px">
+                        <li>所属课程:{{ note.caption }}</li>
+                        <li>公告教师:{{ note.data.teacher }}</li>
+                        <li>公告日期:{{ note.data.date }}</li>
+                        <li>公告内容:{{ note.data.text|safe }}</li>
+                    </ul>
+                </div><!-- /collapsible -->
+                {% endfor %}
+            </div><!-- /collapsible set -->
+        </div><!-- /popup -->
+    {% endfor %}
+
+</body>
+</html>

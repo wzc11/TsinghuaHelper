@@ -28,7 +28,7 @@ def cmd_handler(request):
     try:
         object = json.loads(smart_str(request.body))
         cmd = object['type']
-        if update_just(object['data']):
+        if update_just(object['data'], cmd):
             result['error'] = 3
             return HttpResponse(json.dumps(result))
         if cmd == 'bind':
@@ -37,6 +37,8 @@ def cmd_handler(request):
             result = unbind(object['data'])
         elif cmd == 'fakeId':
             result = fake_id_store(object['data'])
+        elif cmd == 'validation-bind':
+            result = isbind(object['data'])
         elif cmd == 'validation':
             result = validation(object['data'])
         elif cmd == 'course_list':
@@ -52,7 +54,7 @@ def cmd_handler(request):
         elif cmd == 'focus':
             result = course_state_get_set(object['data'])
         elif cmd == 'deadline':
-            result = deadline_list_get(object['data'])
+            result = deadline_table_get(object['data'])
         elif cmd == 'index':
             result = index_get(object['data'])
         elif cmd == 'card':
@@ -83,14 +85,14 @@ def user_exist_just(object):
     return False
 
 
-def update_just(object):
+def update_just(object, cmd):
     if object['user_id'] in user_lock_list:
         return True
     if not user_exist_just(object):
+        if cmd == 'bind' or cmd == 'unbind' or cmd == 'fakeId' or cmd == 'validation-bind':
+            return False
         query = query_wechat(object['user_id'])
         last_time = query.last_time_query()
-        print last_time
-        print time.time()
         if (time.time() - last_time) > 43200:
             try:
                 user_lock_list.append(object['user_id'])
@@ -112,7 +114,7 @@ def bind(object):
     }
     try:
         learn = hunter_learn(object['username'], object['password'])
-        user_pass_list[object['user_id']] = [object['username'], object['password']]
+        user_pass_list[object['user_id']] = [object['username'], object['password'], result['test']]
     except userPassWrongException, e:
         result['error'] = 4
         return result
@@ -135,6 +137,16 @@ def unbind(object):
     return result
 
 
+def isbind(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    if not user_exist_just(object):
+        result['error'] = 5
+    return result
+
+
 def validation(object):
     result = {
         'error': 0,
@@ -154,6 +166,10 @@ def fake_id_store(object):
     user_lock_list.append(object['user_id'])
     try:
         user_info = user_pass_list[object['user_id']]
+        if object['test'] != str(user_info[2]):
+            user_lock_list.remove(object['user_id'])
+            result['error'] = 6
+            return result
         object['username'] = user_info[0]
         object['password'] = user_info[1]
         del(user_pass_list[object['user_id']])
@@ -175,17 +191,7 @@ def course_list_get(object):
     if not query_set.user_id_exist():
         result['error'] = 1
         return result
-    course_list = query_set.course_list_query()
-    course_attention_list = query_set.course_attention_query()
-    count = 0
-    for course in course_list:
-        course_url = '<a href="' + root_ip + 'courseInfo/' + object['user_id'] + '/' + str(count) + \
-                     '/">' + course + '</a>'
-        if course in course_attention_list:
-            result['data'].append(course_url)
-        count += 1
-    if len(result['data']) == 0:
-         result['data'].append('关注课程无相关信息'.decode('UTF-8'))
+    result['data'].append('<a href="' + root_ip + 'courseInfo/' + object['user_id'] + '/">' + '点击此处'.decode('UTF-8') + '</a>')
     return result
 
 
@@ -273,7 +279,8 @@ def files_list_get(object):
 def item_list_get(object):
     result = {
         'error': 0,
-        'data': []
+        'data': [],
+        'len': 0
     }
     query_set = query_academic(object['user_id'])
     if not query_set.user_id_exist():
@@ -281,10 +288,22 @@ def item_list_get(object):
         return result
     term_list = query_set.term_list_query()
     count = 0
+    result['len'] = len(term_list)
     for term in term_list:
-        course_url = '<a href="' + root_ip + 'termInfo/' + object['user_id'] + '/' + str(count) + \
-                     '/">' + term + '</a>'
-        result['data'].append(course_url)
+        if count == 0:
+            result['data'].append({
+                'title': term,
+                'description': '',
+                'url': 'http://166.111.80.7/zywg_central/static/img/score_logo.jpg',
+                'link': root_ip + 'termInfo/' + object['user_id'] + '/' + str(count) + '/'
+            })
+        else:
+            result['data'].append({
+                'title': term,
+                'description': '',
+                'url': '',
+                'link': root_ip + 'termInfo/' + object['user_id'] + '/' + str(count) + '/'
+            })
         count += 1
     return result
 
@@ -292,7 +311,7 @@ def item_list_get(object):
 def person_info_get(object):
     result = {
         'error': 0,
-        'url': root_ip + 'person_img/' + object['user_id'] + '/',
+        'url': root_ip + 'person_img/' + object['user_id'] + '/' + str(get_test()) + '/',
         'link': root_ip + 'personInfo/' + object['user_id'] + '/',
         'data': []
     }
@@ -347,6 +366,19 @@ def deadline_list_get(object):
     return result
 
 
+def deadline_table_get(object):
+    result = {
+        'error': 0,
+        'data': []
+    }
+    query_set = query_learn(object['user_id'])
+    if not query_set.user_id_exist():
+        result['error'] = 1
+        return result
+    result['data'] = query_set.my_table_query()
+    return result
+
+
 def index_get(object):
     result = {
         'error': 0,
@@ -361,7 +393,7 @@ def index_get(object):
     person_info = query_set_name.person_info_query()
     result['data'].append(person_info['real_name'])
     result['data'].append(str(len(course_list)))
-    result['data'].append(root_ip + 'person_old_img/' + object['user_id'] + '/',)
+    result['data'].append(root_ip + 'person_old_img/' + object['user_id'] + '/' + str(get_test()) + '/',)
     return result
 
 
@@ -385,13 +417,9 @@ def card_get(object):
 
 
 @csrf_exempt
-def course_info_get(request, user_id, course_sequence):
-    try:
-        course_sequence = int(course_sequence)
-    except ValueError:
-        return HttpResponse(0)
+def course_info_get(request, user_id):
     query_set = query_learn(user_id)
-    course_info = query_set.course_info_query(course_sequence)
+    course_info = query_set.course_info_all_query()
     content = course_info
     return render_to_response('template/course_info.html', {'content': content})
 
@@ -464,14 +492,14 @@ def person_info_show(request, user_id):
 
 
 @csrf_exempt
-def person_img_get(request, user_id):
+def person_img_get(request, user_id, ran):
     image_data = open(new_img_root + user_id + '.jpg', "rb").read()
     return HttpResponse(image_data, mimetype="image/jpg")
     #return HttpResponse('C:\\Users\\Public\\Pictures\\TsinghuaHelper\\new\\' + user_id + '.jpg')
 
 
 @csrf_exempt
-def person_old_img_get(request, user_id):
+def person_old_img_get(request, user_id, ran):
     image_data = open(old_img_root + user_id + '.jpg', "rb").read()
     return HttpResponse(image_data, mimetype="image/jpg")
 # def course_info_get(object):

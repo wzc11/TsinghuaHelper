@@ -9,12 +9,17 @@
     <title>课程信息</title>
 </head>
 <body>
-        <ul data-role="listview">
-            <li>课程名称:{{ content.caption }}</li>
-            <li>课程编号:{{ content.id }}</li>
-            <li>未读文件:{{ content.file_unread }}</li>
-            <li>未交作业:{{ content.homework }}</li>
-            <li>未读通知:{{ content.notice_unread }}</li>
-        </ul>
+    <div>
+        {% for course in content %}
+            <div data-role="collapsible" data-theme="a" data-collapsed="false">
+                <h3>{{ course.caption }}</h3>
+                <ul data-role="listview">
+                    <li>未读文件:{{ course.file_unread }}</li>
+                    <li>未交作业:{{ course.homework }}</li>
+                    <li>未读通知:{{ course.notice_unread }}</li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

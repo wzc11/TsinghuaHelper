@@ -25,5 +25,6 @@ class store(object):
         try:
             user_old = user_list.next()
             User.objects(user_id=self.user_id).delete()
+            return True
         except Exception, e:
             return False
